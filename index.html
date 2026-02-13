@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel to Print Converter | Professional Dimension Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* ========================================== */
+    /* CSS Variables - Theme System */
+    /* ========================================== */
+    
+    :root {
+      /* Light Mode (Default) */
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FAFC;
+      --bg-tertiary: #F1F5F9;
+      --bg-panel: #FFFFFF;
+      --bg-input: #F8FAFC;
+      
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      
+      --border-light: #E2E8F0;
+      --border-default: #CBD5E1;
+      
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --accent-light: rgba(37, 99, 235, 0.1);
+      --accent-glow: rgba(37, 99, 235, 0.15);
+      
+      --success: #059669;
+      --success-light: rgba(5, 150, 105, 0.1);
+      --warning: #D97706;
+      --warning-light: rgba(217, 119, 6, 0.1);
+      --danger: #DC2626;
+      --danger-light: rgba(220, 38, 38, 0.1);
+      
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    [data-theme="dark"] {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-tertiary: #334155;
+      --bg-panel: #1E293B;
+      --bg-input: #0F172A;
+      
+      --text-primary: #F1F5F9;
+      --text-secondary: #CBD5E1;
+      --text-muted: #64748B;
+      
+      --border-light: #334155;
+      --border-default: #475569;
+      
+      --accent: #3B82F6;
+      --accent-hover: #60A5FA;
+      --accent-light: rgba(59, 130, 246, 0.15);
+      --accent-glow: rgba(59, 130, 246, 0.2);
+      
+      --success: #10B981;
+      --success-light: rgba(16, 185, 129, 0.15);
+      --warning: #F59E0B;
+      --warning-light: rgba(245, 158, 11, 0.15);
+      --danger: #EF4444;
+      --danger-light: rgba(239, 68, 68, 0.15);
+      
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* ========================================== */
+    /* Base Styles */
+    /* ========================================== */
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    /* ========================================== */
+    /* Utility Classes */
+    /* ========================================== */
+    
+    .bg-primary { background: var(--bg-primary); }
+    .bg-secondary { background: var(--bg-secondary); }
+    .bg-tertiary { background: var(--bg-tertiary); }
+    .bg-panel { background: var(--bg-panel); }
+    .bg-input { background: var(--bg-input); }
+    
+    .text-primary { color: var(--text-primary); }
+    .text-secondary { color: var(--text-secondary); }
+    .text-muted { color: var(--text-muted); }
+    
+    .border-light { border-color: var(--border-light); }
+    .border-default { border-color: var(--border-default); }
+    
+    .bg-accent { background: var(--accent); }
+    .bg-accent-light { background: var(--accent-light); }
+    .text-accent { color: var(--accent); }
+    
+    .bg-success { background: var(--success); }
+    .bg-success-light { background: var(--success-light); }
+    .text-success { color: var(--success); }
+    
+    .bg-warning { background: var(--warning); }
+    .bg-warning-light { background: var(--warning-light); }
+    .text-warning { color: var(--warning); }
+    
+    .bg-danger { background: var(--danger); }
+    .bg-danger-light { background: var(--danger-light); }
+    .text-danger { color: var(--danger); }
+    
+    /* ========================================== */
+    /* Component Styles */
+    /* ========================================== */
+    
+    /* Input Field */
+    .input-field {
+      background: var(--bg-input);
+      border: 1px solid var(--border-default);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+    
+    .input-field:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+      outline: none;
+    }
+    
+    .input-field:hover:not(:focus) {
+      border-color: var(--text-muted);
+    }
+    
+    /* Result Value Animation */
+    .result-value {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.2s ease;
+    }
+    
+    .result-value.updating {
+      transform: translateY(-8px);
+      opacity: 0.5;
+    }
+    
+    /* Preset Chip */
+    .preset-chip {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .preset-chip:hover {
+      background: var(--border-light);
+      transform: translateY(-1px);
+    }
+    
+    .preset-chip.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    
+    /* Aspect Preview */
+    .aspect-preview {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-input) 100%);
+      border: 1px solid var(--border-light);
+    }
+    
+    /* Copy Button */
+    .copy-btn {
+      background: transparent;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+    
+    .copy-btn:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+    }
+    
+    .copy-btn.copied {
+      background: var(--success-light);
+      color: var(--success);
+    }
+    
+    /* Card */
+    .card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    /* FAQ Item */
+    .faq-item {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    
+    .faq-item:hover {
+      border-color: var(--border-default);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+    
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+    
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    
+    .theme-toggle:hover {
+      background: var(--border-light);
+    }
+    
+    /* Button Primary */
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+    
+    /* Button Secondary */
+    .btn-secondary {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--border-light);
+    }
+    
+    /* Link */
+    .link {
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    
+    .link:hover {
+      color: var(--accent-hover);
+    }
+    
+    /* ========================================== */
+    /* Animations */
+    /* ========================================== */
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .animation-delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .animation-delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .animation-delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .animation-delay-4 { animation-delay: 0.4s; opacity: 0; }
+    .animation-delay-5 { animation-delay: 0.5s; opacity: 0; }
+    
+    /* ========================================== */
+    /* Scrollbar */
+    /* ========================================== */
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-default);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+    
+    /* ========================================== */
+    /* Accessibility */
+    /* ========================================== */
+    
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--accent);
+      color: white;
+      padding: 8px 16px;
+      z-index: 100;
+      transition: top 0.2s ease;
+    }
+    
+    .skip-link:focus {
+      top: 0;
+    }
+    
+    /* ========================================== */
+    /* Hero Pattern */
+    /* ========================================== */
+    
+    .hero-pattern {
+      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+    
+    /* Glow Effect */
+    .glow-accent {
+      box-shadow: 0 0 60px var(--accent-glow);
+    }
+      <!-- JSON-LD Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pixel to Print Converter",
+    "description": "A professional pixel to print dimension calculator for graphic designers and sublimation artists.",
+    "url": "https://xcreativedesign.github.io/pixel-to-print/",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Pixel to Print"
+    }
+  }
+  </script>
+
+  <!-- FAQ Schema for Featured Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is DPI and why does it matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DPI (Dots Per Inch) measures print resolution. Higher DPI means more dots of ink per inch, resulting in sharper, more detailed prints. For most professional printing, 300 DPI is the standard. Lower DPI (72-150) may appear pixelated when printed but can work for large-format items like banners viewed from a distance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert pixels to inches manually?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The formula is simple: Inches = Pixels divided by DPI. For example, an image that is 3000 pixels wide at 300 DPI will print at 10 inches wide (3000 divided by 300 = 10). Our tool performs this calculation instantly and also provides centimeter and millimeter conversions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What DPI should I use for sublimation printing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For sublimation printing on items like mugs, t-shirts, and phone cases, 300 DPI is recommended for crisp, vibrant transfers. The fabric or coating quality also affects the final result, but starting with high-resolution artwork ensures the best possible output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I increase DPI to improve print quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simply increasing the DPI value without adding more pixels will not improve quality. It just spreads the existing pixels over a smaller area. To truly improve print quality, you need to either start with a higher resolution image or use AI upscaling tools to add genuine detail before printing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between DPI and PPI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DPI (Dots Per Inch) refers to printed ink dots, while PPI (Pixels Per Inch) refers to screen pixels. For practical purposes, they are often used interchangeably in design work. When setting up print files, the concept is the same: more pixels per inch means higher detail in the final print."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my image look pixelated when printed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pixelation occurs when there are not enough pixels for the print size. If you print a 1000px image at 10 inches, you are only getting 100 DPI which is quite low. For sharp prints, ensure your image has at least 300 pixels for every inch of printed output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What resolution do I need for large prints like posters?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Large prints viewed from a distance can use lower DPI. Posters (18x24 inches or larger) often look great at 150-200 DPI because they are viewed from several feet away. A 150 DPI poster still needs significant pixels: 18 inches multiplied by 150 DPI equals 2700 pixels minimum width."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know if my image is good enough for print?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use our quality indicator. Green means excellent (300+ DPI), yellow means acceptable for the use case, and red indicates the image may appear blurry or pixelated. As a general rule, always check your pixel dimensions against your intended print size before sending to print."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://xcreativedesign.github.io/pixel-to-print/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "DPI Guide",
+      "item": "https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Print Size Chart",
+      "item": "https://xcreativedesign.github.io/pixel-to-print/print-size-chart.html"
+    },{
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Sublimation Tips",
+      "item": "https://xcreativedesign.github.io/pixel-to-print/sublimation-tips.html"
+    }]
+  }
+  </script>
+
+</head>
+  </style>
+</head>
+<body>
+  
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- ========================================== -->
+  <!-- Header -->
+  <!-- ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light backdrop-blur-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
+        </a>
+        
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#tool" class="text-sm font-medium text-secondary hover:text-primary transition-colors">Tool</a>
+          <a href="#use-cases" class="text-sm font-medium text-secondary hover:text-primary transition-colors">Use Cases</a>
+          <a href="#how-it-works" class="text-sm font-medium text-secondary hover:text-primary transition-colors">How It Works</a>
+          <a href="#faq" class="text-sm font-medium text-secondary hover:text-primary transition-colors">FAQ</a>
+        </div>
+        
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <!-- Theme Toggle -->
+          <button 
+            id="themeToggle"
+            class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center"
+            aria-label="Toggle dark mode"
+          >
+            <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          
+          <!-- Mobile Menu -->
+          <button 
+            id="mobileMenuBtn"
+            class="md:hidden theme-toggle w-10 h-10 rounded-lg flex items-center justify-center"
+            aria-label="Open menu"
+          >
+            <svg class="w-5 h-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col gap-2 pt-4 border-t border-light">
+          <a href="#tool" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">Tool</a>
+          <a href="#use-cases" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">Use Cases</a>
+          <a href="#how-it-works" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">How It Works</a>
+          <a href="#faq" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">FAQ</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- ========================================== -->
+    <!-- Hero Section -->
+    <!-- ========================================== -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 hero-pattern">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-primary tracking-tight leading-tight mb-6 animate-fade-in-up">
+            Convert Pixels to<br>
+            <span class="text-accent">Print-Ready</span> Dimensions
+          </h1>
+          <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto animate-fade-in-up animation-delay-1">
+            Professional dimension calculator for graphic designers, print specialists, and sublimation artists. Get accurate inch, centimeter, and millimeter measurements instantly.
+          </p>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-16 animate-fade-in-up animation-delay-2">
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary">
+            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span class="text-sm font-medium text-secondary">Free Forever</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary">
+            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span class="text-sm font-medium text-secondary">No Sign-up Required</span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary">
+            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span class="text-sm font-medium text-secondary">Instant Results</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ========================================== -->
+    <!-- Converter Tool Section -->
+    <!-- ========================================== -->
+    <section id="tool" class="py-16 md:py-24 bg-secondary">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Tool Card -->
+        <div class="card rounded-2xl overflow-hidden glow-accent animate-fade-in-up animation-delay-3">
+          
+          <!-- Smart Presets -->
+          <div class="p-5 md:p-6 border-b border-light">
+            <label class="block text-xs font-semibold text-muted uppercase tracking-wider mb-3">Smart Presets</label>
+            <div class="flex flex-wrap gap-2" id="presetContainer">
+              <!-- Presets injected by JS -->
+            </div>
+          </div>
+          
+          <!-- Input Section -->
+          <div class="p-5 md:p-6 border-b border-light">
+            <div class="grid grid-cols-3 gap-3 md:gap-4">
+              <!-- Width -->
+              <div>
+                <label for="widthInput" class="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Width</label>
+                <div class="relative">
+                  <input 
+                    type="number" 
+                    id="widthInput" 
+                    value="1920"
+                    min="1"
+                    max="99999"
+                    class="input-field w-full h-12 px-3 pr-12 rounded-lg text-lg font-mono font-medium"
+                    aria-label="Width in pixels"
+                  >
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-medium">px</span>
+                </div>
+              </div>
+              
+              <!-- Height -->
+              <div>
+                <label for="heightInput" class="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Height</label>
+                <div class="relative">
+                  <input 
+                    type="number" 
+                    id="heightInput" 
+                    value="1080"
+                    min="1"
+                    max="99999"
+                    class="input-field w-full h-12 px-3 pr-12 rounded-lg text-lg font-mono font-medium"
+                    aria-label="Height in pixels"
+                  >
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-medium">px</span>
+                </div>
+              </div>
+              
+              <!-- DPI -->
+              <div>
+                <label for="dpiInput" class="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">DPI</label>
+                <div class="relative">
+                  <input 
+                    type="number" 
+                    id="dpiInput" 
+                    value="300"
+                    min="1"
+                    max="1200"
+                    class="input-field w-full h-12 px-3 pr-12 rounded-lg text-lg font-mono font-medium"
+                    aria-label="Dots per inch"
+                  >
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-medium">dpi</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Quality Warning -->
+            <div id="qualityWarning" class="mt-4 hidden">
+              <div class="flex items-start gap-3 p-3 rounded-lg bg-warning-light border border-warning/30">
+                <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <div>
+                  <p class="text-sm font-medium text-warning" id="warningTitle">Quality Warning</p>
+                  <p class="text-xs text-secondary mt-0.5" id="warningMessage">Message here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Results Section -->
+          <div class="p-5 md:p-6">
+            <div class="flex flex-col md:flex-row gap-6">
+              
+              <!-- Aspect Preview -->
+              <div class="flex-shrink-0">
+                <label class="block text-xs font-semibold text-muted uppercase tracking-wider mb-3">Preview</label>
+                <div class="w-32 h-32 flex items-center justify-center bg-input rounded-lg border border-light">
+                  <div id="aspectPreview" class="aspect-preview rounded flex items-center justify-center" style="width: 64px; height: 36px;">
+                    <span class="text-xs text-muted font-mono" id="aspectRatio">16:9</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Results -->
+              <div class="flex-1">
+                <label class="block text-xs font-semibold text-muted uppercase tracking-wider mb-3">Print Dimensions</label>
+                
+                <!-- Primary Result -->
+                <div class="bg-input rounded-xl p-4 border border-light mb-3">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <span class="text-xs text-muted font-medium">Inches</span>
+                      <div class="flex items-baseline gap-2 mt-1">
+                        <span class="text-3xl font-bold text-primary font-mono result-value" id="inchesWidth">6.40</span>
+                        <span class="text-muted">×</span>
+                        <span class="text-3xl font-bold text-primary font-mono result-value" id="inchesHeight">3.60</span>
+                        <span class="text-sm text-muted">in</span>
+                      </div>
+                    </div>
+                    <button class="copy-btn p-2 rounded-lg" data-copy="inches" aria-label="Copy inches">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Secondary Results -->
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-input rounded-lg p-3 border border-light">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs text-muted font-medium">Centimeters</span>
+                      <button class="copy-btn p-1 rounded" data-copy="cm" aria-label="Copy centimeters">
+                        <svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="9" y="9" width="13" height="13" rx="2"/>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="flex items-baseline gap-1 mt-1">
+                      <span class="text-lg font-semibold text-primary font-mono result-value" id="cmWidth">16.26</span>
+                      <span class="text-muted">×</span>
+                      <span class="text-lg font-semibold text-primary font-mono result-value" id="cmHeight">9.14</span>
+                      <span class="text-xs text-muted">cm</span>
+                    </div>
+                  </div>
+                  
+                  <div class="bg-input rounded-lg p-3 border border-light">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs text-muted font-medium">Millimeters</span>
+                      <button class="copy-btn p-1 rounded" data-copy="mm" aria-label="Copy millimeters">
+                        <svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="9" y="9" width="13" height="13" rx="2"/>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="flex items-baseline gap-1 mt-1">
+                      <span class="text-lg font-semibold text-primary font-mono result-value" id="mmWidth">162.6</span>
+                      <span class="text-muted">×</span>
+                      <span class="text-lg font-semibold text-primary font-mono result-value" id="mmHeight">91.4</span>
+                      <span class="text-xs text-muted">mm</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quality Bar -->
+          <div class="px-5 md:px-6 pb-5 md:pb-6">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <span class="text-muted">Print Quality:</span>
+                <span id="qualityLabel" class="font-semibold text-success">Excellent</span>
+              </div>
+              <div class="w-28 h-2 rounded-full bg-tertiary overflow-hidden">
+                <div id="qualityBar" class="h-full rounded-full bg-success transition-all duration-300" style="width: 100%"></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- ========================================== -->
+    <!-- Use Cases Section -->
+    <!-- ========================================== -->
+    <section id="use-cases" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Built for Professionals</h2>
+          <p class="text-lg text-secondary max-w-2xl mx-auto">Whether you're printing photos, designing for sublimation, or preparing marketing materials — get the exact dimensions you need.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Use Case 1 -->
+          <div class="card p-6 rounded-xl">
+            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-primary mb-2">Sublimation Printing</h3>
+            <p class="text-secondary text-sm mb-4">Perfect for mugs, t-shirts, phone cases, and more. Our presets include common sublimation blanks with the right DPI for vibrant transfers.</p>
+            <ul class="space-y-2 text-sm text-muted">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                11oz Mug wraps
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                T-shirt chest prints
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Phone case inserts
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Use Case 2 -->
+          <div class="card p-6 rounded-xl">
+            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-primary mb-2">Print & Publishing</h3>
+            <p class="text-secondary text-sm mb-4">Prepare artwork for brochures, flyers, posters, and business cards. Ensure your designs print crisp at any size.</p>
+            <ul class="space-y-2 text-sm text-muted">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                A4, A3, Letter sizes
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Business cards
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Large format posters
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Use Case 3 -->
+          <div class="card p-6 rounded-xl">
+            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-primary mb-2">Digital to Print</h3>
+            <p class="text-secondary text-sm mb-4">Converting social media graphics or web designs to print? Know exactly how they'll translate to physical dimensions.</p>
+            <ul class="space-y-2 text-sm text-muted">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Instagram posts to prints
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                YouTube thumbnails
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Web banners to signage
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Use Case 4 -->
+          <div class="card p-6 rounded-xl">
+            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-primary mb-2">Photography</h3>
+            <p class="text-secondary text-sm mb-4">Photographers can quickly determine print sizes from image dimensions. Know if your photo is sharp enough for large prints.</p>
+            <ul class="space-y-2 text-sm text-muted">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Standard photo sizes
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Canvas prints
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Quality assessment
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Use Case 5 -->
+          <div class="card p-6 rounded-xl">
+            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                <path d="M2 2l7.586 7.586"/>
+                <circle cx="11" cy="11" r="2"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-primary mb-2">Graphic Design</h3>
+            <p class="text-secondary text-sm mb-4">Designers working across digital and print need to convert constantly. This tool makes it instant and accurate.</p>
+            <ul class="space-y-2 text-sm text-muted">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Multi-format projects
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Client specifications
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Pre-press prep
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Use Case 6 -->
+          <div class="card p-6 rounded-xl">
+            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-primary mb-2">Education</h3>
+            <p class="text-secondary text-sm mb-4">Teaching students about resolution, DPI, and print production? This tool makes concepts tangible and easy to understand.</p>
+            <ul class="space-y-2 text-sm text-muted">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Design fundamentals
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Print production
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Photography classes
+              </li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- ========================================== -->
+    <!-- How It Works Section -->
+    <!-- ========================================== -->
+    <section id="how-it-works" class="py-16 md:py-24 bg-secondary">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">How It Works</h2>
+          <p class="text-lg text-secondary max-w-2xl mx-auto">Understanding DPI and print dimensions is essential for quality output. Here's the science behind it.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <!-- Step 1 -->
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-2xl bg-accent-light flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-accent">1</span>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">Enter Your Dimensions</h3>
+            <p class="text-secondary text-sm">Input your image's pixel width, height, and the intended DPI (dots per inch) for printing. 300 DPI is standard for high-quality prints.</p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-2xl bg-accent-light flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-accent">2</span>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">Instant Calculation</h3>
+            <p class="text-secondary text-sm">Our tool instantly converts pixels to physical measurements using the formula: Inches = Pixels ÷ DPI. Results are shown in inches, centimeters, and millimeters.</p>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-2xl bg-accent-light flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-accent">3</span>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">Quality Check</h3>
+            <p class="text-secondary text-sm">The smart quality indicator warns you if your image resolution is too low for the intended print size, helping you avoid pixelated or blurry prints.</p>
+          </div>
+          
+        </div>
+        
+        <!-- Info Box -->
+        <div class="mt-12 md:mt-16 p-6 md:p-8 rounded-2xl bg-panel border border-light">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-primary mb-2">Understanding DPI</h3>
+              <p class="text-secondary text-sm mb-4">DPI (Dots Per Inch) determines print quality. Higher DPI means more detail and sharper prints:</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-success mt-2"></div>
+                  <div>
+                    <span class="font-medium text-primary text-sm">300+ DPI</span>
+                    <p class="text-muted text-xs">Excellent for photos, magazines, brochures</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-warning mt-2"></div>
+                  <div>
+                    <span class="font-medium text-primary text-sm">150-300 DPI</span>
+                    <p class="text-muted text-xs">Good for posters, banners, large prints</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-danger mt-2"></div>
+                  <div>
+                    <span class="font-medium text-primary text-sm">72-150 DPI</span>
+                    <p class="text-muted text-xs">Acceptable for very large signs, billboards</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-muted mt-2"></div>
+                  <div>
+                    <span class="font-medium text-primary text-sm">72 DPI</span>
+                    <p class="text-muted text-xs">Standard for web/screen viewing only</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- ========================================== -->
+    <!-- FAQ Section -->
+    <!-- ========================================== -->
+    <section id="faq" class="py-16 md:py-24">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Frequently Asked Questions</h2>
+          <p class="text-lg text-secondary">Everything you need to know about pixel to print conversion.</p>
+        </div>
+        
+        <div class="space-y-4" id="faqContainer">
+          <!-- FAQ items injected by JS -->
+        </div>
+        
+      </div>
+    </section>
+    
+    <!-- ========================================== -->
+    <!-- CTA Section -->
+    <!-- ========================================== -->
+    <section class="py-16 md:py-24 bg-secondary">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Ready to Convert?</h2>
+        <p class="text-lg text-secondary mb-8 max-w-2xl mx-auto">Start converting your pixel dimensions to print-ready measurements in seconds. No signup required.</p>
+        <a href="#tool" class="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold">
+          Open the Tool
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- ========================================== -->
+  <!-- Footer -->
+  <!-- ========================================== -->
+    <!-- Footer -->
+  <footer class="py-12 md:py-16 border-t border-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <a href="index.html" class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            <span class="font-semibold text-lg text-primary">Pixel to Print</span>
+          </a>
+          <p class="text-secondary text-sm mb-4 max-w-sm">A free professional tool for graphic designers, print specialists, and sublimation artists to convert pixel dimensions to physical print measurements.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://x.com/xcreativedesig" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors" aria-label="Twitter">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/xcreativedesign/pixel-to-print/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors" aria-label="GitHub">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://xcreativedesign.com/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors" aria-label="Website">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-semibold text-primary mb-4">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#tool" class="text-sm text-secondary hover:text-primary transition-colors">Converter Tool</a></li>
+            <li><a href="#use-cases" class="text-sm text-secondary hover:text-primary transition-colors">Use Cases</a></li>
+            <li><a href="#how-it-works" class="text-sm text-secondary hover:text-primary transition-colors">How It Works</a></li>
+            <li><a href="#faq" class="text-sm text-secondary hover:text-primary transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div>
+          <h4 class="font-semibold text-primary mb-4">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="dpi-guide.html" class="text-sm text-secondary hover:text-primary transition-colors">DPI Guide</a></li>
+            <li><a href="print-size-chart.html" class="text-sm text-secondary hover:text-primary transition-colors">Print Size Chart</a></li>
+            <li><a href="sublimation-tips.html" class="text-sm text-secondary hover:text-primary transition-colors">Sublimation Tips</a></li>
+            <li><a href="privacy-policy.html" class="text-sm text-secondary hover:text-primary transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <!-- Bottom -->
+      <div class="pt-8 border-t border-light flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-muted"><span id="footerYear"></span> Pixel to Print. All rights reserved.</p>
+        <p class="text-sm text-muted">Made with precision for designers worldwide.</p>
+      </div>
+      
+    </div>
+  </footer>
+  
+  <!-- ========================================== -->
+  <!-- JavaScript -->
+  <!-- ========================================== -->
+  <script>
+    // ==========================================
+    // Data
+    // ==========================================
+    
+    const PRESETS = [
+      { id: 'mug', name: 'Mug (11oz)', width: 2200, height: 900, dpi: 300 },
+      { id: 'a4', name: 'A4 Paper', width: 2480, height: 3508, dpi: 300 },
+      { id: 'a4-150', name: 'A4 (150 DPI)', width: 1240, height: 1754, dpi: 150 },
+      { id: 'youtube', name: 'YouTube Thumb', width: 1280, height: 720, dpi: 72 },
+      { id: 'instagram', name: 'Instagram Post', width: 1080, height: 1080, dpi: 72 },
+      { id: 'tshirt', name: 'T-Shirt Logo', width: 2400, height: 2800, dpi: 300 },
+      { id: 'poster', name: 'Poster 18x24', width: 5400, height: 7200, dpi: 300 },
+      { id: 'business-card', name: 'Business Card', width: 1050, height: 600, dpi: 300 },
+    ];
+    
+    const FAQS = [
+      {
+        question: 'What is DPI and why does it matter?',
+        answer: 'DPI (Dots Per Inch) measures print resolution. Higher DPI means more dots of ink per inch, resulting in sharper, more detailed prints. For most professional printing, 300 DPI is the standard. Lower DPI (72-150) may appear pixelated when printed but can work for large-format items like banners viewed from a distance.'
+      },
+      {
+        question: 'How do I convert pixels to inches manually?',
+        answer: 'The formula is simple: Inches = Pixels ÷ DPI. For example, an image that is 3000 pixels wide at 300 DPI will print at 10 inches wide (3000 ÷ 300 = 10). Our tool performs this calculation instantly and also provides centimeter and millimeter conversions.'
+      },
+      {
+        question: 'What DPI should I use for sublimation printing?',
+        answer: 'For sublimation printing on items like mugs, t-shirts, and phone cases, 300 DPI is recommended for crisp, vibrant transfers. The fabric or coating quality also affects the final result, but starting with high-resolution artwork ensures the best possible output.'
+      },
+      {
+        question: 'Can I increase DPI to improve print quality?',
+        answer: 'Simply increasing the DPI value without adding more pixels won\'t improve quality. It just spreads the existing pixels over a smaller area. To truly improve print quality, you need to either start with a higher resolution image or use AI upscaling tools to add genuine detail before printing.'
+      },
+      {
+        question: 'What\'s the difference between DPI and PPI?',
+        answer: 'DPI (Dots Per Inch) refers to printed ink dots, while PPI (Pixels Per Inch) refers to screen pixels. For practical purposes, they\'re often used interchangeably in design work. When setting up print files, the concept is the same: more pixels per inch means higher detail in the final print.'
+      },
+      {
+        question: 'Why does my image look pixelated when printed?',
+        answer: 'Pixelation occurs when there aren\'t enough pixels for the print size. If you print a 1000px image at 10 inches, you\'re only getting 100 DPI — which is quite low. For sharp prints, ensure your image has at least 300 pixels for every inch of printed output.'
+      },
+      {
+        question: 'What resolution do I need for large prints like posters?',
+        answer: 'Large prints viewed from a distance can use lower DPI. Posters (18x24 inches or larger) often look great at 150-200 DPI because they\'re viewed from several feet away. A 150 DPI poster still needs significant pixels: 18 inches × 150 DPI = 2700 pixels minimum width.'
+      },
+      {
+        question: 'How do I know if my image is good enough for print?',
+        answer: 'Use our quality indicator! Green means excellent (300+ DPI), yellow means acceptable for the use case, and red indicates the image may appear blurry or pixelated. As a general rule, always check your pixel dimensions against your intended print size before sending to print.'
+      }
+    ];
+    
+    // ==========================================
+    // DOM Elements
+    // ==========================================
+    
+    let widthInput = null;
+    let heightInput = null;
+    let dpiInput = null;
+    let presetContainer = null;
+    let aspectPreview = null;
+    let aspectRatio = null;
+    let qualityWarning = null;
+    let warningTitle = null;
+    let warningMessage = null;
+    let qualityLabel = null;
+    let qualityBar = null;
+    let inchesWidth = null;
+    let inchesHeight = null;
+    let cmWidth = null;
+    let cmHeight = null;
+    let mmWidth = null;
+    let mmHeight = null;
+    let themeToggle = null;
+    let mobileMenuBtn = null;
+    let mobileMenu = null;
+    let faqContainer = null;
+    
+    // ==========================================
+    // State
+    // ==========================================
+    
+    let currentPreset = null;
+    let updateTimeout = null;
+    
+    // ==========================================
+    // Utility Functions
+    // ==========================================
+    
+    function gcd(a, b) {
+      a = Math.abs(Math.floor(a));
+      b = Math.abs(Math.floor(b));
+      while (b) {
+        const t = b;
+        b = a % b;
+        a = t;
+      }
+      return a || 1;
+    }
+    
+    function calculateAspectRatio(w, h) {
+      const divisor = gcd(w, h);
+      const ratioW = Math.round(w / divisor);
+      const ratioH = Math.round(h / divisor);
+      if (ratioW === 8 && ratioH === 5) return '16:10';
+      if (ratioW === 5 && ratioH === 8) return '10:16';
+      return `${ratioW}:${ratioH}`;
+    }
+    
+    function pixelsToInches(pixels, dpi) {
+      const safeDpi = Math.max(1, dpi);
+      return pixels / safeDpi;
+    }
+    
+    function inchesToCm(inches) {
+      return inches * 2.54;
+    }
+    
+    function inchesToMm(inches) {
+      return inches * 25.4;
+    }
+    
+    function formatNumber(num, decimals = 2) {
+      return num.toFixed(decimals);
+    }
+    
+    // ==========================================
+    // Theme Management
+    // ==========================================
+    
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      
+      updateThemeIcon();
+    }
+    
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      
+      updateThemeIcon();
+    }
+    
+    function updateThemeIcon() {
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      const theme = document.documentElement.getAttribute('data-theme');
+      
+      if (sunIcon && moonIcon) {
+        if (theme === 'dark') {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      }
+    }
+    
+    // ==========================================
+    // Core Calculator
+    // ==========================================
+    
+    function updateResults() {
+      if (!widthInput || !heightInput || !dpiInput) return;
+      
+      const width = Math.max(1, parseInt(widthInput.value) || 1);
+      const height = Math.max(1, parseInt(heightInput.value) || 1);
+      const dpi = Math.max(1, parseInt(dpiInput.value) || 72);
+      
+      const widthInches = pixelsToInches(width, dpi);
+      const heightInches = pixelsToInches(height, dpi);
+      const widthCm = inchesToCm(widthInches);
+      const heightCm = inchesToCm(heightInches);
+      const widthMm = inchesToMm(widthInches);
+      const heightMm = inchesToMm(heightInches);
+      
+      animateValue(inchesWidth, formatNumber(widthInches));
+      animateValue(inchesHeight, formatNumber(heightInches));
+      animateValue(cmWidth, formatNumber(widthCm));
+      animateValue(cmHeight, formatNumber(heightCm));
+      animateValue(mmWidth, formatNumber(widthMm, 1));
+      animateValue(mmHeight, formatNumber(heightMm, 1));
+      
+      updateAspectPreview(width, height);
+      updateQualityIndicator(width, height, dpi);
+    }
+    
+    function animateValue(element, newValue) {
+      if (!element) return;
+      element.classList.add('updating');
+      setTimeout(() => {
+        element.textContent = newValue;
+        element.classList.remove('updating');
+      }, 150);
+    }
+    
+    function updateAspectPreview(width, height) {
+      if (!aspectPreview || !aspectRatio) return;
+      
+      const maxWidth = 100;
+      const maxHeight = 80;
+      let displayWidth, displayHeight;
+      
+      if (width > height) {
+        displayWidth = maxWidth;
+        displayHeight = Math.max(20, (height / width) * maxWidth);
+      } else {
+        displayHeight = maxHeight;
+        displayWidth = Math.max(20, (width / height) * maxHeight);
+      }
+      
+      aspectPreview.style.width = `${displayWidth}px`;
+      aspectPreview.style.height = `${displayHeight}px`;
+      aspectRatio.textContent = calculateAspectRatio(width, height);
+    }
+    
+    function updateQualityIndicator(width, height, dpi) {
+      if (!qualityLabel || !qualityBar || !qualityWarning) return;
+      
+      const minDimension = Math.min(width, height);
+      let quality, label, color, widthPercent;
+      const warnings = [];
+      
+      if (dpi >= 300 && minDimension >= 1000) {
+        quality = 'excellent';
+        label = 'Excellent';
+        color = 'var(--success)';
+        widthPercent = 100;
+      } else if (dpi >= 200 && minDimension >= 800) {
+        quality = 'good';
+        label = 'Good';
+        color = 'var(--success)';
+        widthPercent = 75;
+      } else if (dpi >= 150 && minDimension >= 500) {
+        quality = 'acceptable';
+        label = 'Acceptable';
+        color = 'var(--warning)';
+        widthPercent = 50;
+        if (dpi < 300) {
+          warnings.push({
+            title: 'DPI Below Print Standard',
+            message: `Current DPI (${dpi}) is below the recommended 300 DPI for high-quality print.`
+          });
+        }
+      } else {
+        quality = 'low';
+        label = 'Low Quality';
+        color = 'var(--danger)';
+        widthPercent = 25;
+        if (minDimension < 500) {
+          warnings.push({
+            title: 'Resolution Too Low',
+            message: 'Image dimensions are too small for quality print. Minimum recommended: 1000px.'
+          });
+        }
+        if (dpi < 150) {
+          warnings.push({
+            title: 'Insufficient DPI',
+            message: `DPI of ${dpi} will result in pixelated prints. Use at least 150 DPI.`
+          });
+        }
+      }
+      
+      qualityLabel.textContent = label;
+      qualityLabel.style.color = color;
+      qualityBar.style.width = `${widthPercent}%`;
+      qualityBar.style.backgroundColor = color;
+      
+      if (warnings.length > 0 && warningTitle && warningMessage) {
+        warningTitle.textContent = warnings[0].title;
+        warningMessage.textContent = warnings[0].message;
+        qualityWarning.classList.remove('hidden');
+      } else {
+        qualityWarning.classList.add('hidden');
+      }
+    }
+    
+    // ==========================================
+    // Presets
+    // ==========================================
+    
+    function renderPresets() {
+      if (!presetContainer) return;
+      
+      presetContainer.innerHTML = PRESETS.map(preset => `
+        <button 
+          class="preset-chip px-3 py-1.5 rounded-lg text-sm font-medium"
+          data-preset-id="${preset.id}"
+          aria-label="Select ${preset.name} preset"
+        >
+          ${preset.name}
+        </button>
+      `).join('');
+      
+      presetContainer.querySelectorAll('.preset-chip').forEach(chip => {
+        chip.addEventListener('click', () => applyPreset(chip.dataset.presetId));
+      });
+    }
+    
+    function applyPreset(presetId) {
+      const preset = PRESETS.find(p => p.id === presetId);
+      if (!preset) return;
+      
+      presetContainer.querySelectorAll('.preset-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.presetId === presetId);
+      });
+      
+      animateInputChange(widthInput, preset.width);
+      animateInputChange(heightInput, preset.height);
+      animateInputChange(dpiInput, preset.dpi);
+      
+      currentPreset = presetId;
+      setTimeout(updateResults, 50);
+    }
+    
+    function animateInputChange(input, newValue) {
+      if (!input) return;
+      input.style.backgroundColor = 'var(--accent-light)';
+      input.value = newValue;
+      setTimeout(() => { input.style.backgroundColor = ''; }, 200);
+    }
+    
+    // ==========================================
+    // FAQ
+    // ==========================================
+    
+    function renderFAQs() {
+      if (!faqContainer) return;
+      
+      faqContainer.innerHTML = FAQS.map((faq, index) => `
+        <div class="faq-item rounded-xl overflow-hidden" data-faq-index="${index}">
+          <button 
+            class="w-full p-5 flex items-center justify-between text-left"
+            aria-expanded="false"
+            aria-controls="faq-answer-${index}"
+          >
+            <span class="font-medium text-primary pr-4">${faq.question}</span>
+            <svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-answer-${index}">
+            <p class="px-5 pb-5 text-sm text-secondary">${faq.answer}</p>
+          </div>
+        </div>
+      `).join('');
+      
+      faqContainer.querySelectorAll('.faq-item button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          
+          // Close all others
+          faqContainer.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('button').setAttribute('aria-expanded', 'false');
+          });
+          
+          // Toggle current
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+    
+    // ==========================================
+    // Copy Functionality
+    // ==========================================
+    
+    function setupCopyButtons() {
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const copyType = btn.dataset.copy;
+          const text = getCopyText(copyType);
+          
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.classList.add('copied');
+            setTimeout(() => btn.classList.remove('copied'), 1500);
+          } catch (err) {
+            console.error('Failed to copy:', err);
+          }
+        });
+      });
+    }
+    
+    function getCopyText(type) {
+      const w = inchesWidth?.textContent || '0';
+      const h = inchesHeight?.textContent || '0';
+      const wCm = cmWidth?.textContent || '0';
+      const hCm = cmHeight?.textContent || '0';
+      const wMm = mmWidth?.textContent || '0';
+      const hMm = mmHeight?.textContent || '0';
+      
+      switch (type) {
+        case 'inches': return `${w}" x ${h}"`;
+        case 'cm': return `${wCm} x ${hCm} cm`;
+        case 'mm': return `${wMm} x ${hMm} mm`;
+        default: return `${w}" x ${h}"`;
+      }
+    }
+    
+    // ==========================================
+    // Event Listeners
+    // ==========================================
+    
+    function setupEventListeners() {
+      const handleInput = () => {
+        clearTimeout(updateTimeout);
+        updateTimeout = setTimeout(updateResults, 100);
+        
+        presetContainer?.querySelectorAll('.preset-chip').forEach(chip => {
+          chip.classList.remove('active');
+        });
+        currentPreset = null;
+      };
+      
+      if (widthInput) widthInput.addEventListener('input', handleInput);
+      if (heightInput) heightInput.addEventListener('input', handleInput);
+      if (dpiInput) dpiInput.addEventListener('input', handleInput);
+      
+      if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+      }
+      
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+      
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.opacity = '0';
+        observer.observe(card);
+      });
+    }
+    
+    // ==========================================
+    // Initialization
+    // ==========================================
+    
+    function initializeElements() {
+      widthInput = document.getElementById('widthInput');
+      heightInput = document.getElementById('heightInput');
+      dpiInput = document.getElementById('dpiInput');
+      presetContainer = document.getElementById('presetContainer');
+      aspectPreview = document.getElementById('aspectPreview');
+      aspectRatio = document.getElementById('aspectRatio');
+      qualityWarning = document.getElementById('qualityWarning');
+      warningTitle = document.getElementById('warningTitle');
+      warningMessage = document.getElementById('warningMessage');
+      qualityLabel = document.getElementById('qualityLabel');
+      qualityBar = document.getElementById('qualityBar');
+      inchesWidth = document.getElementById('inchesWidth');
+      inchesHeight = document.getElementById('inchesHeight');
+      cmWidth = document.getElementById('cmWidth');
+      cmHeight = document.getElementById('cmHeight');
+      mmWidth = document.getElementById('mmWidth');
+      mmHeight = document.getElementById('mmHeight');
+      themeToggle = document.getElementById('themeToggle');
+      mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      mobileMenu = document.getElementById('mobileMenu');
+      faqContainer = document.getElementById('faqContainer');
+    }
+    
+    function init() {
+      initializeElements();
+      initTheme();
+      renderPresets();
+      renderFAQs();
+      setupEventListeners();
+      setupCopyButtons();
+      updateResults();
+    }
+    
+    // Start
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // Set current year dynamically
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
