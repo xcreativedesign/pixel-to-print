@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPI Guide | Pixel to Print</title>
+  <meta name="description" content="Complete DPI Guide: Learn what DPI (Dots Per Inch) means, difference between DPI vs PPI, and recommended print resolution for photos, sublimation, and large format prints. Expert guide for designers.">
+<meta name="keywords" content="DPI guide, what is DPI, DPI vs PPI, print resolution, 300 DPI, dots per inch, sublimation DPI, pixel to print">
+<link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Complete DPI Guide for Print & Design | Pixel to Print">
+<meta property="og:description" content="Master DPI, resolution, and print quality. Expert guide with charts and calculations.">
+<meta property="og:type" content="article">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* CSS Variables - Theme System */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FAFC;
+      --bg-tertiary: #F1F5F9;
+      --bg-panel: #FFFFFF;
+      --bg-input: #F8FAFC;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      --border-light: #E2E8F0;
+      --border-default: #CBD5E1;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --accent-light: rgba(37, 99, 235, 0.1);
+      --success: #059669;
+      --success-light: rgba(5, 150, 105, 0.1);
+      --warning: #D97706;
+      --warning-light: rgba(217, 119, 6, 0.1);
+      --danger: #DC2626;
+      --danger-light: rgba(220, 38, 38, 0.1);
+    }
+    
+    [data-theme="dark"] {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-tertiary: #334155;
+      --bg-panel: #1E293B;
+      --bg-input: #0F172A;
+      --text-primary: #F1F5F9;
+      --text-secondary: #CBD5E1;
+      --text-muted: #64748B;
+      --border-light: #334155;
+      --border-default: #475569;
+      --accent: #3B82F6;
+      --accent-hover: #60A5FA;
+      --accent-light: rgba(59, 130, 246, 0.15);
+      --success: #10B981;
+      --success-light: rgba(16, 185, 129, 0.15);
+      --warning: #F59E0B;
+      --warning-light: rgba(245, 158, 11, 0.15);
+      --danger: #EF4444;
+      --danger-light: rgba(239, 68, 68, 0.15);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .bg-primary { background: var(--bg-primary); }
+    .bg-secondary { background: var(--bg-secondary); }
+    .bg-tertiary { background: var(--bg-tertiary); }
+    .bg-panel { background: var(--bg-panel); }
+    .text-primary { color: var(--text-primary); }
+    .text-secondary { color: var(--text-secondary); }
+    .text-muted { color: var(--text-muted); }
+    .border-light { border-color: var(--border-light); }
+    .border-default { border-color: var(--border-default); }
+    .bg-accent { background: var(--accent); }
+    .bg-accent-light { background: var(--accent-light); }
+    .text-accent { color: var(--accent); }
+    .bg-success { background: var(--success); }
+    .bg-success-light { background: var(--success-light); }
+    .text-success { color: var(--success); }
+    .bg-warning { background: var(--warning); }
+    .bg-warning-light { background: var(--warning-light); }
+    .text-warning { color: var(--warning); }
+    .bg-danger { background: var(--danger); }
+    .bg-danger-light { background: var(--danger-light); }
+    .text-danger { color: var(--danger); }
+    
+    .card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-light);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .theme-toggle {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    
+    .theme-toggle:hover { background: var(--border-light); }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+    
+    .link { color: var(--accent); transition: color 0.2s ease; }
+    .link:hover { color: var(--accent-hover); }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+    
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    .hero-pattern {
+      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+    
+    /* Table styles */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .data-table th {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-default);
+    }
+    
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-secondary);
+    }
+    
+    .data-table tr:hover td {
+      background: var(--bg-secondary);
+    }
+    
+    /* Sidebar navigation */
+    .sidebar-link {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text-secondary);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+    
+    .sidebar-link:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+    
+    .sidebar-link.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
+        </a>
+        
+        <div class="flex items-center gap-3">
+          <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center" aria-label="Toggle dark mode">
+            <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="pt-24 pb-16">
+    
+    <!-- Hero Section -->
+    <section class="bg-secondary hero-pattern py-12 md:py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-light text-accent text-sm font-medium mb-4">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          Resource Guide
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Complete DPI Guide</h1>
+        <p class="text-lg text-secondary max-w-2xl mx-auto">Everything you need to know about DPI, resolution, and print quality. Master the fundamentals of professional printing.</p>
+      </div>
+    </section>
+    
+    <!-- Content Section -->
+    <section class="py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-4 gap-8">
+          
+          <!-- Sidebar -->
+          <aside class="lg:col-span-1">
+            <div class="sticky top-24">
+              <nav class="space-y-1">
+                <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-3 px-3">On This Page</p>
+                <a href="#what-is-dpi" class="sidebar-link">What is DPI?</a>
+                <a href="#dpi-vs-ppi" class="sidebar-link">DPI vs PPI</a>
+                <a href="#dpi-standards" class="sidebar-link">DPI Standards</a>
+                <a href="#calculating" class="sidebar-link">Calculating Print Size</a>
+                <a href="#common-mistakes" class="sidebar-link">Common Mistakes</a>
+                <a href="#tips" class="sidebar-link">Pro Tips</a>
+              </nav>
+              
+              <div class="mt-8 p-4 rounded-xl bg-accent-light border border-accent/20">
+                <p class="text-sm font-medium text-accent mb-2">Need quick conversion?</p>
+                <a href="index.html#tool" class="text-sm text-secondary hover:text-accent transition-colors">Open the Converter Tool</a>
+              </div>
+            </div>
+          </aside>
+          
+          <!-- Main Content -->
+          <article class="lg:col-span-3 space-y-12">
+            
+            <!-- What is DPI -->
+           <section id="what-is-dpi">
+  <!-- Direct Answer for Snippet (Google loves this format) -->
+  <div class="bg-accent-light border-l-4 border-accent p-5 rounded-r-xl mb-6">
+    <h2 class="text-xl font-bold text-primary mb-2">Quick Answer</h2>
+    <p class="text-secondary">
+      <strong class="text-primary">DPI (Dots Per Inch)</strong> is a measure of print resolution indicating how many ink dots a printer places in one linear inch. <strong>300 DPI</strong> is the standard for high-quality prints like photos and brochures, while <strong>72 DPI</strong> is only for screens.
+    </p>
+  </div>
+
+  <h2 class="text-2xl font-bold text-primary mb-4">What is DPI? (Detailed Explanation)</h2>
+  <p class="text-secondary mb-4">
+    Think of it this way: if you have a 1-inch square printed at 300 DPI, your printer places 300 dots horizontally and 300 dots vertically, creating 90,000 tiny dots in that square inch. More dots mean smoother gradients and sharper detail.
+  </p>
+              
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
+                    <span class="text-lg font-bold text-success">300+</span>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-1">High Quality</h3>
+                  <p class="text-sm text-secondary">Photos, magazines, brochures, business cards</p>
+                </div>
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-warning-light flex items-center justify-center mb-3">
+                    <span class="text-lg font-bold text-warning">150</span>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-1">Medium Quality</h3>
+                  <p class="text-sm text-secondary">Posters, banners, large format prints</p>
+                </div>
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center mb-3">
+                    <span class="text-lg font-bold text-danger">72</span>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-1">Screen Only</h3>
+                  <p class="text-sm text-secondary">Web graphics, social media, digital displays</p>
+                </div>
+              </div>
+            </section>
+            
+            <!-- DPI vs PPI -->
+            <section id="dpi-vs-ppi">
+              <h2 class="text-2xl font-bold text-primary mb-4">DPI vs PPI: What's the Difference?</h2>
+              <p class="text-secondary mb-6">
+                While often used interchangeably, DPI and PPI refer to different things. Understanding the distinction helps you communicate accurately with print shops and designers.
+              </p>
+              
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="card p-6 rounded-xl">
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center">
+                      <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <circle cx="15.5" cy="8.5" r="1.5"/>
+                        <circle cx="8.5" cy="15.5" r="1.5"/>
+                        <circle cx="15.5" cy="15.5" r="1.5"/>
+                      </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary">DPI - Dots Per Inch</h3>
+                  </div>
+                  <ul class="space-y-2 text-sm text-secondary">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Refers to printed ink dots
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Used by printers and print shops
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Physical output measurement
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Affects print quality directly
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="card p-6 rounded-xl">
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-success-light flex items-center justify-center">
+                      <svg class="w-6 h-6 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                      </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-primary">PPI - Pixels Per Inch</h3>
+                  </div>
+                  <ul class="space-y-2 text-sm text-secondary">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Refers to screen pixels
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Used in digital design software
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Digital resolution measurement
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Affects screen display sharpness
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="mt-6 p-4 rounded-xl bg-tertiary border border-light">
+                <p class="text-sm text-secondary">
+                  <strong class="text-primary">Practical Note:</strong> In most design workflows, when you set an image to "300 DPI" in Photoshop, you're technically setting 300 PPI. However, the print industry commonly uses "DPI" to describe both concepts, so don't worry too much about the terminology in day-to-day work.
+                </p>
+              </div>
+            </section>
+            
+            <!-- DPI Standards -->
+            <section id="dpi-standards">
+              <h2 class="text-2xl font-bold text-primary mb-4">DPI Standards by Print Type</h2>
+              <p class="text-secondary mb-6">
+                Different print applications require different DPI levels. Here's a comprehensive guide to what DPI you should use for various print projects.
+              </p>
+              
+              <div class="overflow-x-auto rounded-xl border border-light">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Print Type</th>
+                      <th>Recommended DPI</th>
+                      <th>Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-medium text-primary">Photos & Art Prints</td>
+                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300+</span></td>
+                      <td>Maximum detail for close viewing</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Magazines & Books</td>
+                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300</span></td>
+                      <td>Industry standard for publications</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Brochures & Flyers</td>
+                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300</span></td>
+                      <td>Sharp text and images</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Business Cards</td>
+                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300-350</span></td>
+                      <td>Small text needs high resolution</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Sublimation (Mugs, Shirts)</td>
+                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300</span></td>
+                      <td>Essential for vibrant transfers</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Newspapers</td>
+                      <td><span class="px-2 py-1 rounded bg-warning-light text-warning text-sm font-mono">150-200</span></td>
+                      <td>Lower quality paper absorbs ink</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Posters (Small)</td>
+                      <td><span class="px-2 py-1 rounded bg-warning-light text-warning text-sm font-mono">200-300</span></td>
+                      <td>Viewed from moderate distance</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Banners & Signs</td>
+                      <td><span class="px-2 py-1 rounded bg-warning-light text-warning text-sm font-mono">100-150</span></td>
+                      <td>Large format, viewed from far</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-primary">Billboards</td>
+                      <td><span class="px-2 py-1 rounded bg-danger-light text-danger text-sm font-mono">15-50</span></td>
+                      <td>Very large, extreme viewing distance</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            
+            <!-- Calculating Print Size -->
+            <section id="calculating">
+              <h2 class="text-2xl font-bold text-primary mb-4">Calculating Print Size from Pixels</h2>
+              <p class="text-secondary mb-6">
+                The formula for converting pixels to inches is straightforward but essential for every designer to know.
+              </p>
+              
+              <div class="card p-6 rounded-xl mb-6">
+                <div class="text-center mb-6">
+                  <p class="text-sm text-muted uppercase tracking-wider mb-2">The Formula</p>
+                  <div class="text-3xl md:text-4xl font-mono font-bold text-accent">
+                    Inches = Pixels ÷ DPI
+                  </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="p-4 rounded-lg bg-tertiary">
+                    <p class="text-sm font-medium text-primary mb-2">Example 1: High Quality Print</p>
+                    <p class="text-sm text-secondary font-mono">
+                      3000 px ÷ 300 DPI = <span class="text-accent font-bold">10 inches</span>
+                    </p>
+                  </div>
+                  <div class="p-4 rounded-lg bg-tertiary">
+                    <p class="text-sm font-medium text-primary mb-2">Example 2: Large Banner</p>
+                    <p class="text-sm text-secondary font-mono">
+                      3000 px ÷ 100 DPI = <span class="text-accent font-bold">30 inches</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="card p-5 rounded-xl text-center">
+                  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-3">
+                    <span class="text-xl font-bold text-accent">1</span>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Know Your Pixels</h3>
+                  <p class="text-sm text-secondary">Find your image dimensions in pixels (width × height)</p>
+                </div>
+                <div class="card p-5 rounded-xl text-center">
+                  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-3">
+                    <span class="text-xl font-bold text-accent">2</span>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Choose Your DPI</h3>
+                  <p class="text-sm text-secondary">Select appropriate DPI based on print type</p>
+                </div>
+                <div class="card p-5 rounded-xl text-center">
+                  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-3">
+                    <span class="text-xl font-bold text-accent">3</span>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Calculate Size</h3>
+                  <p class="text-sm text-secondary">Divide pixels by DPI to get print dimensions</p>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Common Mistakes -->
+            <section id="common-mistakes">
+              <h2 class="text-2xl font-bold text-primary mb-4">Common DPI Mistakes to Avoid</h2>
+              
+              <div class="space-y-4">
+                <div class="card p-5 rounded-xl">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="font-semibold text-primary mb-1">Mistake: Resampling to "Increase" DPI</h3>
+                      <p class="text-sm text-secondary">Simply changing the DPI number in Photoshop without resampling doesn't add detail—it just changes the print size. To truly increase resolution, you need more pixels, not just a higher DPI number.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card p-5 rounded-xl">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="font-semibold text-primary mb-1">Mistake: Using Screen Images for Print</h3>
+                      <p class="text-sm text-secondary">Images saved at 72 DPI for web use will appear pixelated when printed. Always use the original high-resolution file, not the web-optimized version.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card p-5 rounded-xl">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="font-semibold text-primary mb-1">Mistake: Over-Up scaling Small Images</h3>
+                      <p class="text-sm text-secondary">Upscaling a 500px image to 3000px won't create detail that wasn't there. The result will be blurry, not sharp. Start with high-resolution source images.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card p-5 rounded-xl">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="font-semibold text-primary mb-1">Mistake: Ignoring Viewing Distance</h3>
+                      <p class="text-sm text-secondary">Using 300 DPI for a billboard is unnecessary and creates massive file sizes. Match your DPI to the viewing distance of the final product.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Pro Tips -->
+            <section id="tips">
+              <h2 class="text-2xl font-bold text-primary mb-4">Pro Tips for Best Results</h2>
+              
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Start High, Scale Down</h3>
+                  <p class="text-sm text-secondary">Always design at the highest resolution you might need. You can always reduce resolution for smaller prints, but you can't add detail later.</p>
+                </div>
+                
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Use Vector When Possible</h3>
+                  <p class="text-sm text-secondary">Logos, text, and illustrations should be vectors (SVG, AI, EPS). They scale infinitely without quality loss at any DPI.</p>
+                </div>
+                
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Check Before You Print</h3>
+                  <p class="text-sm text-secondary">Use our converter tool to verify your image dimensions before sending to print. A quick check can save money on reprints.</p>
+                </div>
+                
+                <div class="card p-5 rounded-xl">
+                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </div>
+                  <h3 class="font-semibold text-primary mb-2">Ask Your Print Shop</h3>
+                  <p class="text-sm text-secondary">Different print shops may have specific requirements. Always confirm DPI and file format requirements before submitting your files.</p>
+                </div>
+              </div>
+            </section>
+            
+          </article>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- Footer -->
+<footer class="py-12 border-t border-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <span class="font-semibold text-primary">Pixel to Print</span>
+      </a>
+      <p class="text-sm text-muted">
+        <span id="currentYear"></span> Pixel to Print. Educational resource for designers.
+      </p>
+    </div>
+  </div>
+</footer>
+  
+  <script>
+    // Theme Toggle
+    // Set current year dynamically
+document.getElementById('currentYear').textContent = new Date().getFullYear();  
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+    
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon();
+    }
+    
+    function updateThemeIcon() {
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      const theme = document.documentElement.getAttribute('data-theme');
+      
+      if (sunIcon && moonIcon) {
+        if (theme === 'dark') {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      }
+    }
+    
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    initTheme();
+    
+    // Sidebar active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Complete DPI Guide for Print & Design",
+  "description": "Everything you need to know about DPI, resolution, and print quality.",
+  "author": {
+    "@type": "Organization",
+    "name": "Pixel to Print"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pixel to Print",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yourwebsite.com/logo.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2026-02-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html"
+  }
+}
+</script>
+
+<!-- FAQ Schema for Featured Snippets -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is DPI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DPI (Dots Per Inch) measures print resolution by counting how many ink dots a printer places in one linear inch. Higher DPI (300+) means sharper prints for photos and magazines, while lower DPI (72) is standard for digital screens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between DPI and PPI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DPI refers to printed ink dots (physical output), while PPI refers to screen pixels (digital resolution). Printers use DPI, design software uses PPI. For practical purposes, 300 DPI equals 300 PPI in design workflows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What DPI should I use for printing photos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use 300 DPI for high-quality photo prints, magazines, and brochures. Large format prints like banners can use 100-150 DPI since they are viewed from a distance. Never use 72 DPI web images for print."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>
