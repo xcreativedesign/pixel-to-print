@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Pixel to Print</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FAFC;
+      --bg-tertiary: #F1F5F9;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      --border-light: #E2E8F0;
+      --border-default: #CBD5E1;
+      --accent: #2563EB;
+      --accent-light: rgba(37, 99, 235, 0.1);
+    }
+    
+    [data-theme="dark"] {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-tertiary: #334155;
+      --text-primary: #F1F5F9;
+      --text-secondary: #CBD5E1;
+      --text-muted: #64748B;
+      --border-light: #334155;
+      --border-default: #475569;
+      --accent: #3B82F6;
+      --accent-light: rgba(59, 130, 246, 0.15);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .bg-primary { background: var(--bg-primary); }
+    .bg-secondary { background: var(--bg-secondary); }
+    .bg-tertiary { background: var(--bg-tertiary); }
+    .text-primary { color: var(--text-primary); }
+    .text-secondary { color: var(--text-secondary); }
+    .text-muted { color: var(--text-muted); }
+    .border-light { border-color: var(--border-light); }
+    .bg-accent { background: var(--accent); }
+    .bg-accent-light { background: var(--accent-light); }
+    .text-accent { color: var(--accent); }
+    
+    .theme-toggle {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    .theme-toggle:hover { background: var(--border-light); }
+    
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+    }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+    
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  </style>
+  
+  <meta name="description" content="Privacy Policy for Pixel to Print. We respect your privacy and do not collect personal data. All calculations are performed locally in your browser.">
+  <meta name="robots" content="noindex, follow">
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light">
+    <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
+        </a>
+        
+        <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center" aria-label="Toggle dark mode">
+          <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      
+      <!-- Title -->
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-3">Privacy Policy</h1>
+        <p class="text-secondary">Last updated: <span id="currentYear"></span></p>
+      </div>
+      
+      <!-- Content -->
+      <div class="space-y-6">
+        
+        <!-- Introduction -->
+        <div class="card p-6 rounded-xl">
+          <h2 class="text-xl font-semibold text-primary mb-3">Our Commitment to Your Privacy</h2>
+          <p class="text-secondary">
+            Pixel to Print is designed with privacy as a priority. We believe in transparent, minimal data practices. This page explains exactly what happens when you use our tool.
+          </p>
+        </div>
+        
+        <!-- Key Points Grid -->
+        <div class="grid md:grid-cols-2 gap-4">
+          
+          <!-- No Data Collection -->
+          <div class="card p-5 rounded-xl">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-accent-light flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary">No Data Collection</h3>
+            </div>
+            <p class="text-sm text-secondary">
+              We do not collect, store, or transmit any personal information. Your image dimensions and calculations never leave your browser.
+            </p>
+          </div>
+          
+          <!-- Local Processing -->
+          <div class="card p-5 rounded-xl">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-accent-light flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary">100% Client-Side</h3>
+            </div>
+            <p class="text-sm text-secondary">
+              All conversions and calculations happen directly in your web browser. No server-side processing is involved.
+            </p>
+          </div>
+          
+          <!-- Local Storage -->
+          <div class="card p-5 rounded-xl">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-accent-light flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                  <polyline points="17 21 17 13 7 13 7 21"/>
+                  <polyline points="7 3 7 8 15 8"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary">Local Storage</h3>
+            </div>
+            <p class="text-sm text-secondary">
+              We use browser local storage solely to remember your theme preference (light/dark mode). You can clear this anytime via your browser settings.
+            </p>
+          </div>
+          
+          <!-- No Cookies -->
+          <div class="card p-5 rounded-xl">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-lg bg-accent-light flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-primary">No Tracking Cookies</h3>
+            </div>
+            <p class="text-sm text-secondary">
+              We do not use tracking cookies, analytics cookies, or any third-party tracking technologies on this website.
+            </p>
+          </div>
+          
+        </div>
+        
+        <!-- External Links -->
+        <div class="card p-6 rounded-xl">
+          <h2 class="text-xl font-semibold text-primary mb-3">External Links</h2>
+          <p class="text-secondary">
+            Our resource pages may contain links to external websites. We are not responsible for the privacy practices of those sites. We encourage you to read the privacy policies of any external sites you visit.
+          </p>
+        </div>
+        
+        <!-- Changes -->
+        <div class="card p-6 rounded-xl">
+          <h2 class="text-xl font-semibold text-primary mb-3">Changes to This Policy</h2>
+          <p class="text-secondary">
+            We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date. We recommend reviewing this page periodically.
+          </p>
+        </div>
+        
+        <!-- Contact -->
+        <div class="card p-6 rounded-xl bg-accent-light border border-accent/20">
+          <h2 class="text-xl font-semibold text-primary mb-3">Questions?</h2>
+          <p class="text-secondary">
+            If you have any questions about this privacy policy, feel free to reach out via our social channels linked in the main page footer.
+          </p>
+        </div>
+        
+      </div>
+      
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="py-8 border-t border-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="index.html" class="text-sm text-muted hover:text-accent transition-colors">
+          &larr; Back to Converter
+        </a>
+        <p class="text-sm text-muted">
+          <span id="footerYear"></span> Pixel to Print
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Theme Toggle
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+    
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon();
+    }
+    
+    function updateThemeIcon() {
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      const theme = document.documentElement.getAttribute('data-theme');
+      
+      if (sunIcon && moonIcon) {
+        if (theme === 'dark') {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        } else {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        }
+      }
+    }
+    
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    initTheme();
+    
+    // Set current year dynamically
+    const currentYear = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = currentYear;
+    document.getElementById('footerYear').textContent = currentYear;
+  </script>
+</body>
+</html>
