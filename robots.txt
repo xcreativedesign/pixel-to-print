@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xcreativedesign.github.io/pixel-to-print/sitemap.xml
