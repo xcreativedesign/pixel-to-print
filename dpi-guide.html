@@ -1,817 +1,383 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DPI Guide | Pixel to Print</title>
-  <meta name="description" content="Complete DPI Guide: Learn what DPI (Dots Per Inch) means, difference between DPI vs PPI, and recommended print resolution for photos, sublimation, and large format prints. Expert guide for designers.">
-<meta name="keywords" content="DPI guide, what is DPI, DPI vs PPI, print resolution, 300 DPI, dots per inch, sublimation DPI, pixel to print">
-<link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html" />
-
-<!-- Open Graph -->
-<meta property="og:title" content="Complete DPI Guide for Print & Design | Pixel to Print">
-<meta property="og:description" content="Master DPI, resolution, and print quality. Expert guide with charts and calculations.">
-<meta property="og:type" content="article">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    /* CSS Variables - Theme System */
-    :root {
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #F8FAFC;
-      --bg-tertiary: #F1F5F9;
-      --bg-panel: #FFFFFF;
-      --bg-input: #F8FAFC;
-      --text-primary: #0F172A;
-      --text-secondary: #475569;
-      --text-muted: #94A3B8;
-      --border-light: #E2E8F0;
-      --border-default: #CBD5E1;
-      --accent: #2563EB;
-      --accent-hover: #1D4ED8;
-      --accent-light: rgba(37, 99, 235, 0.1);
-      --success: #059669;
-      --success-light: rgba(5, 150, 105, 0.1);
-      --warning: #D97706;
-      --warning-light: rgba(217, 119, 6, 0.1);
-      --danger: #DC2626;
-      --danger-light: rgba(220, 38, 38, 0.1);
-    }
-    
-    [data-theme="dark"] {
-      --bg-primary: #0F172A;
-      --bg-secondary: #1E293B;
-      --bg-tertiary: #334155;
-      --bg-panel: #1E293B;
-      --bg-input: #0F172A;
-      --text-primary: #F1F5F9;
-      --text-secondary: #CBD5E1;
-      --text-muted: #64748B;
-      --border-light: #334155;
-      --border-default: #475569;
-      --accent: #3B82F6;
-      --accent-hover: #60A5FA;
-      --accent-light: rgba(59, 130, 246, 0.15);
-      --success: #10B981;
-      --success-light: rgba(16, 185, 129, 0.15);
-      --warning: #F59E0B;
-      --warning-light: rgba(245, 158, 11, 0.15);
-      --danger: #EF4444;
-      --danger-light: rgba(239, 68, 68, 0.15);
-    }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    .bg-primary { background: var(--bg-primary); }
-    .bg-secondary { background: var(--bg-secondary); }
-    .bg-tertiary { background: var(--bg-tertiary); }
-    .bg-panel { background: var(--bg-panel); }
-    .text-primary { color: var(--text-primary); }
-    .text-secondary { color: var(--text-secondary); }
-    .text-muted { color: var(--text-muted); }
-    .border-light { border-color: var(--border-light); }
-    .border-default { border-color: var(--border-default); }
-    .bg-accent { background: var(--accent); }
-    .bg-accent-light { background: var(--accent-light); }
-    .text-accent { color: var(--accent); }
-    .bg-success { background: var(--success); }
-    .bg-success-light { background: var(--success-light); }
-    .text-success { color: var(--success); }
-    .bg-warning { background: var(--warning); }
-    .bg-warning-light { background: var(--warning-light); }
-    .text-warning { color: var(--warning); }
-    .bg-danger { background: var(--danger); }
-    .bg-danger-light { background: var(--danger-light); }
-    .text-danger { color: var(--danger); }
-    
-    .card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-light);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .theme-toggle {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-light);
-      transition: all 0.2s ease;
-    }
-    
-    .theme-toggle:hover { background: var(--border-light); }
-    
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      transition: all 0.2s ease;
-    }
-    
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-    
-    .link { color: var(--accent); transition: color 0.2s ease; }
-    .link:hover { color: var(--accent-hover); }
-    
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
-    
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-    ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-    
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    .hero-pattern {
-      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
-      background-size: 40px 40px;
-    }
-    
-    /* Table styles */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    .data-table th {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      font-weight: 600;
-      text-align: left;
-      padding: 12px 16px;
-      border-bottom: 2px solid var(--border-default);
-    }
-    
-    .data-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-light);
-      color: var(--text-secondary);
-    }
-    
-    .data-table tr:hover td {
-      background: var(--bg-secondary);
-    }
-    
-    /* Sidebar navigation */
-    .sidebar-link {
-      display: block;
-      padding: 8px 12px;
-      color: var(--text-secondary);
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      font-size: 14px;
-    }
-    
-    .sidebar-link:hover {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-    }
-    
-    .sidebar-link.active {
-      background: var(--accent-light);
-      color: var(--accent);
-      font-weight: 500;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DPI vs PPI explained clearly — what actually affects print sharpness, why changing DPI in Photoshop does nothing, viewing distance tables, AI upscaling guide, and real DPI standards for every print medium in 2026." />
+  <meta name="author" content="XCreativeDesign" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1A6EFF" />
+  <meta property="og:title" content="DPI vs PPI — The Complete Print Resolution Guide (2026)" />
+  <meta property="og:description" content="Verified, practical guide covering DPI vs PPI, why metadata changes nothing, viewing distance science, canvas vs photo standards, and AI upscaling for print in 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@xcreativedesig" />
+  <title>DPI vs PPI Explained — Complete Print Resolution Guide 2026 | Pixel to Print</title>
+  <link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/guide.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"DPI vs PPI Explained — Complete Print Resolution Guide 2026","description":"Comprehensive guide covering the real difference between DPI and PPI, why changing DPI metadata does nothing, viewing distance science, and AI upscaling for print.","author":{"@type":"Organization","name":"XCreativeDesign","url":"https://xcreativedesign.com"},"publisher":{"@type":"Organization","name":"Pixel to Print","url":"https://xcreativedesign.github.io/pixel-to-print/"},"dateModified":"2026-01-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pixel to Print","item":"https://xcreativedesign.github.io/pixel-to-print/"},{"@type":"ListItem","position":2,"name":"DPI Guide","item":"https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between DPI and PPI?","acceptedAnswer":{"@type":"Answer","text":"PPI (Pixels Per Inch) is a property of your digital image file. DPI (Dots Per Inch) is a property of your physical printer. When print shops say 'send files at 300 DPI', they mean set your image PPI to 300 so it maps to the correct physical size."}},{"@type":"Question","name":"Does changing DPI in Photoshop improve print quality?","acceptedAnswer":{"@type":"Answer","text":"No, not without resampling. Changing only the metadata changes output dimensions but adds zero new pixels. Real improvement requires AI upscaling tools like Topaz Photo AI or Adobe Super Resolution."}},{"@type":"Question","name":"Is 300 DPI always required for printing?","acceptedAnswer":{"@type":"Answer","text":"No. 300 DPI is standard for close-range prints. Canvas at 150 DPI, vinyl banners at 100 DPI, and billboards at 15-50 DPI are all industry standards. The right DPI depends on your print medium and viewing distance."}},{"@type":"Question","name":"What size can I print a Midjourney image?","acceptedAnswer":{"@type":"Answer","text":"Midjourney upscaled output at 2048x2048 pixels prints at 6.8x6.8 inches at 300 DPI, or 13.6x13.6 inches for canvas at 150 DPI. With 4x AI upscaling, you can reach 27x27 inches at 300 DPI."}}]}</script>
 </head>
 <body>
-  
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        
-        <a href="index.html" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
-            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
-        </a>
-        
-        <div class="flex items-center gap-3">
-          <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center" aria-label="Toggle dark mode">
-            <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <line x1="12" y1="1" x2="12" y2="3"/>
-              <line x1="12" y1="21" x2="12" y2="23"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-              <line x1="1" y1="12" x2="3" y2="12"/>
-              <line x1="21" y1="12" x2="23" y2="12"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </button>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Pixel to Print — Home">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/></svg>
         </div>
+        <div class="logo-text">
+          <span class="logo-name">Pixel to Print</span>
+          <span class="logo-sub">Print Quality Calculator</span>
+        </div>
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Calculator</a>
+        <a href="dpi-guide.html" class="nav-link nav-link--active" aria-current="page">DPI Guide</a>
+        <a href="sublimation-tips.html" class="nav-link">Sublimation</a>
+        <a href="print-size-chart.html" class="nav-link">Size Chart</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+          <span class="icon-sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
       </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-nav-link">Calculator</a>
+      <a href="dpi-guide.html" class="mobile-nav-link">DPI Guide</a>
+      <a href="sublimation-tips.html" class="mobile-nav-link">Sublimation Tips</a>
+      <a href="print-size-chart.html" class="mobile-nav-link">Print Size Chart</a>
     </nav>
   </header>
-  
-  <!-- Main Content -->
-  <main class="pt-24 pb-16">
-    
-    <!-- Hero Section -->
-    <section class="bg-secondary hero-pattern py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-light text-accent text-sm font-medium mb-4">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
-          Resource Guide
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Complete DPI Guide</h1>
-        <p class="text-lg text-secondary max-w-2xl mx-auto">Everything you need to know about DPI, resolution, and print quality. Master the fundamentals of professional printing.</p>
-      </div>
-    </section>
-    
-    <!-- Content Section -->
-    <section class="py-12 md:py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-4 gap-8">
-          
-          <!-- Sidebar -->
-          <aside class="lg:col-span-1">
-            <div class="sticky top-24">
-              <nav class="space-y-1">
-                <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-3 px-3">On This Page</p>
-                <a href="#what-is-dpi" class="sidebar-link">What is DPI?</a>
-                <a href="#dpi-vs-ppi" class="sidebar-link">DPI vs PPI</a>
-                <a href="#dpi-standards" class="sidebar-link">DPI Standards</a>
-                <a href="#calculating" class="sidebar-link">Calculating Print Size</a>
-                <a href="#common-mistakes" class="sidebar-link">Common Mistakes</a>
-                <a href="#tips" class="sidebar-link">Pro Tips</a>
-              </nav>
-              
-              <div class="mt-8 p-4 rounded-xl bg-accent-light border border-accent/20">
-                <p class="text-sm font-medium text-accent mb-2">Need quick conversion?</p>
-                <a href="index.html#tool" class="text-sm text-secondary hover:text-accent transition-colors">Open the Converter Tool</a>
-              </div>
-            </div>
-          </aside>
-          
-          <!-- Main Content -->
-          <article class="lg:col-span-3 space-y-12">
-            
-            <!-- What is DPI -->
-           <section id="what-is-dpi">
-  <!-- Direct Answer for Snippet (Google loves this format) -->
-  <div class="bg-accent-light border-l-4 border-accent p-5 rounded-r-xl mb-6">
-    <h2 class="text-xl font-bold text-primary mb-2">Quick Answer</h2>
-    <p class="text-secondary">
-      <strong class="text-primary">DPI (Dots Per Inch)</strong> is a measure of print resolution indicating how many ink dots a printer places in one linear inch. <strong>300 DPI</strong> is the standard for high-quality prints like photos and brochures, while <strong>72 DPI</strong> is only for screens.
-    </p>
-  </div>
 
-  <h2 class="text-2xl font-bold text-primary mb-4">What is DPI? (Detailed Explanation)</h2>
-  <p class="text-secondary mb-4">
-    Think of it this way: if you have a 1-inch square printed at 300 DPI, your printer places 300 dots horizontally and 300 dots vertically, creating 90,000 tiny dots in that square inch. More dots mean smoother gradients and sharper detail.
-  </p>
-              
-              <div class="grid md:grid-cols-3 gap-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
-                    <span class="text-lg font-bold text-success">300+</span>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-1">High Quality</h3>
-                  <p class="text-sm text-secondary">Photos, magazines, brochures, business cards</p>
-                </div>
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-warning-light flex items-center justify-center mb-3">
-                    <span class="text-lg font-bold text-warning">150</span>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-1">Medium Quality</h3>
-                  <p class="text-sm text-secondary">Posters, banners, large format prints</p>
-                </div>
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center mb-3">
-                    <span class="text-lg font-bold text-danger">72</span>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-1">Screen Only</h3>
-                  <p class="text-sm text-secondary">Web graphics, social media, digital displays</p>
-                </div>
-              </div>
-            </section>
-            
-            <!-- DPI vs PPI -->
-            <section id="dpi-vs-ppi">
-              <h2 class="text-2xl font-bold text-primary mb-4">DPI vs PPI: What's the Difference?</h2>
-              <p class="text-secondary mb-6">
-                While often used interchangeably, DPI and PPI refer to different things. Understanding the distinction helps you communicate accurately with print shops and designers.
-              </p>
-              
-              <div class="grid md:grid-cols-2 gap-6">
-                <div class="card p-6 rounded-xl">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center">
-                      <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <circle cx="15.5" cy="8.5" r="1.5"/>
-                        <circle cx="8.5" cy="15.5" r="1.5"/>
-                        <circle cx="15.5" cy="15.5" r="1.5"/>
-                      </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-primary">DPI - Dots Per Inch</h3>
-                  </div>
-                  <ul class="space-y-2 text-sm text-secondary">
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Refers to printed ink dots
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Used by printers and print shops
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Physical output measurement
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Affects print quality directly
-                    </li>
-                  </ul>
-                </div>
-                
-                <div class="card p-6 rounded-xl">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 rounded-xl bg-success-light flex items-center justify-center">
-                      <svg class="w-6 h-6 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                      </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-primary">PPI - Pixels Per Inch</h3>
-                  </div>
-                  <ul class="space-y-2 text-sm text-secondary">
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Refers to screen pixels
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Used in digital design software
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Digital resolution measurement
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-success mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Affects screen display sharpness
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="mt-6 p-4 rounded-xl bg-tertiary border border-light">
-                <p class="text-sm text-secondary">
-                  <strong class="text-primary">Practical Note:</strong> In most design workflows, when you set an image to "300 DPI" in Photoshop, you're technically setting 300 PPI. However, the print industry commonly uses "DPI" to describe both concepts, so don't worry too much about the terminology in day-to-day work.
-                </p>
-              </div>
-            </section>
-            
-            <!-- DPI Standards -->
-            <section id="dpi-standards">
-              <h2 class="text-2xl font-bold text-primary mb-4">DPI Standards by Print Type</h2>
-              <p class="text-secondary mb-6">
-                Different print applications require different DPI levels. Here's a comprehensive guide to what DPI you should use for various print projects.
-              </p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Print Type</th>
-                      <th>Recommended DPI</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">Photos & Art Prints</td>
-                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300+</span></td>
-                      <td>Maximum detail for close viewing</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Magazines & Books</td>
-                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300</span></td>
-                      <td>Industry standard for publications</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Brochures & Flyers</td>
-                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300</span></td>
-                      <td>Sharp text and images</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Business Cards</td>
-                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300-350</span></td>
-                      <td>Small text needs high resolution</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Sublimation (Mugs, Shirts)</td>
-                      <td><span class="px-2 py-1 rounded bg-success-light text-success text-sm font-mono">300</span></td>
-                      <td>Essential for vibrant transfers</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Newspapers</td>
-                      <td><span class="px-2 py-1 rounded bg-warning-light text-warning text-sm font-mono">150-200</span></td>
-                      <td>Lower quality paper absorbs ink</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Posters (Small)</td>
-                      <td><span class="px-2 py-1 rounded bg-warning-light text-warning text-sm font-mono">200-300</span></td>
-                      <td>Viewed from moderate distance</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Banners & Signs</td>
-                      <td><span class="px-2 py-1 rounded bg-warning-light text-warning text-sm font-mono">100-150</span></td>
-                      <td>Large format, viewed from far</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Billboards</td>
-                      <td><span class="px-2 py-1 rounded bg-danger-light text-danger text-sm font-mono">15-50</span></td>
-                      <td>Very large, extreme viewing distance</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-            
-            <!-- Calculating Print Size -->
-            <section id="calculating">
-              <h2 class="text-2xl font-bold text-primary mb-4">Calculating Print Size from Pixels</h2>
-              <p class="text-secondary mb-6">
-                The formula for converting pixels to inches is straightforward but essential for every designer to know.
-              </p>
-              
-              <div class="card p-6 rounded-xl mb-6">
-                <div class="text-center mb-6">
-                  <p class="text-sm text-muted uppercase tracking-wider mb-2">The Formula</p>
-                  <div class="text-3xl md:text-4xl font-mono font-bold text-accent">
-                    Inches = Pixels ÷ DPI
-                  </div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <p class="text-sm font-medium text-primary mb-2">Example 1: High Quality Print</p>
-                    <p class="text-sm text-secondary font-mono">
-                      3000 px ÷ 300 DPI = <span class="text-accent font-bold">10 inches</span>
-                    </p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <p class="text-sm font-medium text-primary mb-2">Example 2: Large Banner</p>
-                    <p class="text-sm text-secondary font-mono">
-                      3000 px ÷ 100 DPI = <span class="text-accent font-bold">30 inches</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="grid md:grid-cols-3 gap-4">
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-3">
-                    <span class="text-xl font-bold text-accent">1</span>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Know Your Pixels</h3>
-                  <p class="text-sm text-secondary">Find your image dimensions in pixels (width × height)</p>
-                </div>
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-3">
-                    <span class="text-xl font-bold text-accent">2</span>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Choose Your DPI</h3>
-                  <p class="text-sm text-secondary">Select appropriate DPI based on print type</p>
-                </div>
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-3">
-                    <span class="text-xl font-bold text-accent">3</span>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Calculate Size</h3>
-                  <p class="text-sm text-secondary">Divide pixels by DPI to get print dimensions</p>
-                </div>
-              </div>
-            </section>
-            
-            <!-- Common Mistakes -->
-            <section id="common-mistakes">
-              <h2 class="text-2xl font-bold text-primary mb-4">Common DPI Mistakes to Avoid</h2>
-              
-              <div class="space-y-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Mistake: Resampling to "Increase" DPI</h3>
-                      <p class="text-sm text-secondary">Simply changing the DPI number in Photoshop without resampling doesn't add detail—it just changes the print size. To truly increase resolution, you need more pixels, not just a higher DPI number.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Mistake: Using Screen Images for Print</h3>
-                      <p class="text-sm text-secondary">Images saved at 72 DPI for web use will appear pixelated when printed. Always use the original high-resolution file, not the web-optimized version.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Mistake: Over-Up scaling Small Images</h3>
-                      <p class="text-sm text-secondary">Upscaling a 500px image to 3000px won't create detail that wasn't there. The result will be blurry, not sharp. Start with high-resolution source images.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Mistake: Ignoring Viewing Distance</h3>
-                      <p class="text-sm text-secondary">Using 300 DPI for a billboard is unnecessary and creates massive file sizes. Match your DPI to the viewing distance of the final product.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-            <!-- Pro Tips -->
-            <section id="tips">
-              <h2 class="text-2xl font-bold text-primary mb-4">Pro Tips for Best Results</h2>
-              
-              <div class="grid md:grid-cols-2 gap-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
-                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Start High, Scale Down</h3>
-                  <p class="text-sm text-secondary">Always design at the highest resolution you might need. You can always reduce resolution for smaller prints, but you can't add detail later.</p>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
-                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Use Vector When Possible</h3>
-                  <p class="text-sm text-secondary">Logos, text, and illustrations should be vectors (SVG, AI, EPS). They scale infinitely without quality loss at any DPI.</p>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
-                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Check Before You Print</h3>
-                  <p class="text-sm text-secondary">Use our converter tool to verify your image dimensions before sending to print. A quick check can save money on reprints.</p>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center mb-3">
-                    <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                  <h3 class="font-semibold text-primary mb-2">Ask Your Print Shop</h3>
-                  <p class="text-sm text-secondary">Different print shops may have specific requirements. Always confirm DPI and file format requirements before submitting your files.</p>
-                </div>
-              </div>
-            </section>
-            
-          </article>
-        </div>
+  <div class="breadcrumb-bar"><div class="breadcrumb-inner"><nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Pixel to Print</a></li><li aria-current="page">DPI Guide</li></ol></nav></div></div>
+
+  <div class="guide-hero">
+    <div class="guide-hero-inner">
+      <div class="section-label-tag" aria-hidden="true">Reference Guide · 2026</div>
+      <h1>DPI vs PPI — what actually matters for print quality</h1>
+      <p class="guide-hero-desc">Most print problems start with one misunderstanding: confusing the DPI number in a file with actual image quality. This guide explains what really determines whether a print looks sharp, why 300 DPI is not always the right answer, and exactly what to do when your image falls short.</p>
+      <div class="guide-meta">
+        <span>Updated January 2026</span>
+        <span aria-hidden="true">·</span>
+        <span>12 min read</span>
+        <span aria-hidden="true">·</span>
+        <span>Verified against industry standards</span>
       </div>
-    </section>
-    
-  </main>
-  
-  <!-- Footer -->
-<footer class="py-12 border-t border-light">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <a href="index.html" class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <path d="M3 9h18M9 21V9"/>
-          </svg>
-        </div>
-        <span class="font-semibold text-primary">Pixel to Print</span>
-      </a>
-      <p class="text-sm text-muted">
-        <span id="currentYear"></span> Pixel to Print. Educational resource for designers.
-      </p>
     </div>
   </div>
-</footer>
-  
+
+  <div class="guide-layout">
+    <aside class="guide-toc" aria-label="Table of contents">
+      <div class="toc-inner">
+        <div class="toc-title">On this page</div>
+        <nav><ol class="toc-list">
+          <li><a href="#dpi-vs-ppi">DPI vs PPI — the real difference</a></li>
+          <li><a href="#metadata-myth">The metadata myth</a></li>
+          <li><a href="#pixel-count">What actually determines quality</a></li>
+          <li><a href="#standards">DPI standards by medium</a></li>
+          <li><a href="#viewing-distance">Viewing distance science</a></li>
+          <li><a href="#ai-upscaling">AI upscaling for print (2026)</a></li>
+          <li><a href="#midjourney">Midjourney images and print</a></li>
+          <li><a href="#ppqs">What is PPQS?</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol></nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="guide-content">
+
+      <section id="dpi-vs-ppi" aria-labelledby="h-dpi-ppi">
+        <h2 id="h-dpi-ppi">DPI vs PPI — the real difference</h2>
+        <p>These two terms are used interchangeably in most design tutorials, which creates a lot of confusion. They refer to two completely different things.</p>
+        <p><strong>PPI (Pixels Per Inch)</strong> is a property of your digital image file. It describes how many pixels are packed into one inch when the image is interpreted for print. A 3000×2400 pixel image at 300 PPI prints at 10×8 inches. The same image at 150 PPI prints at 20×16 inches — same pixels, different physical size.</p>
+        <p><strong>DPI (Dots Per Inch)</strong> is a property of your printer. It describes how many physical ink dots the printer places on paper per inch. A typical professional inkjet printer runs at 1440 or 2880 DPI. It uses that high dot density to faithfully reproduce the pixels in your image — a process called dithering, where multiple CMYK dots combine to simulate each pixel's color.</p>
+        <div class="guide-callout guide-callout--blue">
+          <div class="callout-icon" aria-hidden="true">💡</div>
+          <div><strong>Practical takeaway:</strong> When print shops say "send files at 300 DPI," they actually mean "set your image's PPI to 300 so it maps to the correct physical size." The printer's actual DPI is handled internally — you never set it in your image file. For everyday work, the two terms are used interchangeably and that is fine — just understand what is really happening.</div>
+        </div>
+        <h3>Why do printers use much higher DPI than the image's PPI?</h3>
+        <p>Because printers only have a limited number of ink colors — typically four (CMYK) or six. To reproduce the millions of colors in a photograph, they use halftoning or dithering: placing tiny dots in patterns that the human eye blends into continuous tones from a normal viewing distance. To create smooth gradients and sharp edges, more dots per inch are needed than the image has pixels per inch. This is why a 300 PPI image is accurately reproduced by a 1440 DPI printer.</p>
+      </section>
+
+      <section id="metadata-myth" aria-labelledby="h-metadata">
+        <h2 id="h-metadata">The metadata myth — why changing DPI in Photoshop does nothing</h2>
+        <p>This is the most common print mistake in the industry. A client sends a photo. You open it in Photoshop, see "72 DPI," change it to "300 DPI" with Resample unchecked, and send it to print — expecting the problem to be fixed. It is not.</p>
+        <p>The DPI/PPI value in a digital image file is just metadata — a label telling the printer how to interpret the pixel count. If you have a 1000×1000 pixel image labelled as 72 PPI, it prints at 13.9×13.9 inches. If you relabel it as 300 PPI without resampling, the same 1000×1000 pixels now print at 3.3×3.3 inches. The physical quality at each size is identical — you changed the size, not the resolution.</p>
+        <div class="guide-example-box">
+          <div class="example-box-title">Live example — same pixels, different labels</div>
+          <div class="example-grid">
+            <div class="example-cell">
+              <div class="example-label">File A</div>
+              <div class="example-value">1000 × 1000 px</div>
+              <div class="example-note">Labelled 72 PPI</div>
+              <div class="example-result">Prints at 13.9 × 13.9 in</div>
+            </div>
+            <div class="example-cell">
+              <div class="example-label">File B</div>
+              <div class="example-value">1000 × 1000 px</div>
+              <div class="example-note">Relabelled 300 PPI, no resample</div>
+              <div class="example-result">Prints at 3.3 × 3.3 in</div>
+            </div>
+          </div>
+          <p class="example-caption">Same pixel count. Identical image quality at their respective sizes. Changing the DPI number only changed the output dimensions — nothing else.</p>
+        </div>
+        <p>The only way to genuinely improve print resolution is to add real pixels — either by starting with a higher-resolution source, or by using <a href="#ai-upscaling">AI upscaling tools</a> that reconstruct detail. Basic Photoshop interpolation adds pixels but produces soft results. AI tools like Topaz Photo AI and Adobe Super Resolution produce significantly better results because they use trained models to predict what missing detail should look like.</p>
+      </section>
+
+      <section id="pixel-count" aria-labelledby="h-pixel">
+        <h2 id="h-pixel">What actually determines print quality</h2>
+        <p>Three things determine whether a print looks sharp: pixel count, print size, and viewing distance. The DPI number is just the ratio between the first two.</p>
+        <div class="guide-formula-box">
+          <div class="formula">Pixel count ÷ Print size (inches) = PPI at output</div>
+          <div class="formula-example">3000 px ÷ 10 in = 300 PPI &nbsp;·&nbsp; 3000 px ÷ 20 in = 150 PPI</div>
+        </div>
+        <p>Viewing distance is the third factor that most calculators ignore. The human eye has a fixed angular resolution — roughly 1 arcminute — which means at greater distances, finer detail becomes invisible regardless of how high the DPI is. A billboard at 40 feet looks perfectly sharp at 30 DPI. The same image on a business card at 30 DPI looks terrible, because you are holding it 12 inches from your face.</p>
+        <p>This is the core science behind PPQS — the scoring system in our <a href="index.html">print quality calculator</a>. Rather than applying a single threshold to all prints, PPQS calculates the minimum perceivable DPI at your specific viewing distance:</p>
+        <div class="guide-formula-box">
+          <div class="formula">Minimum perceivable DPI = 3438 ÷ Viewing distance (inches)</div>
+          <div class="formula-example">At 24 in: 3438 ÷ 24 = 143 DPI minimum &nbsp;·&nbsp; At 48 in: 3438 ÷ 48 = 72 DPI minimum</div>
+          <div class="formula-source">Constant 3438 = 1/tan(1 arcminute) — ISO 8596 visual acuity standard</div>
+        </div>
+      </section>
+
+      <section id="standards" aria-labelledby="h-standards">
+        <h2 id="h-standards">DPI standards by print medium</h2>
+        <p>The "always use 300 DPI" rule applies to close-range prints on coated paper. For other media and viewing distances, different standards have been established by print industry bodies and confirmed by decades of commercial practice.</p>
+        <div class="guide-table-wrap" role="region" aria-label="DPI standards by print medium" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Print Medium</th>
+                <th scope="col">Recommended DPI</th>
+                <th scope="col">Minimum Acceptable</th>
+                <th scope="col">Typical Viewing Distance</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Photo print (coated paper)</strong></td><td class="td-highlight">300 DPI</td><td>250 DPI</td><td>24 in (arm's length)</td><td>Industry standard. Still correct for all close-view prints.</td></tr>
+              <tr><td><strong>Brochures, flyers (uncoated)</strong></td><td class="td-highlight">300 DPI</td><td>200 DPI</td><td>24 in</td><td>Uncoated paper has ~15% ink spread (dot gain). Higher source res helps compensate.</td></tr>
+              <tr><td><strong>Canvas wall art</strong></td><td class="td-highlight">150 DPI</td><td>100 DPI</td><td>48 in (across room)</td><td>Canvas texture absorbs detail variation. 150 DPI is the genuine industry standard — not a compromise.</td></tr>
+              <tr><td><strong>Sublimation T-shirt / fabric</strong></td><td class="td-highlight">150 DPI</td><td>120 DPI</td><td>36 in</td><td>Polyester weave limits perceivable detail. Higher DPI adds file size with zero visible benefit.</td></tr>
+              <tr><td><strong>Sublimation mug (ceramic)</strong></td><td class="td-highlight">200 DPI</td><td>150 DPI</td><td>18 in</td><td>Glazed ceramic holds detail well. Photo-quality results at 200 DPI.</td></tr>
+              <tr><td><strong>Metal / aluminum panel</strong></td><td class="td-highlight">300 DPI</td><td>200 DPI</td><td>24 in</td><td>Hard surface retains fine detail. Used for high-end photo display.</td></tr>
+              <tr><td><strong>Vinyl banner</strong></td><td class="td-highlight">100 DPI</td><td>72 DPI</td><td>120 in (10 ft)</td><td>Viewed from 5–15 feet. 150 DPI also acceptable — confirmed by major banner printers.</td></tr>
+              <tr><td><strong>Trade show backdrop</strong></td><td class="td-highlight">100–150 DPI</td><td>72 DPI</td><td>72–120 in</td><td>150 DPI is safe standard. 100 DPI fine for distant viewers.</td></tr>
+              <tr><td><strong>Billboard (roadside)</strong></td><td class="td-highlight">15–50 DPI</td><td>10 DPI</td><td>480+ in (40 ft+)</td><td>Professional billboard printers work at these DPI values by design. Higher DPI is genuinely unnecessary.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="guide-callout guide-callout--green">
+          <div class="callout-icon" aria-hidden="true">✦</div>
+          <div><strong>Skip the math.</strong> Upload your image, set your print size and medium, and the <a href="index.html">Pixel to Print tool</a> handles all of this automatically — including viewing distance and medium absorption — and gives you a 0–100 quality score.</div>
+        </div>
+      </section>
+
+      <section id="viewing-distance" aria-labelledby="h-viewing">
+        <h2 id="h-viewing">Viewing distance — the factor most calculators ignore</h2>
+        <p>The human eye resolves approximately 1 arcminute of angular detail. This is a physical constant verified by ISO 8596 optometric standards and used in ophthalmology for visual acuity testing. For print work, it means the minimum DPI you need scales directly with viewing distance.</p>
+        <div class="guide-table-wrap" role="region" aria-label="Minimum DPI by viewing distance" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Viewing Distance</th>
+                <th scope="col">Min Perceivable DPI</th>
+                <th scope="col">Typical Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>12 in (30 cm)</td><td class="td-mono">286 DPI</td><td>Business cards, book pages, product packaging</td></tr>
+              <tr><td>24 in (60 cm)</td><td class="td-mono">143 DPI</td><td>Photo prints, brochures, standard poster</td></tr>
+              <tr><td>48 in (120 cm)</td><td class="td-mono">72 DPI</td><td>Canvas wall art, framed prints</td></tr>
+              <tr><td>10 ft (3 m)</td><td class="td-mono">29 DPI</td><td>Indoor banners, signage, trade show displays</td></tr>
+              <tr><td>40 ft (12 m)</td><td class="td-mono">7 DPI</td><td>Billboards, large outdoor advertising</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Notice that at 24 inches, the human eye can only perceive a minimum of 143 DPI. So why does the industry standard set 300 DPI for photo prints? Because print involves a safety margin — detail slightly above the perceptual threshold still contributes to the perceived sense of sharpness and quality. The 300 DPI standard provides approximately 2× the minimum perceivable threshold at arm's length, which is the sweet spot between quality and file size.</p>
+        <p>For canvas wall art at 48 inches, the minimum perceivable DPI is 72. The industry standard of 150 DPI provides roughly 2× safety margin — which is why 150 DPI on canvas genuinely looks excellent, and why photographers selling canvas prints from 12MP cameras are not sacrificing quality.</p>
+      </section>
+
+      <section id="ai-upscaling" aria-labelledby="h-ai">
+        <h2 id="h-ai">AI upscaling for print — what works in 2026</h2>
+        <p>If your image does not have enough pixels for your target print size, you have three options: reduce the print size, find a higher-resolution source, or upscale the image. In 2026, AI upscaling has become genuinely useful for print preparation — but it has real limits.</p>
+        <h3>How AI upscaling differs from standard interpolation</h3>
+        <p>Standard interpolation (Photoshop Bicubic, Lanczos) calculates new pixel values by averaging surrounding pixels. It adds pixels but does not add real detail — the result looks soft or slightly blurry at aggressive enlargements.</p>
+        <p>AI upscaling tools (Topaz Photo AI, Adobe Super Resolution, Magnific AI) use neural networks trained on millions of images to predict what missing detail should look like. Rather than averaging, they reconstruct plausible texture, edge sharpness, and fine detail. The results are noticeably better for print use, especially for 2× enlargements.</p>
+        <div class="guide-table-wrap" role="region" aria-label="AI upscaling tools comparison 2026" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Tool</th>
+                <th scope="col">Max Upscale</th>
+                <th scope="col">Best For</th>
+                <th scope="col">2026 Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Topaz Photo AI</strong></td><td>Up to 6×</td><td>Portraits, real-world photos, print prep</td><td>Industry standard for print. Denoise + upscale combined. Subscription or one-time license.</td></tr>
+              <tr><td><strong>Adobe Super Resolution</strong></td><td>2× (4× pixel count)</td><td>Clean RAW files, Lightroom/Photoshop users</td><td>Conservative, fewer artifacts on clean images. Free with Creative Cloud.</td></tr>
+              <tr><td><strong>ON1 Resize AI</strong></td><td>Up to 10×</td><td>Large fine art prints, studio workflows</td><td>Strong for gallery and studio output. Perpetual license available.</td></tr>
+              <tr><td><strong>Magnific AI</strong></td><td>High — generative</td><td>AI art, illustration, stylized work</td><td>Adds invented detail — excellent for AI-generated images. Not suitable for documentary photography.</td></tr>
+              <tr><td><strong>Upscayl (free)</strong></td><td>4–8×</td><td>Logos, illustrations, line art</td><td>Free and open source. Real-ESRGAN based. Excellent for flat graphics and artwork.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>The real limits of AI upscaling</h3>
+        <p>AI upscaling cannot recover detail that was never there. A photo taken at ISO 25600 with severe noise, or heavily compressed as JPEG — both limit what even the best AI can reconstruct. For very degraded sources, the upscaler invents plausible-looking detail rather than recovering real information. This is fine for decorative prints but problematic for archival or precision work.</p>
+        <p>A practical guideline: AI upscaling reliably improves print quality for enlargements up to 4×. Beyond that, results vary significantly depending on source quality. If you need more than 4× to reach your target print size, finding a higher-resolution source is usually the better path.</p>
+        <div class="guide-callout guide-callout--orange">
+          <div class="callout-icon" aria-hidden="true">⚠️</div>
+          <div><strong>How the calculator handles AI upscaling:</strong> When you select an AI upscaling preset in the Pixel to Print tool, the score adjusts to reflect the quality gain from that upscale — it does not simply multiply the DPI. A low-resolution image with 4× AI selected will still score low if the source is genuinely too small, because the algorithm accounts for what AI can realistically recover versus what it invents.</div>
+        </div>
+      </section>
+
+      <section id="midjourney" aria-labelledby="h-midjourney">
+        <h2 id="h-midjourney">Midjourney and AI-generated images — printing in 2026</h2>
+        <p>Midjourney V7 (current as of 2026) produces default images at 1024×1024 pixels for 1:1 ratio. Using the built-in Subtle or Creative upscalers doubles this to 2048×2048 pixels. At 300 DPI, that prints at 6.8×6.8 inches — fine for a photo print but too small for a poster or canvas.</p>
+        <div class="guide-table-wrap" role="region" aria-label="Midjourney print sizes at different DPI" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">MJ Output</th>
+                <th scope="col">At 300 DPI</th>
+                <th scope="col">At 150 DPI (canvas)</th>
+                <th scope="col">After 2× AI upscale</th>
+                <th scope="col">After 4× AI upscale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1024 × 1024 px (base)</td><td>3.4 × 3.4 in</td><td>6.8 × 6.8 in</td><td>6.8 × 6.8 in @ 300</td><td>13.7 × 13.7 in @ 300</td></tr>
+              <tr><td>2048 × 2048 px (upscaled)</td><td>6.8 × 6.8 in</td><td>13.6 × 13.6 in</td><td>13.6 × 13.6 in @ 300</td><td>27.3 × 27.3 in @ 300</td></tr>
+              <tr><td>2048 × 3072 px (2:3 ratio)</td><td>6.8 × 10.2 in</td><td>13.6 × 20.5 in</td><td>13.6 × 20.5 in @ 300</td><td>27.3 × 41 in @ 300</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For Midjourney sellers on Etsy or Printify, a reliable 2026 workflow is: generate at your target aspect ratio → use Midjourney's Subtle upscale → run through Topaz Photo AI or Magnific AI at 2–4× → verify with the <a href="index.html">Pixel to Print calculator</a> before listing. This workflow reliably produces files large enough for poster, canvas, and most print-on-demand product sizes.</p>
+      </section>
+
+      <section id="ppqs" aria-labelledby="h-ppqs">
+        <h2 id="h-ppqs">What is PPQS — Perceptual Print Quality Score</h2>
+        <p>PPQS is the scoring algorithm in our calculator. It was built because standard DPI calculators give you a number but not an answer. A basic calculator will tell you a billboard image has "18 DPI — too low." PPQS will tell you it scores 100/100 — Outstanding, because billboards are viewed from 40 feet and 18 DPI exceeds the perceptual threshold for that distance.</p>
+        <p>The algorithm combines three inputs that a basic DPI calculation ignores:</p>
+        <div class="ppqs-factors">
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">01</div>
+            <div>
+              <h3>Viewing distance</h3>
+              <p>Minimum perceivable DPI is calculated from the ISO 8596 human eye constant (3438) divided by viewing distance in inches. Presets available: close (12 in), standard (24 in), wall art (48 in), signage (10 ft), billboard (40 ft+).</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">02</div>
+            <div>
+              <h3>Medium Absorption Factor (MAF)</h3>
+              <p>Each print surface absorbs and reflects ink differently. Coated paper (MAF 1.0) holds maximum detail. Canvas (MAF 0.80) and polyester fabric (MAF 0.75) absorb more ink spread, naturally masking fine detail variation. This is why lower DPI targets are valid on these surfaces — the surface itself compensates.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">03</div>
+            <div>
+              <h3>Medium-aware quality thresholds</h3>
+              <p>The 0–100 score is calibrated per medium, not a single global scale. Canvas at 150 DPI scores Excellent — matching industry standards. A photo print at 150 DPI scores Good — also correct, as it is below the 300 DPI standard for close-range viewing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="guide-cta-box">
+          <div><strong>Try it on your own image.</strong> Upload any image, set your print size and medium, and get your PPQS score in seconds. No signup, no upload to any server.</div>
+          <a href="index.html" class="guide-cta-btn">Open the Calculator →</a>
+        </div>
+      </section>
+
+      <section id="faq" aria-labelledby="h-faq">
+        <h2 id="h-faq">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-q">Is 300 DPI always necessary for a good print?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>No. 300 DPI is correct for close-range prints — photos, brochures, business cards. For canvas wall art, 150 DPI is the industry standard. For vinyl banners, 100 DPI. For billboards, 15–50 DPI. Using 300 DPI for all of these creates unnecessarily large files without any visible quality improvement.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">My printer shows 600 or 1200 DPI — should I match that in my image?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>No. The DPI shown in printer settings is the printer's dot density — not the image PPI you need to set. A 300 PPI image file will be accurately reproduced by a 1200 DPI printer because the printer uses multiple ink dots to represent each image pixel. Setting your image to 1200 PPI would create a massively oversized file with no perceptible improvement in output quality.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">How do I check if my photo has enough resolution for a specific print size?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>Divide your image's pixel width by your target print width in inches. That gives you the PPI at that size. Compare it to the standard for your medium: 300 for photo prints, 150 for canvas, etc. Or use the <a href="index.html">Pixel to Print calculator</a> — it does this automatically, accounts for your viewing distance and medium, and gives you a 0–100 quality score with specific action recommendations.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">What file format is best for sending to a print house?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p><strong>TIFF</strong> is the gold standard — lossless, preserves all color, supported by every professional RIP. <strong>PDF</strong> is preferred for designs with vector elements (text, logos) plus raster images. <strong>PNG</strong> is a good lossless option for smaller files. <strong>JPEG</strong> is acceptable for photos at quality 90+ saved once, but is lossy — each re-save introduces compression artifacts. Avoid JPEG for files that will be edited multiple times before printing.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">What is the minimum DPI for canvas on Etsy / print-on-demand?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>Most print-on-demand services (Printful, Printify, Fine Art America) require a minimum of 150 DPI at the target canvas size. Many accept 100 DPI for larger canvases viewed from distance. Check your specific provider's guidelines, then use the <a href="index.html">calculator</a> to verify your image meets the requirement for your target size before uploading.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-related">
+        <h2 id="h-related">Related guides</h2>
+        <div class="related-grid">
+          <a href="sublimation-tips.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">☕</div>
+            <div><div class="related-title">Sublimation DPI by material</div><div class="related-desc">Mugs, shirts, metal, ceramic — each needs a different standard.</div></div>
+          </a>
+          <a href="print-size-chart.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">📏</div>
+            <div><div class="related-title">Print size reference chart</div><div class="related-desc">Every standard size — photo, paper, canvas, social to print.</div></div>
+          </a>
+          <a href="index.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">🎯</div>
+            <div><div class="related-title">Check your image now</div><div class="related-desc">Upload and get a quality score in under 30 seconds.</div></div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="Pixel to Print — Home">
+          <div class="logo-mark" aria-hidden="true" style="width:28px;height:28px;"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/></svg></div>
+          <span class="logo-name" style="font-size:14px;">Pixel to Print</span>
+        </a>
+        <p>Free, open-source print quality calculator. Made by <a href="https://xcreativedesign.com" target="_blank" rel="noopener noreferrer">XCreativeDesign</a>.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-link-group"><a href="index.html" class="footer-link">Calculator</a><a href="dpi-guide.html" class="footer-link">DPI Guide</a><a href="sublimation-tips.html" class="footer-link">Sublimation Tips</a><a href="print-size-chart.html" class="footer-link">Size Chart</a></div>
+        <div class="footer-link-group"><a href="https://github.com/xcreativedesign/pixel-to-print" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a><a href="https://x.com/xcreativedesig" target="_blank" rel="noopener noreferrer" class="footer-link">X / Twitter</a><a href="privacy-policy.html" class="footer-link">Privacy</a></div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Pixel to Print · MIT License</span>
+      <span class="footer-privacy"><span class="privacy-dot" aria-hidden="true"></span>Your image is processed locally. Nothing is ever uploaded.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <script>
-    // Theme Toggle
-    // Set current year dynamically
-document.getElementById('currentYear').textContent = new Date().getFullYear();  
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-      updateThemeIcon();
-    }
-    
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeIcon();
-    }
-    
-    function updateThemeIcon() {
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
-      const theme = document.documentElement.getAttribute('data-theme');
-      
-      if (sunIcon && moonIcon) {
-        if (theme === 'dark') {
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        } else {
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        }
-      }
-    }
-    
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    initTheme();
-    
-    // Sidebar active state on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
-    
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 100) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
+    (function(){var t=function(){try{return localStorage.getItem('p2p-theme')||'light';}catch(e){return 'light';}};document.documentElement.setAttribute('data-theme',t());})();
+    document.addEventListener('DOMContentLoaded',function(){
+      var tb=document.getElementById('theme-toggle');
+      if(tb){tb.addEventListener('click',function(){var c=document.documentElement.getAttribute('data-theme')||'light';var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('p2p-theme',n);}catch(e){}});}
+      var mb=document.getElementById('mobile-menu-btn'),mn=document.getElementById('mobile-nav');
+      if(mb&&mn){mn.hidden=true;mb.addEventListener('click',function(){var o=!mn.hidden;mn.hidden=o;mb.setAttribute('aria-expanded',String(!o));});document.addEventListener('click',function(e){if(!mn.hidden&&!mn.contains(e.target)&&!mb.contains(e.target)){mn.hidden=true;mb.setAttribute('aria-expanded','false');}});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!mn.hidden){mn.hidden=true;mb.setAttribute('aria-expanded','false');}});}
     });
   </script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Complete DPI Guide for Print & Design",
-  "description": "Everything you need to know about DPI, resolution, and print quality.",
-  "author": {
-    "@type": "Organization",
-    "name": "Pixel to Print"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pixel to Print",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://yourwebsite.com/logo.png"
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2026-02-10",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://xcreativedesign.github.io/pixel-to-print/dpi-guide.html"
-  }
-}
-</script>
-
-<!-- FAQ Schema for Featured Snippets -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is DPI?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "DPI (Dots Per Inch) measures print resolution by counting how many ink dots a printer places in one linear inch. Higher DPI (300+) means sharper prints for photos and magazines, while lower DPI (72) is standard for digital screens."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between DPI and PPI?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "DPI refers to printed ink dots (physical output), while PPI refers to screen pixels (digital resolution). Printers use DPI, design software uses PPI. For practical purposes, 300 DPI equals 300 PPI in design workflows."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What DPI should I use for printing photos?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use 300 DPI for high-quality photo prints, magazines, and brochures. Large format prints like banners can use 100-150 DPI since they are viewed from a distance. Never use 72 DPI web images for print."
-      }
-    }
-  ]
-}
-</script>
 </body>
 </html>
