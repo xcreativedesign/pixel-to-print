@@ -1,911 +1,456 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Print Size Chart: Standard Photo & Paper Dimensions Guide | Pixel to Print</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    /* CSS Variables - Theme System */
-    :root {
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #F8FAFC;
-      --bg-tertiary: #F1F5F9;
-      --bg-panel: #FFFFFF;
-      --bg-input: #F8FAFC;
-      --text-primary: #0F172A;
-      --text-secondary: #475569;
-      --text-muted: #94A3B8;
-      --border-light: #E2E8F0;
-      --border-default: #CBD5E1;
-      --accent: #2563EB;
-      --accent-hover: #1D4ED8;
-      --accent-light: rgba(37, 99, 235, 0.1);
-      --success: #059669;
-      --success-light: rgba(5, 150, 105, 0.1);
-      --warning: #D97706;
-      --warning-light: rgba(217, 119, 6, 0.1);
-      --danger: #DC2626;
-      --danger-light: rgba(220, 38, 38, 0.1);
-    }
-    
-    [data-theme="dark"] {
-      --bg-primary: #0F172A;
-      --bg-secondary: #1E293B;
-      --bg-tertiary: #334155;
-      --bg-panel: #1E293B;
-      --bg-input: #0F172A;
-      --text-primary: #F1F5F9;
-      --text-secondary: #CBD5E1;
-      --text-muted: #64748B;
-      --border-light: #334155;
-      --border-default: #475569;
-      --accent: #3B82F6;
-      --accent-hover: #60A5FA;
-      --accent-light: rgba(59, 130, 246, 0.15);
-      --success: #10B981;
-      --success-light: rgba(16, 185, 129, 0.15);
-      --warning: #F59E0B;
-      --warning-light: rgba(245, 158, 11, 0.15);
-      --danger: #EF4444;
-      --danger-light: rgba(239, 68, 68, 0.15);
-    }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    .bg-primary { background: var(--bg-primary); }
-    .bg-secondary { background: var(--bg-secondary); }
-    .bg-tertiary { background: var(--bg-tertiary); }
-    .bg-panel { background: var(--bg-panel); }
-    .text-primary { color: var(--text-primary); }
-    .text-secondary { color: var(--text-secondary); }
-    .text-muted { color: var(--text-muted); }
-    .border-light { border-color: var(--border-light); }
-    .border-default { border-color: var(--border-default); }
-    .bg-accent { background: var(--accent); }
-    .bg-accent-light { background: var(--accent-light); }
-    .text-accent { color: var(--accent); }
-    .bg-success { background: var(--success); }
-    .bg-success-light { background: var(--success-light); }
-    .text-success { color: var(--success); }
-    .bg-warning { background: var(--warning); }
-    .bg-warning-light { background: var(--warning-light); }
-    .text-warning { color: var(--warning); }
-    .bg-danger { background: var(--danger); }
-    .bg-danger-light { background: var(--danger-light); }
-    .text-danger { color: var(--danger); }
-    
-    .card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-light);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .theme-toggle {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-light);
-      transition: all 0.2s ease;
-    }
-    .theme-toggle:hover { background: var(--border-light); }
-    
-    /* Table styles */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    .data-table th {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      font-weight: 600;
-      text-align: left;
-      padding: 14px 16px;
-      border-bottom: 2px solid var(--border-default);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .data-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border-light);
-      color: var(--text-secondary);
-      font-size: 14px;
-    }
-    
-    .data-table tr:hover td {
-      background: var(--bg-secondary);
-    }
-    
-    .size-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    
-    /* Sidebar navigation */
-    .sidebar-link {
-      display: block;
-      padding: 8px 12px;
-      color: var(--text-secondary);
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      font-size: 14px;
-    }
-    
-    .sidebar-link:hover {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-    }
-    
-    .sidebar-link.active {
-      background: var(--accent-light);
-      color: var(--accent);
-      font-weight: 500;
-    }
-    
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-    ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-    
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    .hero-pattern {
-      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
-      background-size: 40px 40px;
-    }
-  </style>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Complete print size chart with standard photo sizes, paper dimensions (A4, Letter), and pixel requirements at 300 DPI. Quick reference guide for designers and print professionals.">
-  <meta name="keywords" content="print size chart, standard photo sizes, A4 size in inches, photo dimensions, print dimensions, 4x6 photo size, 300 DPI pixel chart">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Complete print size reference chart for 2026. Photo prints, ISO A paper sizes, canvas sizes, sublimation templates, and social media dimensions — all in one place with pixel requirements at 150 and 300 DPI." />
+  <meta name="author" content="XCreativeDesign" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1A6EFF" />
+  <meta property="og:title" content="Print Size Reference Chart 2026 — Every Standard Size with Pixel Requirements" />
+  <meta property="og:description" content="Photo prints, ISO paper, canvas, sublimation, large format, and social media sizes — verified 2026 standards with minimum pixel requirements at both 150 DPI and 300 DPI." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://xcreativedesign.github.io/pixel-to-print/print-size-chart.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@xcreativedesig" />
+  <title>Print Size Reference Chart 2026 — Every Standard Size | Pixel to Print</title>
   <link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/print-size-chart.html" />
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Print Size Chart: Standard Photo & Paper Dimensions Guide">
-  <meta property="og:description" content="Quick reference chart for all standard print sizes with pixel requirements at 300 DPI. Expert guide for designers.">
-  <meta property="og:type" content="article">
-  
-  <!-- JSON-LD Schema for Article -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Print Size Chart: Standard Photo & Paper Dimensions Guide",
-    "description": "Complete print size chart with standard photo sizes, paper dimensions, and pixel requirements at 300 DPI.",
-    "author": {
-      "@type": "Organization",
-      "name": "Pixel to Print"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Pixel to Print"
-    },
-    "datePublished": "2024-01-15",
-    "dateModified": "2026-02-10",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://xcreativedesign.github.io/pixel-to-print/print-size-chart.html"
-    }
-  }
-  </script>
-  
-  <!-- FAQ Schema for Featured Snippets -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What are the standard photo print sizes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The most common standard photo print sizes are 4x6 inches (10x15 cm), 5x7 inches (13x18 cm), 8x10 inches (20x25 cm), and 8.5x11 inches (Letter size). For high-quality prints at 300 DPI, a 4x6 photo requires 1200x1800 pixels."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is A4 size in inches and centimeters?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A4 paper size measures 8.27 x 11.69 inches (210 x 297 mm). At 300 DPI print quality, you need 2480 x 3508 pixels. A4 is the standard paper size used internationally, while US Letter (8.5 x 11 inches) is common in North America."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What pixel size do I need for printing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "For high-quality prints, use 300 DPI. Multiply your print size in inches by 300 to get pixel dimensions. Example: 8x10 inch print = 2400x3000 pixels. Large format prints (banners, posters) can use 150 DPI due to viewing distance."
-        }
-      }
-    ]
-  }
-  </script>
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/guide.css" />
+  <link rel="stylesheet" href="assets/css/size-chart.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Print Size Reference Chart 2026","description":"Complete reference chart covering photo print sizes, ISO A paper formats, canvas sizes, sublimation substrates, large format printing, and social media dimensions with pixel requirements at 150 and 300 DPI.","author":{"@type":"Organization","name":"XCreativeDesign","url":"https://xcreativedesign.com"},"publisher":{"@type":"Organization","name":"Pixel to Print","url":"https://xcreativedesign.github.io/pixel-to-print/"},"dateModified":"2026-01-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://xcreativedesign.github.io/pixel-to-print/print-size-chart.html"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pixel to Print","item":"https://xcreativedesign.github.io/pixel-to-print/"},{"@type":"ListItem","position":2,"name":"Print Size Chart","item":"https://xcreativedesign.github.io/pixel-to-print/print-size-chart.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many pixels do I need for a 4x6 photo print?","acceptedAnswer":{"@type":"Answer","text":"For a sharp 4x6 inch photo print at 300 DPI, you need a minimum of 1200x1800 pixels. At 150 DPI (suitable for canvas or fabric prints), a 4x6 requires 600x900 pixels."}},{"@type":"Question","name":"What pixel size do I need for an A4 print at 300 DPI?","acceptedAnswer":{"@type":"Answer","text":"An A4 sheet (210x297mm / 8.27x11.69 inches) requires 2480x3508 pixels at 300 DPI for a high-quality close-range print."}},{"@type":"Question","name":"What is the minimum pixel size for a 16x20 canvas print?","acceptedAnswer":{"@type":"Answer","text":"For a 16x20 inch canvas print at the industry standard of 150 DPI, you need a minimum of 2400x3000 pixels. At 100 DPI (minimum acceptable for canvas), 1600x2000 pixels."}},{"@type":"Question","name":"What is the correct image size for an Instagram post in 2026?","acceptedAnswer":{"@type":"Answer","text":"For Instagram feed posts in 2026: square 1080x1080px (1:1), portrait 1080x1350px (4:5), landscape 1080x566px (1.91:1). For Stories and Reels: 1080x1920px (9:16). Always upload at 1080px width to prevent compression."}}]}</script>
 </head>
 <body>
-  
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
-            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
-        </a>
-        
-        <div class="flex items-center gap-3">
-          <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center" aria-label="Toggle dark mode">
-            <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <line x1="12" y1="1" x2="12" y2="3"/>
-              <line x1="12" y1="21" x2="12" y2="23"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-              <line x1="1" y1="12" x2="3" y2="12"/>
-              <line x1="21" y1="12" x2="23" y2="12"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </button>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Pixel to Print — Home">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/></svg>
         </div>
-      </div>
-    </nav>
-  </header>
-  
-  <!-- Main Content -->
-  <main class="pt-24 pb-16">
-    
-    <!-- Hero Section -->
-    <section class="bg-secondary hero-pattern py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-light text-accent text-sm font-medium mb-4">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <line x1="3" y1="9" x2="21" y2="9"/>
-            <line x1="9" y1="21" x2="9" y2="9"/>
-          </svg>
-          Quick Reference
+        <div class="logo-text">
+          <span class="logo-name">Pixel to Print</span>
+          <span class="logo-sub">Print Quality Calculator</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Print Size Chart</h1>
-        <p class="text-lg text-secondary max-w-2xl mx-auto">Complete guide to standard photo sizes, paper dimensions, and pixel requirements for professional printing at 300 DPI.</p>
-        
-        <!-- E-E-A-T Trust Signals -->
-        <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-muted mt-8 pt-6 border-t border-light">
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            <span>Updated: <strong class="text-primary">Feb 2026</strong></span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            <span>Verified by <strong class="text-primary">Print Experts</strong></span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            <span>Reading Time: <strong class="text-primary">6 min</strong></span>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Featured Snippet Optimized Answer -->
-    <section class="py-8">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-accent-light border-l-4 border-accent p-5 rounded-r-xl">
-          <h2 class="text-lg font-bold text-primary mb-2">Quick Answer: Most Common Print Sizes</h2>
-          <p class="text-secondary text-sm mb-3">
-            The <strong class="text-primary">most common photo print sizes</strong> are 4x6" (snapshot), 5x7" (frame-ready), and 8x10" (portrait). For documents, <strong class="text-primary">A4 (8.27x11.69")</strong> is standard internationally, while <strong class="text-primary">US Letter (8.5x11")</strong> dominates North America.
-          </p>
-          <p class="text-muted text-xs">
-            For crisp prints at 300 DPI: 4x6" requires 1200x1800 pixels | 8x10" requires 2400x3000 pixels | A4 requires 2480x3508 pixels.
-          </p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Content Section -->
-    <section class="py-8 md:py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-4 gap-8">
-          
-          <!-- Sidebar -->
-          <aside class="lg:col-span-1">
-            <div class="sticky top-24">
-              <nav class="space-y-1">
-                <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-3 px-3">On This Page</p>
-                <a href="#photo-sizes" class="sidebar-link active">Standard Photo Sizes</a>
-                <a href="#paper-sizes" class="sidebar-link">Paper Sizes (A-Series)</a>
-                <a href="#us-sizes" class="sidebar-link">US Paper Sizes</a>
-                <a href="#business-cards" class="sidebar-link">Business Cards</a>
-                <a href="#large-format" class="sidebar-link">Large Format Prints</a>
-                <a href="#canvas-sizes" class="sidebar-link">Canvas Print Sizes</a>
-                <a href="#pixel-guide" class="sidebar-link">Pixel Requirements</a>
-                <a href="#expert-tips" class="sidebar-link">Expert Tips</a>
-              </nav>
-              
-              <div class="mt-8 p-4 rounded-xl bg-tertiary border border-light">
-                <p class="text-sm font-medium text-primary mb-2">Need Custom Conversion?</p>
-                <a href="index.html#tool" class="text-sm text-accent hover:text-accent-hover transition-colors">Use the Converter Tool</a>
-              </div>
-            </div>
-          </aside>
-          
-          <!-- Main Content -->
-          <article class="lg:col-span-3 space-y-12">
-            
-            <!-- Standard Photo Sizes -->
-            <section id="photo-sizes">
-              <h2 class="text-2xl font-bold text-primary mb-2">Standard Photo Print Sizes</h2>
-              <p class="text-secondary mb-6">These are the most common photo sizes you will encounter at print shops and photo labs. All pixel requirements below are calculated at 300 DPI for optimal print quality.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Size Name</th>
-                      <th>Inches</th>
-                      <th>Centimeters</th>
-                      <th>Pixels (300 DPI)</th>
-                      <th>Common Use</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">Wallet Size</td>
-                      <td>2.5 × 3.5"</td>
-                      <td>6.35 × 8.89 cm</td>
-                      <td><span class="font-mono text-accent">750 × 1050</span></td>
-                      <td><span class="size-badge bg-tertiary">ID, Wallet</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">3×5 (Small)</td>
-                      <td>3 × 5"</td>
-                      <td>7.62 × 12.7 cm</td>
-                      <td><span class="font-mono text-accent">900 × 1500</span></td>
-                      <td><span class="size-badge bg-tertiary">Small prints</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">4×6 (Standard)</td>
-                      <td>4 × 6"</td>
-                      <td>10.16 × 15.24 cm</td>
-                      <td><span class="font-mono text-accent">1200 × 1800</span></td>
-                      <td><span class="size-badge bg-success-light text-success">Most Popular</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">5×7 (Large)</td>
-                      <td>5 × 7"</td>
-                      <td>12.7 × 17.78 cm</td>
-                      <td><span class="font-mono text-accent">1500 × 2100</span></td>
-                      <td><span class="size-badge bg-tertiary">Framing</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">6×8</td>
-                      <td>6 × 8"</td>
-                      <td>15.24 × 20.32 cm</td>
-                      <td><span class="font-mono text-accent">1800 × 2400</span></td>
-                      <td><span class="size-badge bg-tertiary">Framing</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">8×10 (Portrait)</td>
-                      <td>8 × 10"</td>
-                      <td>20.32 × 25.4 cm</td>
-                      <td><span class="font-mono text-accent">2400 × 3000</span></td>
-                      <td><span class="size-badge bg-success-light text-success">Portraits</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">8.5×11 (Letter)</td>
-                      <td>8.5 × 11"</td>
-                      <td>21.59 × 27.94 cm</td>
-                      <td><span class="font-mono text-accent">2550 × 3300</span></td>
-                      <td><span class="size-badge bg-tertiary">Documents</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">11×14</td>
-                      <td>11 × 14"</td>
-                      <td>27.94 × 35.56 cm</td>
-                      <td><span class="font-mono text-accent">3300 × 4200</span></td>
-                      <td><span class="size-badge bg-tertiary">Large prints</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">12×18</td>
-                      <td>12 × 18"</td>
-                      <td>30.48 × 45.72 cm</td>
-                      <td><span class="font-mono text-accent">3600 × 5400</span></td>
-                      <td><span class="size-badge bg-tertiary">Posters</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">16×20</td>
-                      <td>16 × 20"</td>
-                      <td>40.64 × 50.8 cm</td>
-                      <td><span class="font-mono text-accent">4800 × 6000</span></td>
-                      <td><span class="size-badge bg-tertiary">Gallery</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">20×30</td>
-                      <td>20 × 30"</td>
-                      <td>50.8 × 76.2 cm</td>
-                      <td><span class="font-mono text-accent">6000 × 9000</span></td>
-                      <td><span class="size-badge bg-tertiary">Large posters</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-              <div class="mt-4 p-4 rounded-lg bg-warning-light border border-warning/20">
-                <p class="text-sm text-secondary">
-                  <strong class="text-warning">Pro Tip:</strong> 4×6 photos match the aspect ratio of most digital cameras (3:2). However, 8×10 crops your image. Always check for unwanted cropping when ordering non-standard sizes.
-                </p>
-              </div>
-            </section>
-            
-            <!-- Paper Sizes (A-Series) -->
-            <section id="paper-sizes">
-              <h2 class="text-2xl font-bold text-primary mb-2">ISO Paper Sizes (A-Series)</h2>
-              <p class="text-secondary mb-6">The ISO 216 standard is used worldwide (except North America). Each size is half of the previous size, making scaling documents seamless.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Size</th>
-                      <th>Millimeters</th>
-                      <th>Inches</th>
-                      <th>Pixels (300 DPI)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">A0</td>
-                      <td>841 × 1188 mm</td>
-                      <td>33.11 × 46.81"</td>
-                      <td><span class="font-mono text-accent">9933 × 14043</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">A1</td>
-                      <td>594 × 841 mm</td>
-                      <td>23.39 × 33.11"</td>
-                      <td><span class="font-mono text-accent">7016 × 9933</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">A2</td>
-                      <td>420 × 594 mm</td>
-                      <td>16.54 × 23.39"</td>
-                      <td><span class="font-mono text-accent">4961 × 7016</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">A3</td>
-                      <td>297 × 420 mm</td>
-                      <td>11.69 × 16.54"</td>
-                      <td><span class="font-mono text-accent">3508 × 4961</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">A4</td>
-                      <td>210 × 297 mm</td>
-                      <td>8.27 × 11.69"</td>
-                      <td><span class="font-mono text-success">2480 × 3508</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">A5</td>
-                      <td>148 × 210 mm</td>
-                      <td>5.83 × 8.27"</td>
-                      <td><span class="font-mono text-accent">1748 × 2480</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">A6</td>
-                      <td>105 × 148 mm</td>
-                      <td>4.13 × 5.83"</td>
-                      <td><span class="font-mono text-accent">1240 × 1748</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-            
-            <!-- US Paper Sizes -->
-            <section id="us-sizes">
-              <h2 class="text-2xl font-bold text-primary mb-2">US Paper Sizes</h2>
-              <p class="text-secondary mb-6">Standard paper sizes used primarily in the United States, Canada, and parts of Mexico.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Size Name</th>
-                      <th>Inches</th>
-                      <th>Millimeters</th>
-                      <th>Pixels (300 DPI)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">Letter</td>
-                      <td>8.5 × 11"</td>
-                      <td>215.9 × 279.4 mm</td>
-                      <td><span class="font-mono text-success">2550 × 3300</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Legal</td>
-                      <td>8.5 × 14"</td>
-                      <td>215.9 × 355.6 mm</td>
-                      <td><span class="font-mono text-accent">2550 × 4200</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Tabloid / Ledger</td>
-                      <td>11 × 17"</td>
-                      <td>279.4 × 431.8 mm</td>
-                      <td><span class="font-mono text-accent">3300 × 5100</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Executive</td>
-                      <td>7.25 × 10.5"</td>
-                      <td>184.15 × 266.7 mm</td>
-                      <td><span class="font-mono text-accent">2175 × 3150</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-            
-            <!-- Business Cards -->
-            <section id="business-cards">
-              <h2 class="text-2xl font-bold text-primary mb-2">Business Card Sizes</h2>
-              <p class="text-secondary mb-6">Business card dimensions vary by region. Always include bleed area (3mm/0.125" on each side) for edge-to-edge printing.</p>
-              
-              <div class="grid md:grid-cols-2 gap-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-center gap-3 mb-3">
-                    <div class="w-12 h-8 rounded bg-accent-light border border-accent/30 flex items-center justify-center">
-                      <span class="text-xs font-mono text-accent">US</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary">Standard US</h3>
-                      <p class="text-xs text-muted">3.5 × 2 inches</p>
-                    </div>
-                  </div>
-                  <p class="text-sm text-secondary">
-                    Pixels: <span class="font-mono text-accent">1050 × 600</span> at 300 DPI
-                  </p>
-                  <p class="text-sm text-secondary">
-                    With Bleed: <span class="font-mono text-muted">1125 × 675</span>
-                  </p>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-center gap-3 mb-3">
-                    <div class="w-12 h-8 rounded bg-success-light border border-success/30 flex items-center justify-center">
-                      <span class="text-xs font-mono text-success">EU</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary">Standard EU</h3>
-                      <p class="text-xs text-muted">3.35 × 2.17 inches (85 × 55 mm)</p>
-                    </div>
-                  </div>
-                  <p class="text-sm text-secondary">
-                    Pixels: <span class="font-mono text-accent">1004 × 650</span> at 300 DPI
-                  </p>
-                  <p class="text-sm text-secondary">
-                    With Bleed: <span class="font-mono text-muted">1075 × 725</span>
-                  </p>
-                </div>
-              </div>
-            </section>
-            
-            <!-- Large Format -->
-            <section id="large-format">
-              <h2 class="text-2xl font-bold text-primary mb-2">Large Format & Poster Sizes</h2>
-              <p class="text-secondary mb-6">Large prints can use lower DPI (150-200) because viewing distance is greater. This significantly reduces file size while maintaining perceived quality.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Size</th>
-                      <th>Inches</th>
-                      <th>Pixels (150 DPI)</th>
-                      <th>Pixels (300 DPI)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">18×24 Poster</td>
-                      <td>18 × 24"</td>
-                      <td><span class="font-mono text-success">2700 × 3600</span></td>
-                      <td><span class="font-mono text-muted">5400 × 7200</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">24×36 Poster</td>
-                      <td>24 × 36"</td>
-                      <td><span class="font-mono text-success">3600 × 5400</span></td>
-                      <td><span class="font-mono text-muted">7200 × 10800</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">2×3 ft Banner</td>
-                      <td>24 × 36"</td>
-                      <td><span class="font-mono text-success">3600 × 5400</span></td>
-                      <td><span class="font-mono text-muted">7200 × 10800</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">3×6 ft Banner</td>
-                      <td>36 × 72"</td>
-                      <td><span class="font-mono text-success">5400 × 10800</span></td>
-                      <td><span class="font-mono text-muted">10800 × 21600</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">4×8 ft Banner</td>
-                      <td>48 × 96"</td>
-                      <td><span class="font-mono text-success">7200 × 14400</span></td>
-                      <td><span class="font-mono text-muted">14400 × 28800</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-            
-            <!-- Canvas Sizes -->
-            <section id="canvas-sizes">
-              <h2 class="text-2xl font-bold text-primary mb-2">Standard Canvas Print Sizes</h2>
-              <p class="text-secondary mb-6">Canvas prints have wrapped edges. Add 2 inches to each dimension (1 inch per side) for gallery wraps.</p>
-              
-              <div class="grid md:grid-cols-3 gap-4">
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="text-3xl font-bold text-accent mb-1">8×10"</div>
-                  <p class="text-sm text-muted mb-2">Small Wall Art</p>
-                  <p class="text-xs text-secondary font-mono">2400 × 3000 px</p>
-                </div>
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="text-3xl font-bold text-accent mb-1">16×20"</div>
-                  <p class="text-sm text-muted mb-2">Medium Wall Art</p>
-                  <p class="text-xs text-secondary font-mono">4800 × 6000 px</p>
-                </div>
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="text-3xl font-bold text-accent mb-1">24×36"</div>
-                  <p class="text-sm text-muted mb-2">Large Statement</p>
-                  <p class="text-xs text-secondary font-mono">7200 × 10800 px</p>
-                </div>
-              </div>
-            </section>
-            
-            <!-- Pixel Guide -->
-            <section id="pixel-guide">
-              <h2 class="text-2xl font-bold text-primary mb-2">How to Calculate Pixel Requirements</h2>
-              <p class="text-secondary mb-6">Use this simple formula to determine the pixel dimensions needed for any print size.</p>
-              
-              <div class="card p-6 rounded-xl mb-6">
-                <div class="text-center mb-4">
-                  <p class="text-sm text-muted uppercase tracking-wider mb-2">The Formula</p>
-                  <div class="text-2xl md:text-3xl font-mono font-bold text-accent">
-                    Pixels = Print Size (inches) × DPI
-                  </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <p class="text-sm font-medium text-primary mb-2">Example: 8×10 Photo at 300 DPI</p>
-                    <p class="text-sm text-secondary font-mono">
-                      Width: 8 × 300 = <span class="text-accent font-bold">2400 px</span><br>
-                      Height: 10 × 300 = <span class="text-accent font-bold">3000 px</span>
-                    </p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <p class="text-sm font-medium text-primary mb-2">Example: 24×36 Poster at 150 DPI</p>
-                    <p class="text-sm text-secondary font-mono">
-                      Width: 24 × 150 = <span class="text-accent font-bold">3600 px</span><br>
-                      Height: 36 × 150 = <span class="text-accent font-bold">5400 px</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-            <!-- Expert Tips -->
-            <section id="expert-tips">
-              <h2 class="text-2xl font-bold text-primary mb-4">Expert Tips for Print Sizing</h2>
-              
-              <div class="space-y-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Always Include Bleed</h3>
-                      <p class="text-sm text-secondary">Add 0.125" (3mm) on each side for full-bleed designs. A 4×6" flyer should be designed at 4.25×6.25" to avoid white edges after trimming.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Mind the Safe Zone</h3>
-                      <p class="text-sm text-secondary">Keep important text and logos 0.25" inside the trim line. This prevents accidental cropping during the cutting process.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Aspect Ratio Matters</h3>
-                      <p class="text-sm text-secondary">Digital photos are typically 3:2 or 4:3. An 8×10 print (4:5 ratio) will crop your image. Plan your composition with the final print size in mind.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-warning-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="12" y1="8" x2="12" y2="12"/>
-                        <line x1="12" y1="16" x2="12.01" y2="16"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Never Upscale Raster Images</h3>
-                      <p class="text-sm text-secondary">If your image is 1000px wide, you cannot print it at 10 inches (100 DPI) without quality loss. Start with high-resolution files or use AI upscaling tools.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-          </article>
-        </div>
-      </div>
-    </section>
-    
-  </main>
-  
-  <!-- Footer -->
-  <footer class="py-12 border-t border-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <a href="index.html" class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <span class="font-semibold text-primary">Pixel to Print</span>
-        </a>
-        <p class="text-sm text-muted">
-          <span id="currentYear"></span> Pixel to Print. Educational resource for designers.
-        </p>
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Calculator</a>
+        <a href="dpi-guide.html" class="nav-link">DPI Guide</a>
+        <a href="sublimation-tips.html" class="nav-link">Sublimation</a>
+        <a href="print-size-chart.html" class="nav-link nav-link--active" aria-current="page">Size Chart</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+          <span class="icon-sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </div>
+    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-nav-link">Calculator</a>
+      <a href="dpi-guide.html" class="mobile-nav-link">DPI Guide</a>
+      <a href="sublimation-tips.html" class="mobile-nav-link">Sublimation Tips</a>
+      <a href="print-size-chart.html" class="mobile-nav-link">Print Size Chart</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb-bar"><div class="breadcrumb-inner"><nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Pixel to Print</a></li><li aria-current="page">Print Size Chart</li></ol></nav></div></div>
+
+  <div class="guide-hero">
+    <div class="guide-hero-inner">
+      <div class="section-label-tag" aria-hidden="true">Reference Chart · 2026</div>
+      <h1>Print size chart — every standard size with pixel requirements</h1>
+      <p class="guide-hero-desc">Photo prints, ISO A paper, canvas, sublimation products, large format signage, and social media — all standard sizes in one place. Pixel requirements calculated at both 150 DPI (canvas/fabric) and 300 DPI (photos/close print) so you always know exactly what you need before you start a project.</p>
+      <div class="guide-meta">
+        <span>Updated January 2026</span>
+        <span aria-hidden="true">·</span>
+        <span>Bookmark-worthy reference</span>
+        <span aria-hidden="true">·</span>
+        <span>All numbers manually verified</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jump nav for fast reference -->
+  <div class="chart-jumbnav">
+    <div class="chartjump-inner">
+      <span class="chartjump-label">Jump to:</span>
+      <a href="#photo-prints" class="chartjump-link">📷 Photo Prints</a>
+      <a href="#iso-a" class="chartjump-link">📄 ISO A Series</a>
+      <a href="#canvas" class="chartjump-link">🖼 Canvas</a>
+      <a href="#sublimation" class="chartjump-link">☕ Sublimation</a>
+      <a href="#large-format" class="chartjump-link">📢 Large Format</a>
+      <a href="#social-media" class="chartjump-link">📱 Social Media</a>
+      <a href="#how-to-use" class="chartjump-link">📐 How to Use</a>
+    </div>
+  </div>
+
+  <main id="main-content" class="chart-main">
+    <div class="chart-layout">
+
+      <!-- ── HOW TO READ THIS CHART ──────────────────── -->
+      <section id="how-to-use" aria-labelledby="h-how" class="chart-explainer">
+        <h2 id="h-how">How to read this chart</h2>
+        <p>Each table shows minimum pixel requirements at two DPI levels:</p>
+        <div class="dpi-legend">
+          <div class="dpi-legend-item dpi-legend--300">
+            <strong>300 DPI</strong>
+            <span>Photo prints, brochures, business cards, phone cases, metal panels — anything viewed up close.</span>
+          </div>
+          <div class="dpi-legend-item dpi-legend--150">
+            <strong>150 DPI</strong>
+            <span>Canvas wall art, polyester fabric, mouse pads, cushions — surfaces with texture or viewed from distance.</span>
+          </div>
+        </div>
+        <p>If your image meets the 300 DPI column, it will print sharply on any medium. If it only meets the 150 DPI column, it is suitable for canvas and fabric but not for close-range photo prints. Use the <a href="index.html">Pixel to Print calculator</a> to check your exact image against any specific size and medium.</p>
+      </section>
+
+      <!-- ── PHOTO PRINTS ──────────────────────────── -->
+      <section id="photo-prints" aria-labelledby="h-photo">
+        <h2 id="h-photo">📷 Standard photo print sizes</h2>
+        <p>The most commonly ordered photo sizes, used by photo labs, Walgreens, CVS, Snapfish, Shutterfly, and all major print-on-demand services. The standard DPI for photo prints is 300. The aspect ratio column shows whether your camera's native ratio will fit without cropping.</p>
+        <div class="guide-table-wrap" role="region" aria-label="Standard photo print sizes" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Size (in)</th>
+                <th scope="col">Size (cm)</th>
+                <th scope="col">Aspect Ratio</th>
+                <th scope="col">Min px @ 300 DPI</th>
+                <th scope="col">Min px @ 150 DPI</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="td-size"><strong>2×3</strong></td><td>5.1×7.6</td><td class="td-ratio">2:3</td><td class="td-mono">600×900</td><td class="td-muted">300×450</td><td>Wallet size. School photos, ID cards.</td></tr>
+              <tr><td class="td-size"><strong>3.5×5</strong></td><td>8.9×12.7</td><td class="td-ratio">7:10</td><td class="td-mono">1050×1500</td><td class="td-muted">525×750</td><td>Classic compact size for albums.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>4×6 ★</strong></td><td>10.2×15.2</td><td class="td-ratio">2:3</td><td class="td-mono">1200×1800</td><td class="td-muted">600×900</td><td>Most popular photo size. Matches DSLR 3:2 ratio perfectly. No cropping needed.</td></tr>
+              <tr><td class="td-size"><strong>5×5</strong></td><td>12.7×12.7</td><td class="td-ratio">1:1</td><td class="td-mono">1500×1500</td><td class="td-muted">750×750</td><td>Square format. Good for Instagram prints.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>5×7 ★</strong></td><td>12.7×17.8</td><td class="td-ratio">5:7</td><td class="td-mono">1500×2100</td><td class="td-muted">750×1050</td><td>Popular for framing, desk display, gifts. Requires minor crop from most cameras.</td></tr>
+              <tr><td class="td-size"><strong>4×8</strong></td><td>10.2×20.3</td><td class="td-ratio">1:2</td><td class="td-mono">1200×2400</td><td class="td-muted">600×1200</td><td>Panoramic. Good for wide landscape crops.</td></tr>
+              <tr><td class="td-size"><strong>6×8</strong></td><td>15.2×20.3</td><td class="td-ratio">3:4</td><td class="td-mono">1800×2400</td><td class="td-muted">900×1200</td><td>Matches 4:3 (smartphone) ratio without cropping.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>8×10 ★</strong></td><td>20.3×25.4</td><td class="td-ratio">4:5</td><td class="td-mono">2400×3000</td><td class="td-muted">1200×1500</td><td>Standard portrait size. Requires cropping from 3:2 or 4:3. Keep subject centered.</td></tr>
+              <tr><td class="td-size"><strong>8×12</strong></td><td>20.3×30.5</td><td class="td-ratio">2:3</td><td class="td-mono">2400×3600</td><td class="td-muted">1200×1800</td><td>Matches DSLR 3:2 perfectly. No cropping.</td></tr>
+              <tr><td class="td-size"><strong>10×10</strong></td><td>25.4×25.4</td><td class="td-ratio">1:1</td><td class="td-mono">3000×3000</td><td class="td-muted">1500×1500</td><td>Large square. Popular for modern wall displays.</td></tr>
+              <tr><td class="td-size"><strong>10×13</strong></td><td>25.4×33</td><td class="td-ratio">10:13</td><td class="td-mono">3000×3900</td><td class="td-muted">1500×1950</td><td>Standard school portrait size in the US.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>11×14 ★</strong></td><td>27.9×35.6</td><td class="td-ratio">11:14</td><td class="td-mono">3300×4200</td><td class="td-muted">1650×2100</td><td>Popular wall print. Slightly non-standard ratio — minor crop needed from most cameras.</td></tr>
+              <tr><td class="td-size"><strong>12×12</strong></td><td>30.5×30.5</td><td class="td-ratio">1:1</td><td class="td-mono">3600×3600</td><td class="td-muted">1800×1800</td><td>Large square format. Gallery, scrapbook, and display.</td></tr>
+              <tr><td class="td-size"><strong>12×16</strong></td><td>30.5×40.6</td><td class="td-ratio">3:4</td><td class="td-mono">3600×4800</td><td class="td-muted">1800×2400</td><td>Matches smartphone 4:3 natively.</td></tr>
+              <tr><td class="td-size"><strong>12×18</strong></td><td>30.5×45.7</td><td class="td-ratio">2:3</td><td class="td-mono">3600×5400</td><td class="td-muted">1800×2700</td><td>Matches DSLR 3:2. A popular choice for landscape photography prints.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>16×20 ★</strong></td><td>40.6×50.8</td><td class="td-ratio">4:5</td><td class="td-mono">4800×6000</td><td class="td-muted">2400×3000</td><td>Large statement print. Requires crop. Good starting size for room-display prints.</td></tr>
+              <tr><td class="td-size"><strong>16×24</strong></td><td>40.6×61</td><td class="td-ratio">2:3</td><td class="td-mono">4800×7200</td><td class="td-muted">2400×3600</td><td>Matches DSLR 3:2. Large format landscape display.</td></tr>
+              <tr><td class="td-size"><strong>20×24</strong></td><td>50.8×61</td><td class="td-ratio">5:6</td><td class="td-mono">6000×7200</td><td class="td-muted">3000×3600</td><td>Gallery-quality portrait size.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>20×30 ★</strong></td><td>50.8×76.2</td><td class="td-ratio">2:3</td><td class="td-mono">6000×9000</td><td class="td-muted">3000×4500</td><td>Poster size. Matches 3:2. Good for landscape and travel photography display.</td></tr>
+              <tr><td class="td-size"><strong>24×36</strong></td><td>61×91.4</td><td class="td-ratio">2:3</td><td class="td-mono">7200×10800</td><td class="td-muted">3600×5400</td><td>Large poster. Matches 3:2. Maximum size for most standard photo labs.</td></tr>
+              <tr><td class="td-size"><strong>30×40</strong></td><td>76.2×101.6</td><td class="td-ratio">3:4</td><td class="td-mono">9000×12000</td><td class="td-muted">4500×6000</td><td>Gallery / statement print. Needs a high-resolution source or AI upscaling.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote">★ = most commonly ordered sizes. Portrait / landscape orientation interchangeable — just swap width and height.</p>
+      </section>
+
+      <!-- ── ISO A SERIES ──────────────────────────── -->
+      <section id="iso-a" aria-labelledby="h-iso">
+        <h2 id="h-iso">📄 ISO A series paper sizes</h2>
+        <p>The ISO 216 standard defines the A series of paper sizes used internationally (most countries except the US and Canada). Each size is exactly half the area of the previous one — A4 is half of A3, A3 is half of A2, and so on. All sizes share the same √2:1 aspect ratio.</p>
+        <div class="guide-table-wrap" role="region" aria-label="ISO A series paper sizes with pixel requirements" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">mm</th>
+                <th scope="col">Inches</th>
+                <th scope="col">Px @ 300 DPI</th>
+                <th scope="col">Px @ 150 DPI</th>
+                <th scope="col">Common Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="td-size"><strong>A10</strong></td><td class="td-mono">26×37</td><td class="td-mono">1.02×1.46</td><td class="td-mono">307×437</td><td class="td-muted">153×219</td><td>Tiny labels, stamps</td></tr>
+              <tr><td class="td-size"><strong>A9</strong></td><td class="td-mono">37×52</td><td class="td-mono">1.46×2.05</td><td class="td-mono">437×614</td><td class="td-muted">219×307</td><td>Small note cards</td></tr>
+              <tr><td class="td-size"><strong>A8</strong></td><td class="td-mono">52×74</td><td class="td-mono">2.05×2.91</td><td class="td-mono">614×874</td><td class="td-muted">307×437</td><td>Playing cards, small leaflets</td></tr>
+              <tr><td class="td-size"><strong>A7</strong></td><td class="td-mono">74×105</td><td class="td-mono">2.91×4.13</td><td class="td-mono">874×1240</td><td class="td-muted">437×620</td><td>Small postcards, notes</td></tr>
+              <tr><td class="td-size"><strong>A6</strong></td><td class="td-mono">105×148</td><td class="td-mono">4.13×5.83</td><td class="td-mono">1240×1748</td><td class="td-muted">620×874</td><td>Postcards, flyers, small booklets</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>A5 ★</strong></td><td class="td-mono">148×210</td><td class="td-mono">5.83×8.27</td><td class="td-mono">1748×2480</td><td class="td-muted">874×1240</td><td>Half of A4. Notebooks, brochures, small posters</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>A4 ★</strong></td><td class="td-mono">210×297</td><td class="td-mono">8.27×11.69</td><td class="td-mono">2480×3508</td><td class="td-muted">1240×1754</td><td>Standard document size (outside US). Leaflets, letters, certificates</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>A3 ★</strong></td><td class="td-mono">297×420</td><td class="td-mono">11.69×16.54</td><td class="td-mono">3508×4961</td><td class="td-muted">1754×2480</td><td>Posters, spread layouts, presentation prints</td></tr>
+              <tr><td class="td-size"><strong>A2</strong></td><td class="td-mono">420×594</td><td class="td-mono">16.54×23.39</td><td class="td-mono">4961×7016</td><td class="td-muted">2480×3508</td><td>Posters, signage, large format design</td></tr>
+              <tr><td class="td-size"><strong>A1</strong></td><td class="td-mono">594×841</td><td class="td-mono">23.39×33.11</td><td class="td-mono">7016×9933</td><td class="td-muted">3508×4961</td><td>Large posters, architectural drawings</td></tr>
+              <tr><td class="td-size"><strong>A0</strong></td><td class="td-mono">841×1189</td><td class="td-mono">33.11×46.81</td><td class="td-mono">9933×14043</td><td class="td-muted">4961×7087</td><td>Exhibition posters, large displays. 1m² area exactly.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="guide-callout guide-callout--blue">
+          <div class="callout-icon" aria-hidden="true">💡</div>
+          <div><strong>US equivalent sizes:</strong> US Letter (8.5×11 in / 2550×3300 px @ 300 DPI) is close to A4 but slightly wider and shorter. US Legal is 8.5×14 in. Tabloid / Ledger is 11×17 in — close to A3 but slightly smaller.</div>
+        </div>
+      </section>
+
+      <!-- ── CANVAS SIZES ──────────────────────────── -->
+      <section id="canvas" aria-labelledby="h-canvas">
+        <h2 id="h-canvas">🖼 Canvas print sizes</h2>
+        <p>Canvas prints are viewed from a distance (typically 4+ feet), so the industry standard DPI is <strong>150 DPI</strong> — not 300. The 150 DPI column is the relevant target here. The 300 DPI column is shown for reference only — it represents a higher standard that canvas printing does not require and most printers do not use.</p>
+        <div class="guide-table-wrap" role="region" aria-label="Canvas print sizes with pixel requirements" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Canvas Size (in)</th>
+                <th scope="col">Aspect Ratio</th>
+                <th scope="col">Min px @ 150 DPI ✓</th>
+                <th scope="col">Min px @ 300 DPI</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="td-size"><strong>5×5</strong></td><td class="td-ratio">1:1</td><td class="td-highlight">750×750</td><td class="td-mono">1500×1500</td><td>Small square. Accent piece or desk art.</td></tr>
+              <tr><td class="td-size"><strong>8×8</strong></td><td class="td-ratio">1:1</td><td class="td-highlight">1200×1200</td><td class="td-mono">2400×2400</td><td>Small statement piece or gallery wall element.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>8×10 ★</strong></td><td class="td-ratio">4:5</td><td class="td-highlight">1200×1500</td><td class="td-mono">2400×3000</td><td>Classic small canvas. Popular starting size.</td></tr>
+              <tr><td class="td-size"><strong>9×12</strong></td><td class="td-ratio">3:4</td><td class="td-highlight">1350×1800</td><td class="td-mono">2700×3600</td><td>Matches smartphone 4:3 ratio without cropping.</td></tr>
+              <tr><td class="td-size"><strong>11×14</strong></td><td class="td-ratio">11:14</td><td class="td-highlight">1650×2100</td><td class="td-mono">3300×4200</td><td>Good mid-size for bedroom or hallway.</td></tr>
+              <tr><td class="td-size"><strong>12×12</strong></td><td class="td-ratio">1:1</td><td class="td-highlight">1800×1800</td><td class="td-mono">3600×3600</td><td>Square. Popular for family photos and social media art.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>12×16 ★</strong></td><td class="td-ratio">3:4</td><td class="td-highlight">1800×2400</td><td class="td-mono">3600×4800</td><td>Matches smartphone ratio. Good for portrait photos.</td></tr>
+              <tr><td class="td-size"><strong>12×18</strong></td><td class="td-ratio">2:3</td><td class="td-highlight">1800×2700</td><td class="td-mono">3600×5400</td><td>Matches DSLR 3:2. No cropping needed from full-frame cameras.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>16×20 ★</strong></td><td class="td-ratio">4:5</td><td class="td-highlight">2400×3000</td><td class="td-mono">4800×6000</td><td>Most popular canvas size. Works in living rooms, bedrooms.</td></tr>
+              <tr><td class="td-size"><strong>16×24</strong></td><td class="td-ratio">2:3</td><td class="td-highlight">2400×3600</td><td class="td-mono">4800×7200</td><td>Matches DSLR 3:2. Popular for landscape and travel photography.</td></tr>
+              <tr><td class="td-size"><strong>18×24</strong></td><td class="td-ratio">3:4</td><td class="td-highlight">2700×3600</td><td class="td-mono">5400×7200</td><td>Large statement piece. Good above a bed or sofa.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>20×24 ★</strong></td><td class="td-ratio">5:6</td><td class="td-highlight">3000×3600</td><td class="td-mono">6000×7200</td><td>Gallery-quality portrait display.</td></tr>
+              <tr><td class="td-size"><strong>20×30</strong></td><td class="td-ratio">2:3</td><td class="td-highlight">3000×4500</td><td class="td-mono">6000×9000</td><td>Large statement piece. Matches 3:2 natively.</td></tr>
+              <tr class="tr-popular"><td class="td-size"><strong>24×36 ★</strong></td><td class="td-ratio">2:3</td><td class="td-highlight">3600×5400</td><td class="td-mono">7200×10800</td><td>Large feature canvas. Good for main wall focal point. Standard gallery size.</td></tr>
+              <tr><td class="td-size"><strong>24×48</strong></td><td class="td-ratio">1:2</td><td class="td-highlight">3600×7200</td><td class="td-mono">7200×14400</td><td>Long panoramic canvas. Hallway or above fireplace.</td></tr>
+              <tr><td class="td-size"><strong>30×40</strong></td><td class="td-ratio">3:4</td><td class="td-highlight">4500×6000</td><td class="td-mono">9000×12000</td><td>Oversized gallery statement piece. Needs AI upscaling for most consumer camera files.</td></tr>
+              <tr><td class="td-size"><strong>36×48</strong></td><td class="td-ratio">3:4</td><td class="td-highlight">5400×7200</td><td class="td-mono">10800×14400</td><td>Large commercial/gallery size. Studio photography or high-resolution sources only.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote">★ = most commonly ordered sizes. Always include gallery wrap bleed (~0.75" or 1.5" per side) in your design file dimensions.</p>
+      </section>
+
+      <!-- ── SUBLIMATION ────────────────────────────── -->
+      <section id="sublimation" aria-labelledby="h-sub">
+        <h2 id="h-sub">☕ Sublimation product sizes</h2>
+        <p>Sublimation template dimensions for the most common products. Each has a recommended DPI based on the surface type. See the full <a href="sublimation-tips.html">sublimation guide</a> for heat press settings, color management, and material tips.</p>
+        <div class="guide-table-wrap" role="region" aria-label="Sublimation product print sizes and template dimensions" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Template Size</th>
+                <th scope="col">Rec. DPI</th>
+                <th scope="col">Min Pixels</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tr-popular"><td><strong>11oz Mug (wrap)</strong></td><td class="td-mono">8.5 × 3.7 in</td><td class="td-highlight">200 DPI</td><td class="td-mono">1700×740</td><td>Standard white mug. Most common sublimation product. Ceramic surface holds detail well.</td></tr>
+              <tr><td><strong>15oz Mug (wrap)</strong></td><td class="td-mono">9.5 × 4.0 in</td><td class="td-highlight">200 DPI</td><td class="td-mono">1900×800</td><td>Larger mug — same press technique as 11oz.</td></tr>
+              <tr><td><strong>11oz Latte Mug (wrap)</strong></td><td class="td-mono">8.5 × 3.3 in</td><td class="td-highlight">200 DPI</td><td class="td-mono">1700×660</td><td>Narrower wrap height than standard mug.</td></tr>
+              <tr><td><strong>T-shirt (full front)</strong></td><td class="td-mono">12 × 16 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">1800×2400</td><td>Full-chest design area. Polyester fabric — 150 DPI is the correct standard, not 300.</td></tr>
+              <tr><td><strong>T-shirt (left chest)</strong></td><td class="td-mono">4 × 4 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">600×600</td><td>Logo/pocket print area. Viewed up close — 200 DPI preferred for logo detail.</td></tr>
+              <tr><td><strong>Tote bag (standard)</strong></td><td class="td-mono">10 × 10 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">1500×1500</td><td>Square print area on standard fabric tote. Polyester fabric standard applies.</td></tr>
+              <tr class="tr-popular"><td><strong>Mouse pad (standard)</strong></td><td class="td-mono">9 × 7 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">1350×1050</td><td>Fabric surface. Most common desktop size.</td></tr>
+              <tr><td><strong>Mouse pad (XL gaming)</strong></td><td class="td-mono">36 × 18 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">5400×2700</td><td>Large fabric surface. At this size, 100 DPI minimum is also acceptable.</td></tr>
+              <tr><td><strong>Ceramic tile (4×4)</strong></td><td class="td-mono">4 × 4 in</td><td class="td-highlight">200 DPI</td><td class="td-mono">800×800</td><td>Coaster-size tile. Glazed ceramic holds fine detail.</td></tr>
+              <tr><td><strong>Ceramic tile (6×6)</strong></td><td class="td-mono">6 × 6 in</td><td class="td-highlight">200 DPI</td><td class="td-mono">1200×1200</td><td>Standard decorative tile size.</td></tr>
+              <tr><td><strong>Metal panel (5×7)</strong></td><td class="td-mono">5 × 7 in</td><td class="td-highlight">300 DPI</td><td class="td-mono">1500×2100</td><td>Hard surface — uses photo print DPI standard. Excellent detail retention.</td></tr>
+              <tr><td><strong>Metal panel (8×10)</strong></td><td class="td-mono">8 × 10 in</td><td class="td-highlight">300 DPI</td><td class="td-mono">2400×3000</td><td>Popular professional display size for metal photography.</td></tr>
+              <tr><td><strong>Metal panel (12×16)</strong></td><td class="td-mono">12 × 16 in</td><td class="td-highlight">300 DPI</td><td class="td-mono">3600×4800</td><td>Large metal display. Needs high-res source.</td></tr>
+              <tr class="tr-popular"><td><strong>Phone case (iPhone 15)</strong></td><td class="td-mono">~2.8 × 5.5 in</td><td class="td-highlight">300 DPI</td><td class="td-mono">840×1650</td><td>Always use exact template from your case supplier. Sizes vary by model. Closest viewing distance of any product.</td></tr>
+              <tr><td><strong>Cushion / pillow (14×14)</strong></td><td class="td-mono">14 × 14 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">2100×2100</td><td>Polyester cover — fabric standard. Popular home décor item.</td></tr>
+              <tr><td><strong>Cushion / pillow (20×20)</strong></td><td class="td-mono">20 × 20 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">3000×3000</td><td>Standard sofa cushion size.</td></tr>
+              <tr><td><strong>MDF plaque (A4)</strong></td><td class="td-mono">8.27 × 11.69 in</td><td class="td-highlight">200 DPI</td><td class="td-mono">1654×2338</td><td>Polymer-coated hardboard. Good detail retention. Popular for awards, signs.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote">Template sizes are for the full design area. Add 0.25–0.5 in bleed outside the visible area for edge-to-edge designs to prevent white borders if the transfer shifts slightly.</p>
+      </section>
+
+      <!-- ── LARGE FORMAT ──────────────────────────── -->
+      <section id="large-format" aria-labelledby="h-large">
+        <h2 id="h-large">📢 Large format and signage</h2>
+        <p>Large format printing is viewed from greater distances, which dramatically reduces the minimum DPI required. The minimum perceivable DPI scales with viewing distance — <a href="dpi-guide.html#viewing-distance">see the viewing distance table</a> in the DPI guide for the science behind this. The DPI column below shows the industry-standard target, not the 300 DPI photo standard.</p>
+        <div class="guide-table-wrap" role="region" aria-label="Large format print sizes" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Format</th>
+                <th scope="col">Common Size</th>
+                <th scope="col">Standard DPI</th>
+                <th scope="col">Min Pixels</th>
+                <th scope="col">Viewing Distance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Vinyl banner (small)</strong></td><td class="td-mono">24 × 36 in</td><td class="td-highlight">100–150 DPI</td><td class="td-mono">2400×3600</td><td>~10 ft / 3 m</td></tr>
+              <tr><td><strong>Vinyl banner (standard)</strong></td><td class="td-mono">3 × 6 ft (36×72 in)</td><td class="td-highlight">100 DPI</td><td class="td-mono">3600×7200</td><td>10–20 ft / 3–6 m</td></tr>
+              <tr><td><strong>Vinyl banner (large)</strong></td><td class="td-mono">4 × 8 ft (48×96 in)</td><td class="td-highlight">72–100 DPI</td><td class="td-mono">3456×6912</td><td>15–30 ft / 5–9 m</td></tr>
+              <tr><td><strong>Trade show backdrop (pop-up)</strong></td><td class="td-mono">8 × 10 ft</td><td class="td-highlight">100 DPI</td><td class="td-mono">9600×12000</td><td>6–10 ft / 2–3 m</td></tr>
+              <tr><td><strong>Trade show backdrop (step &amp; repeat)</strong></td><td class="td-mono">8 × 8 ft</td><td class="td-highlight">100 DPI</td><td class="td-mono">9600×9600</td><td>5–8 ft / 1.5–2.5 m</td></tr>
+              <tr><td><strong>Window cling</strong></td><td class="td-mono">24 × 36 in</td><td class="td-highlight">150 DPI</td><td class="td-mono">3600×5400</td><td>3–6 ft / 1–2 m</td></tr>
+              <tr><td><strong>Retractable banner</strong></td><td class="td-mono">33 × 78 in</td><td class="td-highlight">100–150 DPI</td><td class="td-mono">3300×7800</td><td>6–10 ft / 2–3 m</td></tr>
+              <tr><td><strong>Roadside billboard (standard)</strong></td><td class="td-mono">14 × 48 ft</td><td class="td-highlight">15–30 DPI</td><td class="td-mono">2520×8640</td><td>40–100 ft / 12–30 m</td></tr>
+              <tr><td><strong>Digital billboard (typical)</strong></td><td class="td-mono">Varies by screen</td><td class="td-highlight">Screen native</td><td class="td-mono">1920×640–2000</td><td>40–200 ft / 12–60 m</td></tr>
+              <tr><td><strong>Floor graphic</strong></td><td class="td-mono">24 × 24 in typical</td><td class="td-highlight">150 DPI</td><td class="td-mono">3600×3600</td><td>Direct — viewed from standing height ~60 in</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="guide-callout guide-callout--orange">
+          <div class="callout-icon" aria-hidden="true">⚠️</div>
+          <div><strong>Large format file sizes:</strong> At 100–150 DPI, large format files can still be very large. A 4×8 ft banner at 100 DPI is nearly 3456×6912 pixels. At 150 DPI, it would be 5184×10368 pixels — a 160 MB+ TIFF. Work in the correct DPI from the start rather than upscaling. Many large format shops accept files at 72 DPI if submitted at full size, or higher DPI at proportionally reduced size.</div>
+        </div>
+      </section>
+
+      <!-- ── SOCIAL MEDIA ──────────────────────────── -->
+      <section id="social-media" aria-labelledby="h-social">
+        <h2 id="h-social">📱 Social media image sizes (2026)</h2>
+        <p>Social media dimensions are not print DPI — they are pixel dimensions for screen display. This table is included because many designers create for both social and print simultaneously, and knowing how a social asset translates to print helps you decide whether to upscale before ordering prints. Sources: Hootsuite, Buffer, and official platform documentation — last verified February 2026.</p>
+
+        <h3>Instagram</h3>
+        <div class="guide-table-wrap" role="region" aria-label="Instagram image sizes 2026" tabindex="0">
+          <table class="guide-table">
+            <thead><tr><th scope="col">Format</th><th scope="col">Pixels</th><th scope="col">Aspect Ratio</th><th scope="col">Prints at (300 DPI)</th><th scope="col">Notes</th></tr></thead>
+            <tbody>
+              <tr class="tr-popular"><td><strong>Feed square ★</strong></td><td class="td-mono">1080×1080</td><td class="td-ratio">1:1</td><td>3.6×3.6 in</td><td>Too small for most photo prints without upscaling. Canvas at 150 DPI: 7.2×7.2 in.</td></tr>
+              <tr class="tr-popular"><td><strong>Feed portrait ★</strong></td><td class="td-mono">1080×1350</td><td class="td-ratio">4:5</td><td>3.6×4.5 in</td><td>Best-performing feed format in 2026. Vertical takes more feed real estate.</td></tr>
+              <tr><td><strong>Feed landscape</strong></td><td class="td-mono">1080×566</td><td class="td-ratio">1.91:1</td><td>3.6×1.9 in</td><td>Wide landscape format. Less common, lower engagement typically.</td></tr>
+              <tr><td><strong>Story / Reel</strong></td><td class="td-mono">1080×1920</td><td class="td-ratio">9:16</td><td>3.6×6.4 in</td><td>Full screen vertical. Too small for print above 4×6 without upscaling.</td></tr>
+              <tr><td><strong>Profile picture</strong></td><td class="td-mono">320×320 min</td><td class="td-ratio">1:1</td><td>Tiny</td><td>Displayed as circle. Upload at least 500×500 for quality.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Facebook</h3>
+        <div class="guide-table-wrap" role="region" aria-label="Facebook image sizes 2026" tabindex="0">
+          <table class="guide-table">
+            <thead><tr><th scope="col">Format</th><th scope="col">Pixels</th><th scope="col">Aspect Ratio</th><th scope="col">Notes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Feed post</strong></td><td class="td-mono">1200×630</td><td class="td-ratio">1.91:1</td><td>Recommended for link share. Feed posts accept any ratio but this is optimal for link previews.</td></tr>
+              <tr><td><strong>Cover photo</strong></td><td class="td-mono">820×312</td><td class="td-ratio">~2.63:1</td><td>Desktop display. Test on mobile — crops to 640×360. Keep important elements centered.</td></tr>
+              <tr><td><strong>Profile picture</strong></td><td class="td-mono">170×170</td><td class="td-ratio">1:1</td><td>Upload at 500×500 minimum for quality. Displayed as circle.</td></tr>
+              <tr><td><strong>Story</strong></td><td class="td-mono">1080×1920</td><td class="td-ratio">9:16</td><td>Same full-screen format as Instagram Stories.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Other major platforms</h3>
+        <div class="guide-table-wrap" role="region" aria-label="Social media image sizes for LinkedIn, Pinterest, X/Twitter, YouTube 2026" tabindex="0">
+          <table class="guide-table">
+            <thead><tr><th scope="col">Platform</th><th scope="col">Format</th><th scope="col">Pixels</th><th scope="col">Notes</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="3"><strong>LinkedIn</strong></td><td>Profile photo</td><td class="td-mono">400×400</td><td>Displayed at 400×400. Max 7680×4320.</td></tr>
+              <tr><td>Personal cover</td><td class="td-mono">1584×396</td><td>4:1 ratio. Cropped differently on mobile vs. desktop — test both.</td></tr>
+              <tr><td>Feed post</td><td class="td-mono">1200×627</td><td>Horizontal post image. 1200×1200 for square.</td></tr>
+              <tr><td rowspan="2"><strong>X (Twitter)</strong></td><td>In-tweet image</td><td class="td-mono">1600×900</td><td>16:9 ratio shows best preview. 1:1 also works well.</td></tr>
+              <tr><td>Cover photo</td><td class="td-mono">1500×500</td><td>3:1 ratio. Responsive — keep key elements centered.</td></tr>
+              <tr><td rowspan="2"><strong>Pinterest</strong></td><td>Standard Pin</td><td class="td-mono">1000×1500</td><td>2:3 ratio is the platform standard. Vertical performs best.</td></tr>
+              <tr><td>Square Pin</td><td class="td-mono">1000×1000</td><td>1:1 also accepted.</td></tr>
+              <tr><td rowspan="2"><strong>YouTube</strong></td><td>Thumbnail</td><td class="td-mono">1280×720</td><td>16:9 ratio. Must be readable at small sizes — test at 10% scale.</td></tr>
+              <tr><td>Channel banner</td><td class="td-mono">2560×1440</td><td>Safe zone for all devices: 1546×423 center. Max 6 MB.</td></tr>
+              <tr><td><strong>TikTok</strong></td><td>Feed / Carousel</td><td class="td-mono">1080×1920</td><td>9:16 vertical. Same as Instagram Reels.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="guide-callout guide-callout--blue">
+          <div class="callout-icon" aria-hidden="true">💡</div>
+          <div><strong>Social to print:</strong> A 1080×1080 Instagram image at 300 DPI prints at only 3.6×3.6 inches — too small for most photo prints. At 150 DPI (canvas), it prints at 7.2×7.2 inches. If you want to print a social media image larger, you need AI upscaling. Check the <a href="dpi-guide.html#ai-upscaling">AI upscaling section in the DPI guide</a> for recommended tools.</div>
+        </div>
+      </section>
+
+      <!-- ── CTA ──────────────────────────────────── -->
+      <section aria-labelledby="h-cta" class="chart-cta-section">
+        <h2 id="h-cta">Check your image against any size</h2>
+        <p>Found the size you need? Upload your image to the Pixel to Print calculator, enter the dimensions, and get an instant quality score. No math needed — it handles everything, including viewing distance and medium absorption factors.</p>
+        <div class="guide-cta-box">
+          <div><strong>Upload your image, select medium and size, get your PPQS score.</strong> If the result is below 75, the calculator tells you exactly what to do — resize, upscale, or adjust.</div>
+          <a href="index.html" class="guide-cta-btn">Check Print Quality →</a>
+        </div>
+      </section>
+
+      <!-- ── FAQ ──────────────────────────────────── -->
+      <section id="faq" aria-labelledby="h-faq">
+        <h2 id="h-faq">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-q">How many pixels do I need for a 4×6 photo print?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>For a sharp 4×6 inch photo print at 300 DPI, you need a minimum of <strong>1200×1800 pixels</strong>. At 150 DPI (suitable for fabric or canvas), a 4×6 requires 600×900 pixels. The 4×6 format perfectly matches the 3:2 aspect ratio of most DSLR and mirrorless cameras, so no cropping is needed when printing from full-frame or crop-sensor RAW files.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">What pixel size do I need for an A4 print at 300 DPI?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>An A4 sheet (210×297 mm / 8.27×11.69 inches) requires <strong>2480×3508 pixels</strong> at 300 DPI. This is the standard for professional print-quality documents, brochures, and certificates. At 150 DPI, you need 1240×1754 pixels.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">What is the minimum pixel size for a 16×20 canvas?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>For a 16×20 inch canvas print at the industry standard of <strong>150 DPI</strong>, you need a minimum of <strong>2400×3000 pixels</strong>. This is the correct target — not 300 DPI — because canvas is an industry standard of 150 DPI, due to the fabric texture and typical viewing distance. At 100 DPI (minimum acceptable), you need 1600×2000 pixels.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">What is the correct Instagram image size in 2026?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>For Instagram feed posts in 2026: <strong>1080×1080px</strong> (square 1:1), <strong>1080×1350px</strong> (portrait 4:5 — the highest-performing format), or <strong>1080×566px</strong> (landscape 1.91:1). For Stories and Reels: <strong>1080×1920px</strong> (9:16). Always upload at 1080px width minimum to prevent compression. Instagram's new tall grid (3:4) means portrait formats now show more prominently in profile grids as of early 2025.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">Can I print a social media image? Will it be good quality?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a"><p>It depends on the print size. A 1080×1080 Instagram image at 300 DPI only prints at 3.6×3.6 inches — a small photo print. At 150 DPI for canvas, it prints at 7.2×7.2 inches. To print at common larger sizes (16×20, 24×36), you need AI upscaling. Tools like Topaz Photo AI or Magnific AI can upscale 4× with good results. Use the <a href="index.html">Pixel to Print calculator</a> to check your specific image against your target size before ordering.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-related">
+        <h2 id="h-related">Related guides</h2>
+        <div class="related-grid">
+          <a href="dpi-guide.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">📐</div>
+            <div><div class="related-title">DPI vs PPI explained</div><div class="related-desc">Why 300 DPI is not always needed — and the science behind viewing distance.</div></div>
+          </a>
+          <a href="sublimation-tips.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">☕</div>
+            <div><div class="related-title">Sublimation tips by material</div><div class="related-desc">Heat press settings, color management, and common mistakes.</div></div>
+          </a>
+          <a href="index.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">🎯</div>
+            <div><div class="related-title">Check your image now</div><div class="related-desc">Upload and get a quality score in under 30 seconds.</div></div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="Pixel to Print — Home">
+          <div class="logo-mark" aria-hidden="true" style="width:28px;height:28px;"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/></svg></div>
+          <span class="logo-name" style="font-size:14px;">Pixel to Print</span>
+        </a>
+        <p>Free, open-source print quality calculator. Made by <a href="https://xcreativedesign.com" target="_blank" rel="noopener noreferrer">XCreativeDesign</a>.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-link-group"><a href="index.html" class="footer-link">Calculator</a><a href="dpi-guide.html" class="footer-link">DPI Guide</a><a href="sublimation-tips.html" class="footer-link">Sublimation Tips</a><a href="print-size-chart.html" class="footer-link">Size Chart</a></div>
+        <div class="footer-link-group"><a href="https://github.com/xcreativedesign/pixel-to-print" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a><a href="https://x.com/xcreativedesig" target="_blank" rel="noopener noreferrer" class="footer-link">X / Twitter</a><a href="privacy-policy.html" class="footer-link">Privacy</a></div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Pixel to Print · MIT License</span>
+      <span class="footer-privacy"><span class="privacy-dot" aria-hidden="true"></span>Your image is processed locally. Nothing is ever uploaded.</span>
+    </div>
   </footer>
-  
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <script>
-    // Theme Toggle
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-      updateThemeIcon();
-    }
-    
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeIcon();
-    }
-    
-    function updateThemeIcon() {
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
-      const theme = document.documentElement.getAttribute('data-theme');
-      
-      if (sunIcon && moonIcon) {
-        if (theme === 'dark') {
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        } else {
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        }
-      }
-    }
-    
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    initTheme();
-    
-    // Set current year dynamically
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    // Sidebar active state on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
-    
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 100) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
+    (function(){var t=function(){try{return localStorage.getItem('p2p-theme')||'light';}catch(e){return 'light';}};document.documentElement.setAttribute('data-theme',t());})();
+    document.addEventListener('DOMContentLoaded',function(){
+      var tb=document.getElementById('theme-toggle');
+      if(tb){tb.addEventListener('click',function(){var c=document.documentElement.getAttribute('data-theme')||'light';var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('p2p-theme',n);}catch(e){}});}
+      var mb=document.getElementById('mobile-menu-btn'),mn=document.getElementById('mobile-nav');
+      if(mb&&mn){mn.hidden=true;mb.addEventListener('click',function(){var o=!mn.hidden;mn.hidden=o;mb.setAttribute('aria-expanded',String(!o));});document.addEventListener('click',function(e){if(!mn.hidden&&!mn.contains(e.target)&&!mb.contains(e.target)){mn.hidden=true;mb.setAttribute('aria-expanded','false');}});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!mn.hidden){mn.hidden=true;mb.setAttribute('aria-expanded','false');}});}
     });
   </script>
 </body>
