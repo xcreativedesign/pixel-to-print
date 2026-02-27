@@ -1,511 +1,148 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO Meta Tags -->
-  <title>Pixel to Print Converter | Free Image Size Calculator for Print</title>
-  <meta name="description" content="Free pixel to print dimension calculator for designers. Upload images, check print quality at 300 DPI, and get accurate measurements. Client-side only - your images never leave your browser.">
-  <meta name="keywords" content="pixel to print, DPI calculator, image尺寸, print size calculator, sublimation calculator, pixels to inches, image resolution checker">
-  <meta name="author" content="Pixel to Print">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free pixel to print calculator. Upload your image and get an instant print quality score based on your medium, print size, and viewing distance. Works for photos, sublimation mugs, canvas, banners, and AI-generated images." />
+  <meta name="keywords" content="pixel to print, DPI calculator, print size calculator, sublimation DPI calculator, pixels to inches, image resolution checker, print quality checker, canvas DPI, sublimation mug DPI" />
+  <meta name="author" content="XCreativeDesign" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1A6EFF" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Pixel to Print Converter | Free Image Size Calculator">
-  <meta property="og:description" content="Calculate print dimensions from pixels instantly. Check if your image is good enough for 300 DPI printing. 100% client-side - privacy guaranteed.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://xcreativedesign.github.io/pixel-to-print/">
-  <meta property="og:image" content="https://xcreativedesign.github.io/pixel-to-print/og-image.png">
+  <meta property="og:title" content="Pixel to Print — Free Print Quality Calculator" />
+  <meta property="og:description" content="Upload your image and instantly know if it will print sharply. Works for photos, sublimation, canvas, banners, and AI-generated images." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://xcreativedesign.github.io/pixel-to-print/" />
+  <meta property="og:site_name" content="Pixel to Print" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pixel to Print Converter">
-  <meta name="twitter:description" content="Free pixel to print dimension calculator. Upload images and check print quality instantly.">
-  <meta name="google-site-verification" content="ckPORDP7J0iWaX5ioM314d-anCeHRnyCqjwHbD8kAcw" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-
-  <style>
-    /* CSS Variables - Theme System */
-    :root {
-      /* Light Mode (Default) */
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #F8FAFC;
-      --bg-tertiary: #F1F5F9;
-      --bg-panel: #FFFFFF;
-      --bg-input: #F8FAFC;
-
-      --text-primary: #0F172A;
-      --text-secondary: #475569;
-      --text-muted: #94A3B8;
-
-      --border-light: #E2E8F0;
-      --border-default: #CBD5E1;
-
-      --accent: #2563EB;
-      --accent-hover: #1D4ED8;
-      --accent-light: rgba(37, 99, 235, 0.1);
-      --accent-glow: rgba(37, 99, 235, 0.15);
-
-      --success: #059669;
-      --success-light: rgba(5, 150, 105, 0.1);
-      --warning: #D97706;
-      --warning-light: rgba(217, 119, 6, 0.1);
-      --danger: #DC2626;
-      --danger-light: rgba(220, 38, 38, 0.1);
-
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    [data-theme="dark"] {
-      --bg-primary: #0F172A;
-      --bg-secondary: #1E293B;
-      --bg-tertiary: #334155;
-      --bg-panel: #1E293B;
-      --bg-input: #0F172A;
-
-      --text-primary: #F1F5F9;
-      --text-secondary: #CBD5E1;
-      --text-muted: #64748B;
-
-      --border-light: #334155;
-      --border-default: #475569;
-
-      --accent: #3B82F6;
-      --accent-hover: #60A5FA;
-      --accent-light: rgba(59, 130, 246, 0.15);
-      --accent-glow: rgba(59, 130, 246, 0.2);
-
-      --success: #10B981;
-      --success-light: rgba(16, 185, 129, 0.15);
-      --warning: #F59E0B;
-      --warning-light: rgba(245, 158, 11, 0.15);
-      --danger: #EF4444;
-      --danger-light: rgba(239, 68, 68, 0.15);
-
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* Utility Classes */
-    .bg-primary { background: var(--bg-primary); }
-    .bg-secondary { background: var(--bg-secondary); }
-    .bg-tertiary { background: var(--bg-tertiary); }
-    .bg-panel { background: var(--bg-panel); }
-    .bg-input { background: var(--bg-input); }
-
-    .text-primary { color: var(--text-primary); }
-    .text-secondary { color: var(--text-secondary); }
-    .text-muted { color: var(--text-muted); }
-
-    .border-light { border-color: var(--border-light); }
-    .border-default { border-color: var(--border-default); }
-
-    .bg-accent { background: var(--accent); }
-    .bg-accent-light { background: var(--accent-light); }
-    .text-accent { color: var(--accent); }
-
-    .bg-success { background: var(--success); }
-    .bg-success-light { background: var(--success-light); }
-    .text-success { color: var(--success); }
-
-    .bg-warning { background: var(--warning); }
-    .bg-warning-light { background: var(--warning-light); }
-    .text-warning { color: var(--warning); }
-
-    .bg-danger { background: var(--danger); }
-    .bg-danger-light { background: var(--danger-light); }
-    .text-danger { color: var(--danger); }
-
-    /* Input Field */
-    .input-field {
-      background: var(--bg-input);
-      border: 1px solid var(--border-default);
-      color: var(--text-primary);
-      transition: all 0.2s ease;
-    }
-
-    .input-field:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-      outline: none;
-    }
-
-    .input-field:hover:not(:focus) {
-      border-color: var(--text-muted);
-    }
-
-    /* Result Value Animation */
-    .result-value {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                  opacity 0.2s ease;
-    }
-
-    .result-value.updating {
-      transform: translateY(-8px);
-      opacity: 0.5;
-    }
-
-    /* Preset Chip */
-    .preset-chip {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-light);
-      color: var(--text-secondary);
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .preset-chip:hover {
-      background: var(--border-light);
-      transform: translateY(-1px);
-    }
-
-    .preset-chip.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-
-    /* Aspect Preview */
-    .aspect-preview {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-input) 100%);
-      border: 1px solid var(--border-light);
-    }
-
-    /* Copy Button */
-    .copy-btn {
-      background: transparent;
-      color: var(--text-muted);
-      transition: all 0.2s ease;
-    }
-
-    .copy-btn:hover {
-      background: var(--bg-tertiary);
-      color: var(--text-secondary);
-    }
-
-    .copy-btn.copied {
-      background: var(--success-light);
-      color: var(--success);
-    }
-
-    /* Card */
-    .card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-lg);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-xl);
-    }
-
-    /* FAQ Item */
-    .faq-item {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-light);
-      transition: all 0.2s ease;
-    }
-
-    .faq-item:hover {
-      border-color: var(--border-default);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 500px;
-    }
-
-    .faq-icon {
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.open .faq-icon {
-      transform: rotate(180deg);
-    }
-
-    /* Theme Toggle */
-    .theme-toggle {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-light);
-      transition: all 0.2s ease;
-    }
-
-    .theme-toggle:hover {
-      background: var(--border-light);
-    }
-
-    /* Button Primary */
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    /* Button Secondary */
-    .btn-secondary {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      border: 1px solid var(--border-light);
-      transition: all 0.2s ease;
-    }
-
-    .btn-secondary:hover {
-      background: var(--border-light);
-    }
-
-    /* Link */
-    .link {
-      color: var(--accent);
-      transition: color 0.2s ease;
-    }
-
-    .link:hover {
-      color: var(--accent-hover);
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
-
-    .animate-fade-in-up {
-      animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    .animate-fade-in {
-      animation: fadeIn 0.5s ease forwards;
-    }
-
-    .animate-pulse {
-      animation: pulse 2s infinite;
-    }
-
-    .animate-shake {
-      animation: shake 0.5s ease;
-    }
-
-    .animation-delay-1 { animation-delay: 0.1s; opacity: 0; }
-    .animation-delay-2 { animation-delay: 0.2s; opacity: 0; }
-    .animation-delay-3 { animation-delay: 0.3s; opacity: 0; }
-    .animation-delay-4 { animation-delay: 0.4s; opacity: 0; }
-    .animation-delay-5 { animation-delay: 0.5s; opacity: 0; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-secondary);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-default);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-muted);
-    }
-
-    /* Accessibility */
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Skip Link */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--accent);
-      color: white;
-      padding: 8px 16px;
-      z-index: 100;
-      transition: top 0.2s ease;
-    }
-
-    .skip-link:focus {
-      top: 0;
-    }
-
-    /* Hero Pattern */
-    .hero-pattern {
-      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
-      background-size: 40px 40px;
-    }
-
-    /* Glow Effect */
-    .glow-accent {
-      box-shadow: 0 0 60px var(--accent-glow);
-    }
-
-    /* Upload Zone Styles */
-    .upload-zone {
-      border: 2px dashed var(--border-default);
-      background: var(--bg-input);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .upload-zone:hover {
-      border-color: var(--accent);
-      background: var(--accent-light);
-    }
-
-    .upload-zone.drag-over {
-      border-color: var(--accent);
-      background: var(--accent-light);
-      transform: scale(1.02);
-    }
-
-    .upload-zone.error {
-      border-color: var(--danger);
-      animation: shake 0.5s ease;
-    }
-
-    /* Image Preview */
-    .image-preview-container {
-      transition: all 0.3s ease;
-    }
-
-    .image-preview-container:hover .remove-image {
-      opacity: 1;
-    }
-
-    .remove-image {
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    /* Quality Badge */
-    .quality-badge {
-      transition: all 0.3s ease;
-    }
-
-    /* Privacy Badge */
-    .privacy-badge {
-      background: linear-gradient(135deg, var(--success-light) 0%, var(--accent-light) 100%);
-    }
-  </style>
-
-  <!-- JSON-LD Schema for SEO -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@xcreativedesig" />
+  <meta name="twitter:creator" content="@xcreativedesig" />
+  <meta name="twitter:title" content="Pixel to Print — Free Print Quality Calculator" />
+  <meta name="twitter:description" content="The only free print calculator that factors in your medium, viewing distance, and human eye science." />
+
+  <title>Pixel to Print Calculator — Free DPI &amp; Print Quality Checker</title>
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
+  <link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Schema: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Pixel to Print Converter",
-    "description": "A professional pixel to print dimension calculator for graphic designers and sublimation artists. Upload images and check print quality instantly.",
+    "@type": "SoftwareApplication",
+    "name": "Pixel to Print Calculator",
+    "alternateName": "PPQS Print Quality Tool",
+    "description": "Free browser-based tool to check if an image will print sharply. Uses the PPQS algorithm to score print quality based on pixel count, print medium, viewing distance, and human perceptual science.",
     "url": "https://xcreativedesign.github.io/pixel-to-print/",
     "applicationCategory": "DesignApplication",
-    "operatingSystem": "Any",
+    "applicationSubCategory": "Print Design Tool",
+    "operatingSystem": "Any modern web browser",
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
     },
     "author": {
       "@type": "Organization",
-      "name": "Pixel to Print"
+      "name": "XCreativeDesign",
+      "url": "https://xcreativedesign.com",
+      "sameAs": [
+        "https://github.com/xcreativedesign",
+        "https://x.com/xcreativedesig"
+      ]
     },
     "featureList": [
-      "Pixel to inch conversion",
-      "Image upload and analysis",
-      "Print quality check",
-      "DPI calculator",
-      "Multiple unit support"
+      "PPQS Perceptual Print Quality Score",
+      "Medium-aware DPI calculation (paper, canvas, sublimation, large format)",
+      "Viewing distance perceptual analysis",
+      "AI upscaling quality modelling",
+      "Reverse calculator — find required pixels for any print size",
+      "EXIF DPI auto-detection from image file",
+      "Aspect ratio lock",
+      "50+ smart presets for common print sizes",
+      "100% browser-local — image never uploaded"
+    ],
+    "screenshot": "https://xcreativedesign.github.io/pixel-to-print/assets/img/screenshot.png",
+    "softwareVersion": "2.1.0",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/xcreativedesign/pixel-to-print"
+  }
+  </script>
+
+  <!-- Schema: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pixel to Print Calculator",
+    "description": "Free print quality calculator. Check if your image has enough resolution for your intended print size.",
+    "url": "https://xcreativedesign.github.io/pixel-to-print/",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Pixel to Print",
+        "item": "https://xcreativedesign.github.io/pixel-to-print/"
+      }]
+    },
+    "mainEntity": {
+      "@type": "SoftwareApplication",
+      "name": "Pixel to Print Calculator"
+    }
+  }
+  </script>
+
+  <!-- Schema: HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to check if your image will print sharply",
+    "description": "Use the Pixel to Print calculator to verify your image resolution before sending to print.",
+    "totalTime": "PT1M",
+    "supply": [{ "@type": "HowToSupply", "name": "Image file (JPEG, PNG, or WebP)" }],
+    "tool": [{ "@type": "HowToTool", "name": "Pixel to Print Calculator" }],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Upload your image",
+        "text": "Drag and drop your image onto the upload area, or click to browse. JPEG, PNG, and WebP are supported. Your file is never sent to any server."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter your target print size",
+        "text": "Type the width and height of your intended print in inches, or choose a preset from the Smart Presets section for common sizes."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Select your print medium and viewing distance",
+        "text": "Choose what you are printing on (coated paper, canvas, sublimation mug, vinyl banner, etc.) and how far viewers will typically stand from the print."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Click Check Print Quality",
+        "text": "The tool calculates your PPQS score (0–100) and tells you exactly whether to print, upscale, or resize — with specific tool recommendations if needed."
+      }
     ]
   }
   </script>
 
-  <!-- FAQ Schema for Featured Snippets -->
+  <!-- Schema: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -513,18 +150,10 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is DPI and why does it matter?",
+        "name": "What DPI do I need for printing?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "DPI (Dots Per Inch) measures print resolution. Higher DPI means more dots of ink per inch, resulting in sharper, more detailed prints. For most professional printing, 300 DPI is the standard."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I convert pixels to inches manually?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The formula is simple: Inches = Pixels divided by DPI. For example, an image that is 3000 pixels wide at 300 DPI will print at 10 inches wide (3000 divided by 300 = 10)."
+          "text": "It depends on what you are printing and where it will be viewed. For photos and brochures viewed at arm's length, 300 DPI is the standard. For canvas wall art viewed from across a room, 150 DPI is sufficient — the canvas texture masks any difference. For vinyl banners, 72–100 DPI is the industry norm. For billboards viewed from 30+ feet, 15–50 DPI is standard. The PPQS calculator gives you the right answer for your specific combination of medium and viewing distance."
         }
       },
       {
@@ -532,1671 +161,967 @@
         "name": "What DPI should I use for sublimation printing?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For sublimation printing on items like mugs, t-shirts, and phone cases, 300 DPI is recommended for crisp, vibrant transfers."
+          "text": "For polyester fabric sublimation (t-shirts, tote bags, flags), 150 DPI is the industry standard — fabric weave absorbs ink spread and masks fine detail. For ceramic mugs and tiles, 200 DPI gives photo-quality results. For metal aluminum panels and phone cases, 300 DPI is recommended. Using higher DPI than needed on fabric adds file size with no visible improvement."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I increase DPI to improve print quality?",
+        "name": "Does changing DPI in Photoshop actually improve print quality?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Simply increasing the DPI value without adding more pixels will not improve quality. It just spreads the existing pixels over a smaller area."
+          "text": "No. Changing the DPI number in file metadata does not add real pixels. If you have a 1000×1000 pixel image and change the DPI from 72 to 300, you still have the same 1000 pixels — they just get squeezed into a smaller physical area. Real print quality comes from having enough actual pixels for your target print size. The only way to add real pixels is to use AI upscaling tools like Topaz Photo AI or Adobe Super Resolution."
         }
       },
       {
         "@type": "Question",
-        "name": "How do I know if my image is good enough for print?",
+        "name": "Is my image private? Does it get uploaded to a server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Use our quality indicator. Green means excellent (300+ DPI), yellow means acceptable for the use case, and red indicates the image may appear blurry or pixelated."
+          "text": "Your image never leaves your device. All processing happens entirely in your browser using JavaScript. No image data, metadata, or pixel information is sent to any server. The tool works offline once the page has loaded."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is PPQS and how is it different from a normal DPI calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard DPI calculators use one formula: pixels divided by print size. PPQS (Perceptual Print Quality Score) adds three factors that a basic calculator ignores: viewing distance (a billboard at 30 feet needs far less DPI than a business card held in your hand), print medium absorption (canvas absorbs ink differently than ceramic or coated paper), and human eye angular resolution science (based on ISO 8596 visual acuity standards). The result is a 0–100 score that reflects what the print will actually look like to a human viewer, not just a raw DPI number."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My image is low resolution. Can AI upscaling fix it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AI upscaling can significantly improve low-resolution images, but it cannot recover detail that was never there. For upscaling of up to 2–4×, tools like Topaz Photo AI and Adobe Super Resolution produce excellent results. Beyond that, the improvement diminishes. The tool will tell you exactly how much upscaling is needed, whether it is achievable, and which tools to use."
         }
       }
     ]
   }
   </script>
-
 </head>
+
 <body>
+  <a href="#main-tool" class="skip-link">Skip to calculator</a>
 
-  <!-- Skip Link for Accessibility -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light backdrop-blur-sm">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
-            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
-        </a>
-
-        <!-- Navigation Links -->
-        <div class="hidden md:flex items-center gap-8">
-          <a href="#tool" class="text-sm font-medium text-secondary hover:text-primary transition-colors">Tool</a>
-          <a href="#use-cases" class="text-sm font-medium text-secondary hover:text-primary transition-colors">Use Cases</a>
-          <a href="#how-it-works" class="text-sm font-medium text-secondary hover:text-primary transition-colors">How It Works</a>
-          <a href="#faq" class="text-sm font-medium text-secondary hover:text-primary transition-colors">FAQ</a>
+  <!-- ══ HEADER ════════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="./" class="logo" aria-label="Pixel to Print — Home">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/>
+            <rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/>
+            <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/>
+          </svg>
         </div>
-
-        <!-- Actions -->
-        <div class="flex items-center gap-3">
-          <!-- Theme Toggle -->
-          <button
-            id="themeToggle"
-            class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center"
-            aria-label="Toggle dark mode"
-          >
-            <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <line x1="12" y1="1" x2="12" y2="3"/>
-              <line x1="12" y1="21" x2="12" y2="23"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-              <line x1="1" y1="12" x2="3" y2="12"/>
-              <line x1="21" y1="12" x2="23" y2="12"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </button>
-
-          <!-- Mobile Menu -->
-          <button
-            id="mobileMenuBtn"
-            class="md:hidden theme-toggle w-10 h-10 rounded-lg flex items-center justify-center"
-            aria-label="Open menu"
-          >
-            <svg class="w-5 h-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-          </button>
+        <div class="logo-text">
+          <span class="logo-name">Pixel to Print</span>
+          <span class="logo-sub">Print Quality Calculator</span>
         </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#main-tool" class="nav-link">Calculator</a>
+        <a href="dpi-guide.html" class="nav-link">DPI Guide</a>
+        <a href="sublimation-tips.html" class="nav-link">Sublimation</a>
+        <a href="print-size-chart.html" class="nav-link">Size Chart</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+          <span class="icon-sun"  aria-hidden="true">☀️</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
+    </div>
 
-      <!-- Mobile Menu Dropdown -->
-      <div id="mobileMenu" class="hidden md:hidden pb-4">
-        <div class="flex flex-col gap-2 pt-4 border-t border-light">
-          <a href="#tool" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">Tool</a>
-          <a href="#use-cases" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">Use Cases</a>
-          <a href="#how-it-works" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">How It Works</a>
-          <a href="#faq" class="px-4 py-2 text-sm font-medium text-secondary hover:text-primary hover:bg-tertiary rounded-lg transition-colors">FAQ</a>
-        </div>
-      </div>
+    <!-- Mobile nav -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#main-tool" class="mobile-nav-link">Calculator</a>
+      <a href="dpi-guide.html" class="mobile-nav-link">DPI Guide</a>
+      <a href="sublimation-tips.html" class="mobile-nav-link">Sublimation Tips</a>
+      <a href="print-size-chart.html" class="mobile-nav-link">Print Size Chart</a>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main id="main-content">
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-16 md:pt-40 md:pb-24 hero-pattern">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-primary tracking-tight leading-tight mb-6 animate-fade-in-up">
-            Convert Pixels to<br>
-            <span class="text-accent">Print-Ready</span> Dimensions
-          </h1>
-          <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto animate-fade-in-up animation-delay-1">
-            Professional dimension calculator for graphic designers, print specialists, and sublimation artists. Upload images and get instant print quality analysis.
-          </p>
-        </div>
-
-        <!-- Trust Badges -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-16 animate-fade-in-up animation-delay-2">
-          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary">
-            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-            <span class="text-sm font-medium text-secondary">Free Forever</span>
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary">
-            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-            <span class="text-sm font-medium text-secondary">No Sign-up Required</span>
-          </div>
-          <div class="flex items-center gap-2 px-4 py-2 rounded-full privacy-badge">
-            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
-            <span class="text-sm font-medium text-secondary">100% Private</span>
-          </div>
-        </div>
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-inner">
+      <div class="hero-badge" aria-hidden="true">
+        <span class="hero-badge-dot"></span>
+        Free · No signup · Open source
       </div>
-    </section>
 
-    <!-- Converter Tool Section -->
-    <section id="tool" class="py-16 md:py-24 bg-secondary">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 id="hero-heading">
+        Will your image<br />
+        <span>print sharply?</span>
+      </h1>
 
-        <!-- Image Upload Section -->
-        <div class="card rounded-2xl overflow-hidden mb-8 animate-fade-in-up">
-          <div class="p-5 md:p-6 border-b border-light">
-            <div class="flex items-center justify-between mb-4">
-              <label class="block text-xs font-semibold text-muted uppercase tracking-wider">Upload Image</label>
-              <span class="text-xs text-muted">JPEG, PNG, WebP only</span>
-            </div>
+      <p class="hero-desc">
+        Upload any image, set your print size and medium — get an instant quality
+        score that actually reflects what your print will look like. Not just a
+        DPI number. A real answer.
+      </p>
 
-            <!-- Upload Zone -->
-            <div id="uploadZone" class="upload-zone rounded-xl p-8 text-center">
-              <input
-                type="file"
-                id="fileInput"
-                accept="image/jpeg,image/png,image/webp"
-                class="hidden"
-              >
+      <ul class="hero-trust" aria-label="Tool guarantees">
+        <li class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Processed entirely in your browser
+        </li>
+        <li class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Image is never uploaded anywhere
+        </li>
+        <li class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Works offline after first load
+        </li>
+        <li class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          MIT licensed open source
+        </li>
+      </ul>
+    </div>
+  </section>
 
-              <!-- Upload Icon (Initial State) -->
-              <div id="uploadIcon" class="mb-4">
-                <svg class="w-12 h-12 mx-auto text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-              </div>
+  <!-- ══ MAIN TOOL ══════════════════════════════════════════ -->
+  <main id="main-tool" class="tool-section" role="main">
+    <div class="tool-grid">
 
-              <!-- Upload Text -->
-              <div id="uploadText">
-                <p class="text-lg font-medium text-primary mb-1">Drop your image here</p>
-                <p class="text-sm text-muted">or click to browse</p>
-              </div>
+      <!-- ── LEFT: Inputs ─────────────────────────────────── -->
+      <div>
+        <div class="panel" id="input-panel">
 
-              <!-- Loading State -->
-              <div id="uploadLoading" class="hidden">
-                <svg class="w-12 h-12 mx-auto text-accent animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                </svg>
-                <p class="text-lg font-medium text-primary mt-4">Analyzing image...</p>
-              </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="uploadError" class="hidden mt-4">
-              <div class="flex items-center gap-3 p-3 rounded-lg bg-danger-light border border-danger/30">
-                <svg class="w-5 h-5 text-danger flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="15" y1="9" x2="9" y2="15"/>
-                  <line x1="9" y1="9" x2="15" y2="15"/>
-                </svg>
-                <p class="text-sm text-danger" id="errorMessage">Error message here</p>
-              </div>
-            </div>
+          <!-- Mode Tabs -->
+          <div class="mode-tabs" role="tablist" aria-label="Calculator mode">
+            <button class="mode-tab active" role="tab" type="button"
+              aria-selected="true" aria-controls="panel-calculator"
+              data-panel="panel-calculator" id="tab-calculator">
+              Check Image Quality
+            </button>
+            <button class="mode-tab" role="tab" type="button"
+              aria-selected="false" aria-controls="panel-sweetspot"
+              data-panel="panel-sweetspot" id="tab-sweetspot">
+              Find Required Pixels ✦
+            </button>
           </div>
 
-          <!-- Image Preview Section -->
-          <div id="imagePreviewSection" class="hidden p-5 md:p-6 border-b border-light">
-            <div class="flex flex-col md:flex-row gap-6">
-              <!-- Image Preview -->
-              <div class="flex-shrink-0 image-preview-container">
-                <div class="relative">
-                  <img id="imagePreview" src="" alt="Uploaded image preview" class="w-32 h-32 object-cover rounded-lg border border-light">
-                  <button id="removeImageBtn" class="remove-image absolute -top-2 -right-2 w-6 h-6 bg-danger rounded-full flex items-center justify-center" aria-label="Remove image">
-                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="18" y1="6" x2="6" y2="18"/>
-                      <line x1="6" y1="6" x2="18" y2="18"/>
+          <!-- ── PANEL: Check Image Quality ──────────────── -->
+          <div id="panel-calculator" class="mode-panel active"
+            role="tabpanel" aria-labelledby="tab-calculator">
+            <div class="panel-body">
+
+              <!-- 1. Upload -->
+              <div class="form-group">
+                <label class="form-label" id="upload-lbl">
+                  Step 1 — Upload your image
+                </label>
+
+                <div class="image-preview" id="image-preview" aria-live="polite" aria-label="Image preview">
+                  <img id="preview-img" src="" alt="Uploaded image preview" />
+                  <button class="preview-remove" id="preview-remove"
+                    aria-label="Remove uploaded image" type="button">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                      <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                     </svg>
                   </button>
                 </div>
-              </div>
 
-              <!-- Image Info -->
-              <div class="flex-1">
-                <h3 class="font-semibold text-primary mb-3" id="imageFileName">image.jpg</h3>
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="bg-input rounded-lg p-3 border border-light">
-                    <span class="text-xs text-muted block mb-1">File Size</span>
-                    <span class="text-sm font-semibold text-primary" id="imageFileSize">0 KB</span>
+                <div class="upload-zone" id="upload-zone"
+                  role="button" tabindex="0"
+                  aria-labelledby="upload-lbl"
+                  aria-describedby="upload-hint">
+                  <input type="file" id="file-input"
+                    accept="image/jpeg,image/png,image/webp"
+                    aria-label="Choose an image file" />
+                  <div class="upload-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                      <rect x="3" y="3" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                      <circle cx="9.5" cy="10" r="2" fill="currentColor" opacity="0.5"/>
+                      <path d="M3 18l5-5 4 4 4-5 7 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
                   </div>
-                  <div class="bg-input rounded-lg p-3 border border-light">
-                    <span class="text-xs text-muted block mb-1">Dimensions</span>
-                    <span class="text-sm font-semibold text-primary" id="imageDimensions">0 × 0 px</span>
-                  </div>
-                  <div class="bg-input rounded-lg p-3 border border-light">
-                    <span class="text-xs text-muted block mb-1">Megapixels</span>
-                    <span class="text-sm font-semibold text-primary" id="imageMegapixels">0 MP</span>
-                  </div>
-                  <div class="bg-input rounded-lg p-3 border border-light">
-                    <span class="text-xs text-muted block mb-1">Max Print @ 300 DPI</span>
-                    <span class="text-sm font-semibold text-primary" id="maxPrintSize">0 × 0 in</span>
-                  </div>
+                  <div class="upload-primary">Drop your image here</div>
+                  <div class="upload-secondary">or <span>click to browse</span></div>
+                  <div class="upload-formats" id="upload-hint">JPEG · PNG · WebP</div>
                 </div>
-              </div>
 
-              <!-- Quality Badge -->
-              <div class="flex-shrink-0">
-                <div id="qualityBadge" class="quality-badge px-4 py-3 rounded-xl border">
-                  <div class="text-center">
-                    <span id="qualityEmoji" class="text-2xl">✅</span>
-                    <p id="qualityText" class="font-semibold text-primary mt-1">Excellent</p>
-                    <p id="qualityDpi" class="text-xs text-muted">300+ DPI</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tool Card -->
-        <div class="card rounded-2xl overflow-hidden glow-accent animate-fade-in-up animation-delay-1">
-
-          <!-- Smart Presets -->
-          <div class="p-5 md:p-6 border-b border-light">
-            <label class="block text-xs font-semibold text-muted uppercase tracking-wider mb-3">Smart Presets</label>
-            <div class="flex flex-wrap gap-2" id="presetContainer">
-              <!-- Presets injected by JS -->
-            </div>
-          </div>
-
-          <!-- Input Section -->
-          <div class="p-5 md:p-6 border-b border-light">
-            <div class="grid grid-cols-3 gap-3 md:gap-4">
-              <!-- Width -->
-              <div>
-                <label for="widthInput" class="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Width</label>
-                <div class="relative">
-                  <input
-                    type="number"
-                    id="widthInput"
-                    value="1920"
-                    min="1"
-                    max="99999"
-                    class="input-field w-full h-12 px-3 pr-12 rounded-lg text-lg font-mono font-medium"
-                    aria-label="Width in pixels"
-                  >
-                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-medium">px</span>
-                </div>
-              </div>
-
-              <!-- Height -->
-              <div>
-                <label for="heightInput" class="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">Height</label>
-                <div class="relative">
-                  <input
-                    type="number"
-                    id="heightInput"
-                    value="1080"
-                    min="1"
-                    max="99999"
-                    class="input-field w-full h-12 px-3 pr-12 rounded-lg text-lg font-mono font-medium"
-                    aria-label="Height in pixels"
-                  >
-                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-medium">px</span>
-                </div>
-              </div>
-
-              <!-- DPI -->
-              <div>
-                <label for="dpiInput" class="block text-xs font-semibold text-muted uppercase tracking-wider mb-2">DPI</label>
-                <div class="relative">
-                  <input
-                    type="number"
-                    id="dpiInput"
-                    value="300"
-                    min="1"
-                    max="1200"
-                    class="input-field w-full h-12 px-3 pr-12 rounded-lg text-lg font-mono font-medium"
-                    aria-label="Dots per inch"
-                  >
-                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted font-medium">dpi</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quality Warning -->
-            <div id="qualityWarning" class="mt-4 hidden">
-              <div class="flex items-start gap-3 p-3 rounded-lg bg-warning-light border border-warning/30">
-                <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                  <line x1="12" y1="9" x2="12" y2="13"/>
-                  <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                <div>
-                  <p class="text-sm font-medium text-warning" id="warningTitle">Quality Warning</p>
-                  <p class="text-xs text-secondary mt-0.5" id="warningMessage">Message here</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Results Section -->
-          <div class="p-5 md:p-6">
-            <div class="flex flex-col md:flex-row gap-6">
-
-              <!-- Aspect Preview -->
-              <div class="flex-shrink-0">
-                <label class="block text-xs font-semibold text-muted uppercase tracking-wider mb-3">Preview</label>
-                <div class="w-32 h-32 flex items-center justify-center bg-input rounded-lg border border-light">
-                  <div id="aspectPreview" class="aspect-preview rounded flex items-center justify-center" style="width: 64px; height: 36px;">
-                    <span class="text-xs text-muted font-mono" id="aspectRatio">16:9</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Results -->
-              <div class="flex-1">
-                <label class="block text-xs font-semibold text-muted uppercase tracking-wider mb-3">Print Dimensions</label>
-
-                <!-- Primary Result -->
-                <div class="bg-input rounded-xl p-4 border border-light mb-3">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <span class="text-xs text-muted font-medium">Inches</span>
-                      <div class="flex items-baseline gap-2 mt-1">
-                        <span class="text-3xl font-bold text-primary font-mono result-value" id="inchesWidth">6.40</span>
-                        <span class="text-muted">×</span>
-                        <span class="text-3xl font-bold text-primary font-mono result-value" id="inchesHeight">3.60</span>
-                        <span class="text-sm text-muted">in</span>
-                      </div>
+                <!-- Stats row -->
+                <div class="stats-row">
+                  <div class="image-stats" id="image-stats" aria-live="polite">
+                    <div class="stat-cell">
+                      <div class="stat-value" id="stat-w">—</div>
+                      <div class="stat-label">Width px</div>
                     </div>
-                    <button class="copy-btn p-2 rounded-lg" data-copy="inches" aria-label="Copy inches">
-                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="9" y="9" width="13" height="13" rx="2"/>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Secondary Results -->
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="bg-input rounded-lg p-3 border border-light">
-                    <div class="flex items-center justify-between">
-                      <span class="text-xs text-muted font-medium">Centimeters</span>
-                      <button class="copy-btn p-1 rounded" data-copy="cm" aria-label="Copy centimeters">
-                        <svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <rect x="9" y="9" width="13" height="13" rx="2"/>
-                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                      </button>
+                    <div class="stat-cell">
+                      <div class="stat-value" id="stat-h">—</div>
+                      <div class="stat-label">Height px</div>
                     </div>
-                    <div class="flex items-baseline gap-1 mt-1">
-                      <span class="text-lg font-semibold text-primary font-mono result-value" id="cmWidth">16.26</span>
-                      <span class="text-muted">×</span>
-                      <span class="text-lg font-semibold text-primary font-mono result-value" id="cmHeight">9.14</span>
-                      <span class="text-xs text-muted">cm</span>
+                    <div class="stat-cell">
+                      <div class="stat-value" id="stat-mp">—</div>
+                      <div class="stat-label">Megapixels</div>
                     </div>
                   </div>
+                  <div class="exif-badge" id="exif-badge" aria-live="polite">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+                      <path d="M6 5v4M6 3.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                    <span id="exif-text">EXIF DPI detected</span>
+                  </div>
+                </div>
+              </div>
 
-                  <div class="bg-input rounded-lg p-3 border border-light">
-                    <div class="flex items-center justify-between">
-                      <span class="text-xs text-muted font-medium">Millimeters</span>
-                      <button class="copy-btn p-1 rounded" data-copy="mm" aria-label="Copy millimeters">
-                        <svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <rect x="9" y="9" width="13" height="13" rx="2"/>
-                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                      </button>
+              <!-- 2. Print Size -->
+              <fieldset class="form-fieldset">
+                <legend class="form-label">Step 2 — Target print size</legend>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label-sm" for="print-width">Width (inches)</label>
+                    <div class="input-wrap">
+                      <input type="number" id="print-width" min="0.1" max="2400" step="0.01"
+                        placeholder="e.g. 8.27" autocomplete="off" />
+                      <span class="input-suffix" aria-hidden="true">in</span>
                     </div>
-                    <div class="flex items-baseline gap-1 mt-1">
-                      <span class="text-lg font-semibold text-primary font-mono result-value" id="mmWidth">162.6</span>
-                      <span class="text-muted">×</span>
-                      <span class="text-lg font-semibold text-primary font-mono result-value" id="mmHeight">91.4</span>
-                      <span class="text-xs text-muted">mm</span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label-sm" for="print-height">Height (inches)</label>
+                    <div class="input-wrap">
+                      <input type="number" id="print-height" min="0.1" max="2400" step="0.01"
+                        placeholder="e.g. 11.69" autocomplete="off" />
+                      <span class="input-suffix" aria-hidden="true">in</span>
                     </div>
                   </div>
                 </div>
+                <div class="aspect-lock-row">
+                  <button class="aspect-lock-btn locked" id="aspect-lock-btn" type="button"
+                    aria-pressed="true" aria-label="Aspect ratio is locked — click to unlock">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" id="lock-icon" aria-hidden="true">
+                      <rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+                      <path d="M4 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                  <span class="aspect-lock-label" id="aspect-lock-label">Aspect ratio locked</span>
+                </div>
+              </fieldset>
+
+              <!-- 3. Medium & Distance -->
+              <div class="form-group">
+                <label class="form-label-sm" for="medium-select">Print medium</label>
+                <div class="input-wrap">
+                  <select id="medium-select">
+                    <optgroup label="Paper">
+                      <option value="coated_paper" selected>Coated Paper — Brochures, Magazines, Photos</option>
+                      <option value="uncoated_paper">Uncoated Paper — Flyers, Newsprint</option>
+                    </optgroup>
+                    <optgroup label="Specialty Print">
+                      <option value="canvas">Canvas — Art Prints, Wall Decor</option>
+                      <option value="metal">Metal / Aluminum Panel — Sublimation</option>
+                    </optgroup>
+                    <optgroup label="Sublimation">
+                      <option value="polyester_fabric">Polyester Fabric — T-Shirts, Tote Bags, Flags</option>
+                      <option value="ceramic">Ceramic — Sublimation Mugs, Tiles</option>
+                      <option value="phone_case">Phone Case — Sublimation Insert</option>
+                    </optgroup>
+                    <optgroup label="Large Format">
+                      <option value="banner_vinyl">Vinyl Banner — Outdoor / Indoor Signage</option>
+                      <option value="billboard">Billboard / Large Format (30ft+ viewing)</option>
+                    </optgroup>
+                  </select>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Quality Bar -->
-          <div class="px-5 md:px-6 pb-5 md:pb-6">
-            <div class="flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <span class="text-muted">Print Quality:</span>
-                <span id="qualityLabel" class="font-semibold text-success">Excellent</span>
-              </div>
-              <div class="w-28 h-2 rounded-full bg-tertiary overflow-hidden">
-                <div id="qualityBar" class="h-full rounded-full bg-success transition-all duration-300" style="width: 100%"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section id="use-cases" class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Built for Professionals</h2>
-          <p class="text-lg text-secondary max-w-2xl mx-auto">Whether you're printing photos, designing for sublimation, or preparing marketing materials — get the exact dimensions you need.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-          <!-- Use Case 1 -->
-          <div class="card p-6 rounded-xl">
-            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                <circle cx="12" cy="13" r="4"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-primary mb-2">Sublimation Printing</h3>
-            <p class="text-secondary text-sm mb-4">Perfect for mugs, t-shirts, phone cases, and more. Our presets include common sublimation blanks with the right DPI for vibrant transfers.</p>
-            <ul class="space-y-2 text-sm text-muted">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                11oz Mug wraps
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                T-shirt chest prints
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Phone case inserts
-              </li>
-            </ul>
-          </div>
-
-          <!-- Use Case 2 -->
-          <div class="card p-6 rounded-xl">
-            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-primary mb-2">Print & Publishing</h3>
-            <p class="text-secondary text-sm mb-4">Prepare artwork for brochures, flyers, posters, and business cards. Ensure your designs print crisp at any size.</p>
-            <ul class="space-y-2 text-sm text-muted">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                A4, A3, Letter sizes
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Business cards
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Large format posters
-              </li>
-            </ul>
-          </div>
-
-          <!-- Use Case 3 -->
-          <div class="card p-6 rounded-xl">
-            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-primary mb-2">Digital to Print</h3>
-            <p class="text-secondary text-sm mb-4">Converting social media graphics or web designs to print? Know exactly how they'll translate to physical dimensions.</p>
-            <ul class="space-y-2 text-sm text-muted">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Instagram posts to prints
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                YouTube thumbnails
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Web banners to signage
-              </li>
-            </ul>
-          </div>
-
-          <!-- Use Case 4 -->
-          <div class="card p-6 rounded-xl">
-            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-primary mb-2">Photography</h3>
-            <p class="text-secondary text-sm mb-4">Photographers can quickly determine print sizes from image dimensions. Know if your photo is sharp enough for large prints.</p>
-            <ul class="space-y-2 text-sm text-muted">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Standard photo sizes
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Canvas prints
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Quality assessment
-              </li>
-            </ul>
-          </div>
-
-          <!-- Use Case 5 -->
-          <div class="card p-6 rounded-xl">
-            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-                <path d="M2 2l7.586 7.586"/>
-                <circle cx="11" cy="11" r="2"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-primary mb-2">Graphic Design</h3>
-            <p class="text-secondary text-sm mb-4">Designers working across digital and print need to convert constantly. This tool makes it instant and accurate.</p>
-            <ul class="space-y-2 text-sm text-muted">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Multi-format projects
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Client specifications
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Pre-press prep
-              </li>
-            </ul>
-          </div>
-
-          <!-- Use Case 6 -->
-          <div class="card p-6 rounded-xl">
-            <div class="w-12 h-12 rounded-lg bg-accent-light flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-primary mb-2">Education</h3>
-            <p class="text-secondary text-sm mb-4">Teaching students about resolution, DPI, and print production? This tool makes concepts tangible and easy to understand.</p>
-            <ul class="space-y-2 text-sm text-muted">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Design fundamentals
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Print production
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                Photography classes
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-16 md:py-24 bg-secondary">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">How It Works</h2>
-          <p class="text-lg text-secondary max-w-2xl mx-auto">Understanding DPI and print dimensions is essential for quality output. Here's the science behind it.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-
-          <!-- Step 1 -->
-          <div class="text-center">
-            <div class="w-16 h-16 rounded-2xl bg-accent-light flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-accent">1</span>
-            </div>
-            <h3 class="text-xl font-semibold text-primary mb-3">Upload Your Image</h3>
-            <p class="text-secondary text-sm">Drag and drop your image or click to browse. We analyze your image instantly - your file stays on your device.</p>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="text-center">
-            <div class="w-16 h-16 rounded-2xl bg-accent-light flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-accent">2</span>
-            </div>
-            <h3 class="text-xl font-semibold text-primary mb-3">Get Quality Analysis</h3>
-            <p class="text-secondary text-sm">We automatically detect dimensions, calculate megapixels, and tell you the maximum print size at 300 DPI.</p>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="text-center">
-            <div class="w-16 h-16 rounded-2xl bg-accent-light flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-accent">3</span>
-            </div>
-            <h3 class="text-xl font-semibold text-primary mb-3">Calculate Dimensions</h3>
-            <p class="text-secondary text-sm">Enter your desired DPI to see exact print dimensions in inches, centimeters, and millimeters.</p>
-          </div>
-
-        </div>
-
-        <!-- Info Box -->
-        <div class="mt-12 md:mt-16 p-6 md:p-8 rounded-2xl bg-panel border border-light">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center">
-                <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="16" x2="12" y2="12"/>
-                  <line x1="12" y1="8" x2="12.01" y2="8"/>
-                </svg>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-lg font-semibold text-primary mb-2">Understanding DPI</h3>
-              <p class="text-secondary text-sm mb-4">DPI (Dots Per Inch) determines print quality. Higher DPI means more detail and sharper prints:</p>
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div class="flex items-start gap-3">
-                  <div class="w-2 h-2 rounded-full bg-success mt-2"></div>
-                  <div>
-                    <span class="font-medium text-primary text-sm">300+ DPI</span>
-                    <p class="text-muted text-xs">Excellent for photos, magazines, brochures</p>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label-sm" for="view-dist-select">Viewing distance</label>
+                  <div class="input-wrap">
+                    <select id="view-dist-select">
+                      <option value="close">Close — 12 in (Books, Cards)</option>
+                      <option value="standard" selected>Standard — 24 in (Photos)</option>
+                      <option value="wall_art">Wall Art — 48 in (Canvas)</option>
+                      <option value="signage">Signage — 10 ft (Banners)</option>
+                      <option value="billboard">Billboard — 40 ft+</option>
+                    </select>
                   </div>
                 </div>
-                <div class="flex items-start gap-3">
-                  <div class="w-2 h-2 rounded-full bg-warning mt-2"></div>
-                  <div>
-                    <span class="font-medium text-primary text-sm">150-300 DPI</span>
-                    <p class="text-muted text-xs">Good for posters, banners, large prints</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="w-2 h-2 rounded-full bg-danger mt-2"></div>
-                  <div>
-                    <span class="font-medium text-primary text-sm">72-150 DPI</span>
-                    <p class="text-muted text-xs">Acceptable for very large signs, billboards</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="w-2 h-2 rounded-full bg-muted mt-2"></div>
-                  <div>
-                    <span class="font-medium text-primary text-sm">72 DPI</span>
-                    <p class="text-muted text-xs">Standard for web/screen viewing only</p>
+                <div class="form-group">
+                  <label class="form-label-sm" for="ai-select">
+                    AI upscaling applied?
+                    <span class="label-optional">(if any)</span>
+                  </label>
+                  <div class="input-wrap">
+                    <select id="ai-select">
+                      <option value="none" selected>No upscaling</option>
+                      <option value="basic">Basic — Photoshop Bicubic</option>
+                      <option value="ai_standard">AI 2× — Topaz / Adobe Super Res</option>
+                      <option value="ai_high">AI 4× — Topaz Gigapixel / Magnific</option>
+                    </select>
                   </div>
                 </div>
               </div>
+
+              <!-- Smart Presets -->
+              <div class="presets-section">
+                <span class="presets-label" id="presets-lbl">Smart presets</span>
+                <div class="preset-tabs" role="tablist" aria-labelledby="presets-lbl">
+                  <button class="preset-tab active" data-group="photo" role="tab" type="button" aria-selected="true">📷 Photo</button>
+                  <button class="preset-tab" data-group="paper" role="tab" type="button" aria-selected="false">📄 Paper</button>
+                  <button class="preset-tab" data-group="canvas" role="tab" type="button" aria-selected="false">🖼️ Canvas</button>
+                  <button class="preset-tab" data-group="sublimation" role="tab" type="button" aria-selected="false">☕ Sublimation</button>
+                  <button class="preset-tab" data-group="signage" role="tab" type="button" aria-selected="false">🪧 Signage</button>
+                  <button class="preset-tab" data-group="social" role="tab" type="button" aria-selected="false">📱 Social</button>
+                </div>
+                <div class="preset-items" id="preset-grid" role="listbox" aria-label="Select a preset print size"></div>
+              </div>
+
+              <button class="calc-btn" id="calc-btn" type="button">
+                Check Print Quality
+              </button>
+
+            </div><!-- /panel-body -->
+          </div><!-- /panel-calculator -->
+
+          <!-- ── PANEL: Sweet Spot Finder ─────────────────── -->
+          <div id="panel-sweetspot" class="mode-panel"
+            role="tabpanel" aria-labelledby="tab-sweetspot">
+            <div class="panel-body">
+
+              <div class="info-callout">
+                <strong>Reverse calculator.</strong>
+                Tell us the print size and medium — we'll calculate the exact pixel dimensions you need. No guessing.
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label-sm" for="ss-width">Print width (in)</label>
+                  <div class="input-wrap">
+                    <input type="number" id="ss-width" min="0.1" step="0.01" placeholder="e.g. 16" />
+                    <span class="input-suffix" aria-hidden="true">in</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label-sm" for="ss-height">Print height (in)</label>
+                  <div class="input-wrap">
+                    <input type="number" id="ss-height" min="0.1" step="0.01" placeholder="e.g. 20" />
+                    <span class="input-suffix" aria-hidden="true">in</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label-sm" for="ss-medium">Print medium</label>
+                <div class="input-wrap">
+                  <select id="ss-medium">
+                    <optgroup label="Paper">
+                      <option value="coated_paper" selected>Coated Paper</option>
+                      <option value="uncoated_paper">Uncoated Paper</option>
+                    </optgroup>
+                    <optgroup label="Specialty">
+                      <option value="canvas">Canvas</option>
+                      <option value="metal">Metal Panel</option>
+                    </optgroup>
+                    <optgroup label="Sublimation">
+                      <option value="polyester_fabric">Polyester Fabric</option>
+                      <option value="ceramic">Ceramic (Mug / Tile)</option>
+                      <option value="phone_case">Phone Case</option>
+                    </optgroup>
+                    <optgroup label="Large Format">
+                      <option value="banner_vinyl">Vinyl Banner</option>
+                      <option value="billboard">Billboard</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label-sm" for="ss-view-dist">Viewing distance</label>
+                <div class="input-wrap">
+                  <select id="ss-view-dist">
+                    <option value="close">Close — 12 in</option>
+                    <option value="standard" selected>Standard — 24 in</option>
+                    <option value="wall_art">Wall Art — 48 in</option>
+                    <option value="signage">Signage — 10 ft</option>
+                    <option value="billboard">Billboard — 40 ft+</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="calc-btn" id="ss-calc-btn" type="button">Find My Sweet Spot ✦</button>
+
+              <div id="ss-result" aria-live="polite"></div>
             </div>
+          </div>
+
+        </div><!-- /panel -->
+      </div><!-- /left col -->
+
+      <!-- ── RIGHT: Results ────────────────────────────────── -->
+      <div class="panel results-panel" id="results-panel"
+        aria-live="polite" aria-label="Print quality results">
+
+        <div class="results-empty" id="results-empty">
+          <div class="results-empty-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <rect x="6" y="6" width="36" height="36" rx="8" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+              <circle cx="18" cy="20" r="3" fill="currentColor" opacity="0.3"/>
+              <path d="M6 32l10-10 8 8 8-10 10 8" stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity="0.3"/>
+            </svg>
+          </div>
+          <p>Upload an image and enter your print size to see the quality score.</p>
+          <p class="results-empty-sub">
+            Not sure what size you need?
+            <button type="button" class="link-btn" id="goto-sweetspot">
+              Use the reverse calculator →
+            </button>
+          </p>
+        </div>
+
+        <!-- Score Card -->
+        <div class="score-card" id="score-card" hidden>
+          <div class="score-header">
+            <span class="score-label">PPQS Score</span>
+            <span class="score-badge" id="score-badge"></span>
+          </div>
+          <div class="score-number" id="score-number" aria-live="assertive">—</div>
+          <div class="score-bar-wrap"
+            role="progressbar" aria-valuemin="0" aria-valuemax="100"
+            aria-valuenow="0" aria-label="Print quality score">
+            <div class="score-bar" id="score-bar"></div>
+          </div>
+          <p class="score-message" id="score-message"></p>
+        </div>
+
+        <!-- Dimensions -->
+        <div class="dimensions-grid" id="dimensions-grid">
+          <div class="dim-card">
+            <div class="dim-unit">Inches</div>
+            <div class="dim-value" id="dim-inches">— × —</div>
+            <button class="dim-copy" type="button" aria-label="Copy dimensions in inches">Copy</button>
+          </div>
+          <div class="dim-card">
+            <div class="dim-unit">Centimeters</div>
+            <div class="dim-value" id="dim-cm">— × —</div>
+            <button class="dim-copy" type="button" aria-label="Copy dimensions in centimeters">Copy</button>
+          </div>
+          <div class="dim-card">
+            <div class="dim-unit">Millimeters</div>
+            <div class="dim-value" id="dim-mm">— × —</div>
+            <button class="dim-copy" type="button" aria-label="Copy dimensions in millimeters">Copy</button>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-16 md:py-24">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Frequently Asked Questions</h2>
-          <p class="text-lg text-secondary">Everything you need to know about pixel to print conversion.</p>
+        <!-- DPI Analysis -->
+        <div class="dpi-analysis" id="dpi-analysis" hidden>
+          <div class="analysis-title">DPI Breakdown</div>
+          <div class="dpi-row">
+            <span class="dpi-row-label">Raw DPI at this size</span>
+            <span class="dpi-row-value" id="raw-dpi-val">—</span>
+          </div>
+          <div class="dpi-row">
+            <span class="dpi-row-label">Effective DPI (medium absorption)</span>
+            <span class="dpi-row-value" id="edpi-val">—</span>
+          </div>
+          <div class="dpi-row">
+            <span class="dpi-row-label">Min perceivable at this distance</span>
+            <span class="dpi-row-value" id="min-perc-dpi-val">—</span>
+          </div>
         </div>
 
-        <div class="space-y-4" id="faqContainer">
-          <!-- FAQ items injected by JS -->
-        </div>
+        <!-- Suggestions -->
+        <div class="suggestions-wrap" id="suggestions-wrap" hidden></div>
 
-      </div>
-    </section>
+        <!-- Max Print -->
+        <div class="max-print-info" id="max-print-info" hidden></div>
 
-    <!-- CTA Section -->
-    <section class="py-16 md:py-24 bg-secondary">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Ready to Convert?</h2>
-        <p class="text-lg text-secondary mb-8 max-w-2xl mx-auto">Start converting your pixel dimensions to print-ready measurements in seconds. No signup required.</p>
-        <a href="#tool" class="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold">
-          Open the Tool
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
-      </div>
-    </section>
-
+      </div><!-- /results-panel -->
+    </div><!-- /tool-grid -->
   </main>
 
-  <!-- Footer -->
-  <footer class="py-12 md:py-16 border-t border-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- ══ HOW TO USE ══════════════════════════════════════════ -->
+  <section class="how-section" aria-labelledby="how-heading" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label-tag" aria-hidden="true">How it works</div>
+      <h2 id="how-heading" class="section-heading">Four steps to a print-ready answer</h2>
+      <p class="section-sub">No guessing. No wasted prints. Just upload and follow the score.</p>
 
-      <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number" aria-hidden="true">01</div>
+          <h3>Upload your image</h3>
+          <p>
+            Drag and drop any JPEG, PNG, or WebP onto the tool. Your file is read
+            locally in your browser — it is never sent to any server, ever.
+            The tool automatically reads embedded DPI if your file has it.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number" aria-hidden="true">02</div>
+          <h3>Set your target print size</h3>
+          <p>
+            Enter the width and height in inches, or pick from 50+ smart presets
+            covering photos, paper sizes, canvas, sublimation products,
+            signage, and social media to print conversions.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number" aria-hidden="true">03</div>
+          <h3>Choose your medium and viewing distance</h3>
+          <p>
+            Select what you are printing on — coated paper, canvas, sublimation
+            mug, vinyl banner. Then set how far away viewers will stand.
+            These two inputs change your score significantly and correctly.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number" aria-hidden="true">04</div>
+          <h3>Get your quality score and action</h3>
+          <p>
+            The PPQS score (0–100) tells you exactly what to do: print now,
+            upscale with a specific tool, or reduce print size. No ambiguous
+            numbers — just a clear, actionable decision.
+          </p>
+        </div>
+      </div>
 
-        <!-- Brand -->
-        <div class="md:col-span-2">
-          <a href="index.html" class="flex items-center gap-2.5 mb-4">
-            <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M3 9h18M9 21V9"/>
-              </svg>
-            </div>
-            <span class="font-semibold text-lg text-primary">Pixel to Print</span>
-          </a>
-          <p class="text-secondary text-sm mb-4 max-w-sm">A free professional tool for graphic designers, print specialists, and sublimation artists to convert pixel dimensions to physical print measurements.</p>
-          <div class="flex items-center gap-4">
-            <a href="https://x.com/xcreativedesig" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors" aria-label="Twitter">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a href="https://github.com/xcreativedesign/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors" aria-label="GitHub">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-            <a href="https://xcreativedesign.com/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary transition-colors" aria-label="Website">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-            </a>
+      <!-- What PPQS considers -->
+      <div class="ppqs-explainer">
+        <div class="ppqs-explainer-text">
+          <h3>What makes PPQS different from a basic DPI calculator?</h3>
+          <p>
+            Most print calculators divide pixels by print size and call it done.
+            That formula dates from the 1990s and ignores how human vision actually works.
+          </p>
+          <p>
+            PPQS factors in three things that a basic calculator misses. First, viewing
+            distance — a billboard at 40 feet needs a fraction of the DPI required by
+            a business card held in your hand. Second, print medium absorption — canvas
+            texture and fabric weave absorb ink differently than glazed ceramic or
+            coated paper, changing perceived sharpness. Third, human eye angular
+            resolution — the calculation is grounded in ISO 8596 visual acuity science,
+            not arbitrary thresholds.
+          </p>
+          <p>
+            The result is a score that reflects what the print will look like to
+            a real viewer, not just a raw number.
+          </p>
+        </div>
+        <div class="ppqs-explainer-stats">
+          <div class="ppqs-stat">
+            <div class="ppqs-stat-value">3438</div>
+            <div class="ppqs-stat-label">Human eye constant (ISO 8596)<br/>used in every calculation</div>
+          </div>
+          <div class="ppqs-stat">
+            <div class="ppqs-stat-value">9</div>
+            <div class="ppqs-stat-label">Print mediums with individual<br/>absorption profiles</div>
+          </div>
+          <div class="ppqs-stat">
+            <div class="ppqs-stat-value">50+</div>
+            <div class="ppqs-stat-label">Smart presets covering<br/>every common print scenario</div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Quick Links -->
-        <div>
-          <h4 class="font-semibold text-primary mb-4">Quick Links</h4>
-          <ul class="space-y-3">
-            <li><a href="#tool" class="text-sm text-secondary hover:text-primary transition-colors">Converter Tool</a></li>
-            <li><a href="#use-cases" class="text-sm text-secondary hover:text-primary transition-colors">Use Cases</a></li>
-            <li><a href="#how-it-works" class="text-sm text-secondary hover:text-primary transition-colors">How It Works</a></li>
-            <li><a href="#faq" class="text-sm text-secondary hover:text-primary transition-colors">FAQ</a></li>
-          </ul>
+  <!-- ══ USE CASES ══════════════════════════════════════════ -->
+  <section class="usecases-section" aria-labelledby="usecases-heading">
+    <div class="section-inner">
+      <div class="section-label-tag" aria-hidden="true">Who uses this</div>
+      <h2 id="usecases-heading" class="section-heading">Built for real print workflows</h2>
+      <p class="section-sub">Whether you print once a year or run a daily production floor, this tool answers the question every print job starts with.</p>
+
+      <div class="usecase-grid">
+        <article class="usecase-card">
+          <div class="usecase-icon" aria-hidden="true">☕</div>
+          <h3>Sublimation businesses</h3>
+          <p>
+            A client sends an image on WhatsApp. Before you print a single mug or
+            shirt, check if the resolution meets the standard for that specific
+            substrate. Stop guessing. Stop wasting blanks.
+          </p>
+        </article>
+        <article class="usecase-card">
+          <div class="usecase-icon" aria-hidden="true">📸</div>
+          <h3>Photographers</h3>
+          <p>
+            You shot a 12MP portrait. The client wants a 30×40 canvas. Canvas
+            absorbs detail and is viewed from across a room — your image likely
+            qualifies even though a basic DPI calculator would flag it as too low.
+            Get the real answer.
+          </p>
+        </article>
+        <article class="usecase-card">
+          <div class="usecase-icon" aria-hidden="true">🎨</div>
+          <h3>Graphic designers</h3>
+          <p>
+            Before you start a project, use the reverse calculator to find the
+            exact pixel canvas you need. After you finish, verify quality before
+            sending the file to the print house. Catch errors before they cost money.
+          </p>
+        </article>
+        <article class="usecase-card">
+          <div class="usecase-icon" aria-hidden="true">🤖</div>
+          <h3>AI art sellers</h3>
+          <p>
+            Midjourney default output is 1024×1024 pixels. That is 3.4 inches at
+            300 DPI — not printable at poster size. The tool shows you exactly how
+            much AI upscaling is needed before listing on Etsy, Redbubble, or Printify.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GUIDES ══════════════════════════════════════════════ -->
+  <section class="guides-section" aria-labelledby="guides-heading">
+    <div class="section-inner">
+      <div class="section-label-tag" aria-hidden="true">Resources</div>
+      <h2 id="guides-heading" class="section-heading">Guides that go deeper</h2>
+      <p class="section-sub">Practical, accurate guides written for 2026 print workflows — not recycled 2015 blog posts.</p>
+
+      <div class="guides-grid">
+        <article class="guide-card">
+          <div class="guide-card-inner">
+            <div class="guide-icon" aria-hidden="true">📐</div>
+            <div>
+              <h3>DPI vs PPI — The definitive 2026 guide</h3>
+              <p>
+                Why changing the DPI number in Photoshop does nothing. What actually
+                determines print sharpness. Viewing distance charts. AI upscaling
+                explained. The resource you send clients when they ask about resolution.
+              </p>
+              <a href="dpi-guide.html" class="guide-link">
+                Read the DPI Guide
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="guide-card">
+          <div class="guide-card-inner">
+            <div class="guide-icon" aria-hidden="true">☕</div>
+            <div>
+              <h3>Sublimation DPI by material — Complete guide</h3>
+              <p>
+                Mug vs t-shirt vs ceramic tile vs metal panel — every material
+                has a different standard. Includes ICC profile guidance, RGB vs
+                CMYK, bleed areas, and common mistakes that waste blanks.
+              </p>
+              <a href="sublimation-tips.html" class="guide-link">
+                Sublimation Tips
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="guide-card">
+          <div class="guide-card-inner">
+            <div class="guide-icon" aria-hidden="true">📏</div>
+            <div>
+              <h3>Print size reference chart</h3>
+              <p>
+                Every standard print size in one place. Photos, paper formats,
+                canvas sizes, social media to print conversions, AI image
+                output sizes. The reference tab you keep open during every project.
+              </p>
+              <a href="print-size-chart.html" class="guide-link">
+                View the Chart
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TRUST / UNDER THE HOOD ═══════════════════════════ -->
+  <section class="trust-section" aria-labelledby="h-trust">
+    <div class="section-inner">
+
+      <div class="trust-header">
+        <div class="section-label-tag" aria-hidden="true">Transparency</div>
+        <h2 id="h-trust">Under the hood — how this tool thinks</h2>
+        <p class="trust-subtitle">
+          This is an experimental, open-source tool. We believe you should know exactly
+          what the score means, what it cannot tell you, and how the algorithm works.
+          No black box, no fake precision.
+        </p>
+      </div>
+
+      <div class="trust-algo-grid">
+
+        <div class="trust-algo-card">
+          <div class="trust-algo-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M11 7v4l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>What PPQS actually calculates</h3>
+          <p>
+            The score combines three inputs: your image's effective pixel density at the
+            chosen print size, the minimum DPI a human eye can perceive at the expected
+            viewing distance (ISO 8596 visual acuity constant ÷ distance in inches),
+            and a medium absorption factor for how different surfaces hold or spread ink.
+            The score shows how far you are above or below the perceptual threshold for
+            that specific combination — not a generic good/bad judgment.
+          </p>
         </div>
 
-        <!-- Resources -->
-        <div>
-          <h4 class="font-semibold text-primary mb-4">Resources</h4>
-          <ul class="space-y-3">
-            <li><a href="dpi-guide.html" class="text-sm text-secondary hover:text-primary transition-colors">DPI Guide</a></li>
-            <li><a href="print-size-chart.html" class="text-sm text-secondary hover:text-primary transition-colors">Print Size Chart</a></li>
-            <li><a href="sublimation-tips.html" class="text-sm text-secondary hover:text-primary transition-colors">Sublimation Tips</a></li>
-            <li><a href="privacy-policy.html" class="text-sm text-secondary hover:text-primary transition-colors">Privacy Policy</a></li>
-          </ul>
+        <div class="trust-algo-card">
+          <div class="trust-algo-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M4 17L9 12L13 15L18 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="17" r="1.5" fill="currentColor"/>
+              <circle cx="9" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="13" cy="15" r="1.5" fill="currentColor"/>
+              <circle cx="18" cy="8" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>PPQS v2.1 — actively being improved</h3>
+          <p>
+            This is version 2.1 of the algorithm. We update it as we gather real-world
+            feedback, test against more substrates, and refine the medium absorption values.
+            Each update is versioned and documented in the
+            <a href="https://github.com/xcreativedesign/pixel-to-print" target="_blank" rel="noopener noreferrer">GitHub changelog</a>.
+            If a score does not match your real-world result, open an issue — that feedback
+            directly improves the algorithm for everyone.
+          </p>
+        </div>
+
+        <div class="trust-algo-card">
+          <div class="trust-algo-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 3L13.5 8.5H19L14.5 12L16.5 18L11 14.5L5.5 18L7.5 12L3 8.5H8.5L11 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>What the score does not account for</h3>
+          <p>
+            PPQS is a perceptual quality estimate — not a print guarantee. It cannot
+            account for your specific printer's calibration, ink brand, paper batch
+            variation, image content (a soft-focus portrait needs less DPI than sharp
+            architectural detail), JPEG compression artifacts, or color accuracy.
+            A score of 90 means the resolution is strong for that medium — not that
+            the print will look perfect if other variables are off.
+          </p>
         </div>
 
       </div>
 
-      <!-- Bottom -->
-      <div class="pt-8 border-t border-light flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-sm text-muted"><span id="footerYear"></span> Pixel to Print. All rights reserved.</p>
-        <p class="text-sm text-muted">Made with precision for designers worldwide.</p>
+      <div class="trust-limitations">
+        <div class="trust-limitations-title">
+          <span class="trust-badge" aria-hidden="true">Honest limitations</span>
+          Things this tool cannot tell you
+        </div>
+        <div class="trust-limitations-grid">
+          <div class="trust-limit-item">
+            <span class="trust-limit-icon" aria-hidden="true">○</span>
+            <span>Whether your image has compression artifacts — low DPI is not the only cause of bad prints</span>
+          </div>
+          <div class="trust-limit-item">
+            <span class="trust-limit-icon" aria-hidden="true">○</span>
+            <span>Color accuracy — the score is resolution-only; color management is a separate workflow</span>
+          </div>
+          <div class="trust-limit-item">
+            <span class="trust-limit-icon" aria-hidden="true">○</span>
+            <span>How much detail your image actually contains — two images at 300 DPI can look very different</span>
+          </div>
+          <div class="trust-limit-item">
+            <span class="trust-limit-icon" aria-hidden="true">○</span>
+            <span>AI upscaling results vary by tool and source quality — scores assume industry-average output</span>
+          </div>
+          <div class="trust-limit-item">
+            <span class="trust-limit-icon" aria-hidden="true">○</span>
+            <span>Your specific printer, ink, and paper combination — actual output varies by hardware</span>
+          </div>
+          <div class="trust-limit-item">
+            <span class="trust-limit-icon" aria-hidden="true">○</span>
+            <span>Whether 100/100 will satisfy a demanding client — human judgment always wins over a number</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-opensource-strip">
+        <div class="trust-opensource-left">
+          <div class="trust-opensource-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2C5.58 2 2 5.58 2 10c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0018 10c0-4.42-3.58-8-8-8z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Fully open source — read the algorithm yourself</strong>
+            <span>Every calculation in PPQS is public. If something looks wrong, check the math directly.</span>
+          </div>
+        </div>
+        <a href="https://github.com/xcreativedesign/pixel-to-print" target="_blank" rel="noopener noreferrer" class="trust-github-btn">
+          View Source on GitHub →
+        </a>
       </div>
 
     </div>
+  </section>
+
+  <!-- ══ FAQ ════════════════════════════════════════════════ -->
+  <section class="faq-section" aria-labelledby="faq-heading" id="faq">
+    <div class="section-inner section-inner--narrow">
+      <div class="section-label-tag" aria-hidden="true">FAQ</div>
+      <h2 id="faq-heading" class="section-heading">Common questions</h2>
+      <p class="section-sub">Straight answers to the questions that come up most.</p>
+
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            What DPI do I need for printing?
+            <span class="faq-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p>It depends on what you are printing and where it will be viewed — there is no single universal number.</p>
+            <p>For photos, brochures, and anything viewed at arm's length: <strong>300 DPI</strong> is the professional standard. For canvas wall art viewed from across a room: <strong>150 DPI is sufficient</strong> — the canvas texture naturally masks any difference, and this is the genuine industry standard. For vinyl banners viewed from 5–15 feet: <strong>72–100 DPI</strong> is correct. For billboards viewed from 30+ feet: <strong>15–50 DPI</strong> is what commercial print houses actually use.</p>
+            <p>The PPQS calculator factors in your specific medium and viewing distance, so you always get the right answer for your actual situation.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            Does changing DPI in Photoshop improve print quality?
+            <span class="faq-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p><strong>No.</strong> This is the most common print myth.</p>
+            <p>Changing the DPI number in a file's metadata — through Photoshop's Image Size with "Resample" unchecked, or any other tool — does not add any real pixels. A 1000×1000 image at 72 DPI and the same 1000×1000 image at 300 DPI contain identical pixel data. Changing the number just changes how large the print dimensions appear in software. The actual print quality is identical.</p>
+            <p>Real quality improvement comes from having more actual pixels. If your image is too low resolution, you need to either use AI upscaling (Topaz Photo AI, Adobe Super Resolution) to add real pixels, or reduce your print size so the existing pixels are not stretched too far.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            What DPI should I use for sublimation printing?
+            <span class="faq-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p>The standard varies by material because different surfaces absorb ink differently.</p>
+            <p><strong>Polyester fabric</strong> (t-shirts, tote bags, flags): 150 DPI. The fabric weave absorbs ink spread, making detail above 150 DPI invisible. <strong>Ceramic</strong> (mugs, tiles): 200 DPI for photo-quality results. <strong>Metal aluminum panels</strong>: 300 DPI — the hard surface holds fine detail well. <strong>Phone cases</strong>: 300 DPI, as they are viewed close-up and often contain fine text or logos.</p>
+            <p>Always use <strong>RGB color mode</strong> for sublimation — never CMYK. Sublimation dyes are applied using heat and gas, and the color science is RGB-based. Converting to CMYK before printing causes color shifts.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            Is my image private? Does anything get uploaded?
+            <span class="faq-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p><strong>Your image never leaves your device.</strong></p>
+            <p>All processing happens in your browser using JavaScript. The pixel dimensions are read by your browser's built-in image APIs. No image data, no file content, no metadata is sent to any server. You can disconnect from the internet after the page loads and the tool will continue to work.</p>
+            <p>This is not just a policy statement — it is how the tool is technically built. There is no backend server to receive data. The source code is open on GitHub if you want to verify this.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            What is PPQS and why is it better than a DPI calculator?
+            <span class="faq-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p>PPQS stands for Perceptual Print Quality Score. Basic DPI calculators use one formula from the 1990s: pixels ÷ print size. That formula works, but it tells you nothing about whether the result is actually good enough for your use case.</p>
+            <p>PPQS adds three factors. <strong>Viewing distance</strong>: at 40 feet, a billboard looks sharp at 30 DPI. The same image on a business card at 30 DPI is unreadable. The formula models this using the human eye angular resolution constant (3438, derived from ISO 8596). <strong>Medium absorption</strong>: each print surface has a material absorption factor — canvas absorbs ink spread differently than coated paper or ceramic glaze. <strong>Quality threshold</strong>: the score is calibrated per medium, so 150 DPI on canvas correctly scores as Excellent, not Marginal.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">
+            Can AI upscaling fix a low-resolution image for printing?
+            <span class="faq-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-a">
+            <p>Yes, within limits. Modern AI upscaling tools like Topaz Photo AI, Adobe Lightroom Super Resolution, and Magnific AI genuinely add perceptual detail through machine learning — they are not basic interpolation. A 2× AI upscale produces significantly better results than doubling size in Photoshop.</p>
+            <p>The practical limit is around 4×. Beyond that, the AI is synthesizing detail that was never there, and artifacts become visible at close range. The tool models this: selecting an AI upscaling preset adjusts the quality gain using published benchmark data, not just multiplying the resolution number. It will also warn you when even 4× AI upscaling is not sufficient for your target print, so you know to find a higher-resolution source.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="./" class="logo" aria-label="Pixel to Print — Home">
+          <div class="logo-mark" aria-hidden="true" style="width:28px;height:28px;">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/>
+              <rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/>
+              <rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/>
+              <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/>
+            </svg>
+          </div>
+          <span class="logo-name" style="font-size:14px;">Pixel to Print</span>
+        </a>
+        <p>
+          A free, open-source print quality calculator. Built for designers,
+          photographers, and print professionals.
+          Made by <a href="https://xcreativedesign.com" target="_blank" rel="noopener noreferrer">XCreativeDesign</a>.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-link-group">
+          <a href="dpi-guide.html" class="footer-link">DPI Guide</a>
+          <a href="sublimation-tips.html" class="footer-link">Sublimation Tips</a>
+          <a href="print-size-chart.html" class="footer-link">Size Chart</a>
+          <a href="#faq" class="footer-link">FAQ</a>
+        </div>
+        <div class="footer-link-group">
+          <a href="https://github.com/xcreativedesign/pixel-to-print"
+            target="_blank" rel="noopener noreferrer" class="footer-link">
+            GitHub (source)
+          </a>
+          <a href="https://x.com/xcreativedesig"
+            target="_blank" rel="noopener noreferrer" class="footer-link">
+            X / Twitter
+          </a>
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">
+        © 2026 Pixel to Print · MIT License · Open source
+      </span>
+      <span class="footer-privacy">
+        <span class="privacy-dot" aria-hidden="true"></span>
+        Your image is processed locally. Nothing is ever uploaded.
+      </span>
+    </div>
   </footer>
 
-  <!-- JavaScript -->
-  <script>
-    // ==========================================
-    // Data
-    // ==========================================
-
-    const PRESETS = [
-      { id: 'mug', name: 'Mug (11oz)', width: 2200, height: 900, dpi: 300 },
-      { id: 'a4', name: 'A4 Paper', width: 2480, height: 3508, dpi: 300 },
-      { id: 'a4-150', name: 'A4 (150 DPI)', width: 1240, height: 1754, dpi: 150 },
-      { id: 'youtube', name: 'YouTube Thumb', width: 1280, height: 720, dpi: 72 },
-      { id: 'instagram', name: 'Instagram Post', width: 1080, height: 1080, dpi: 72 },
-      { id: 'tshirt', name: 'T-Shirt Logo', width: 2400, height: 2800, dpi: 300 },
-      { id: 'poster', name: 'Poster 18x24', width: 5400, height: 7200, dpi: 300 },
-      { id: 'business-card', name: 'Business Card', width: 1050, height: 600, dpi: 300 },
-    ];
-
-    const FAQS = [
-      {
-        question: 'What is DPI and why does it matter?',
-        answer: 'DPI (Dots Per Inch) measures print resolution. Higher DPI means more dots of ink per inch, resulting in sharper, more detailed prints. For most professional printing, 300 DPI is the standard. Lower DPI (72-150) may appear pixelated when printed but can work for large-format items like banners viewed from a distance.'
-      },
-      {
-        question: 'How do I convert pixels to inches manually?',
-        answer: 'The formula is simple: Inches = Pixels ÷ DPI. For example, an image that is 3000 pixels wide at 300 DPI will print at 10 inches wide (3000 ÷ 300 = 10). Our tool performs this calculation instantly and also provides centimeter and millimeter conversions.'
-      },
-      {
-        question: 'What DPI should I use for sublimation printing?',
-        answer: 'For sublimation printing on items like mugs, t-shirts, and phone cases, 300 DPI is recommended for crisp, vibrant transfers. The fabric or coating quality also affects the final result, but starting with high-resolution artwork ensures the best possible output.'
-      },
-      {
-        question: 'Can I increase DPI to improve print quality?',
-        answer: 'Simply increasing the DPI value without adding more pixels won\'t improve quality. It just spreads the existing pixels over a smaller area. To truly improve print quality, you need to either start with a higher resolution image or use AI upscaling tools to add genuine detail before printing.'
-      },
-      {
-        question: 'What\'s the difference between DPI and PPI?',
-        answer: 'DPI (Dots Per Inch) refers to printed ink dots, while PPI (Pixels Per Inch) refers to screen pixels. For practical purposes, they\'re often used interchangeably in design work. When setting up print files, the concept is the same: more pixels per inch means higher detail in the final print.'
-      },
-      {
-        question: 'Why does my image look pixelated when printed?',
-        answer: 'Pixelation occurs when there aren\'t enough pixels for the print size. If you print a 1000px image at 10 inches, you\'re only getting 100 DPI — which is quite low. For sharp prints, ensure your image has at least 300 pixels for every inch of printed output.'
-      },
-      {
-        question: 'What resolution do I need for large prints like posters?',
-        answer: 'Large prints viewed from a distance can use lower DPI. Posters (18x24 inches or larger) often look great at 150-200 DPI because they\'re viewed from several feet away. A 150 DPI poster still needs significant pixels: 18 inches × 150 DPI = 2700 pixels minimum width.'
-      },
-      {
-        question: 'How do I know if my image is good enough for print?',
-        answer: 'Use our quality indicator! Green means excellent (300+ DPI), yellow means acceptable for the use case, and red indicates the image may appear blurry or pixelated. As a general rule, always check your pixel dimensions against your intended print size before sending to print.'
-      }
-    ];
-
-    // ==========================================
-    // DOM Elements
-    // ==========================================
-
-    let widthInput = null;
-    let heightInput = null;
-    let dpiInput = null;
-    let presetContainer = null;
-    let aspectPreview = null;
-    let aspectRatio = null;
-    let qualityWarning = null;
-    let warningTitle = null;
-    let warningMessage = null;
-    let qualityLabel = null;
-    let qualityBar = null;
-    let inchesWidth = null;
-    let inchesHeight = null;
-    let cmWidth = null;
-    let cmHeight = null;
-    let mmWidth = null;
-    let mmHeight = null;
-    let themeToggle = null;
-    let mobileMenuBtn = null;
-    let mobileMenu = null;
-    let faqContainer = null;
-
-    // Upload Elements
-    let uploadZone = null;
-    let fileInput = null;
-    let uploadIcon = null;
-    let uploadText = null;
-    let uploadLoading = null;
-    let uploadError = null;
-    let imagePreviewSection = null;
-    let imagePreview = null;
-    let imageFileName = null;
-    let imageFileSize = null;
-    let imageDimensions = null;
-    let imageMegapixels = null;
-    let maxPrintSize = null;
-    let qualityBadge = null;
-    let qualityEmoji = null;
-    let qualityText = null;
-    let qualityDpi = null;
-    let removeImageBtn = null;
-    let errorMessage = null;
-
-    // ==========================================
-    // State
-    // ==========================================
-
-    let currentPreset = null;
-    let updateTimeout = null;
-    let uploadedImageData = null;
-
-    // ==========================================
-    // Utility Functions
-    // ==========================================
-
-    function gcd(a, b) {
-      a = Math.abs(Math.floor(a));
-      b = Math.abs(Math.floor(b));
-      while (b) {
-        const t = b;
-        b = a % b;
-        a = t;
-      }
-      return a || 1;
-    }
-
-    function calculateAspectRatio(w, h) {
-      const divisor = gcd(w, h);
-      const ratioW = Math.round(w / divisor);
-      const ratioH = Math.round(h / divisor);
-      if (ratioW === 8 && ratioH === 5) return '16:10';
-      if (ratioW === 5 && ratioH === 8) return '10:16';
-      return `${ratioW}:${ratioH}`;
-    }
-
-    function pixelsToInches(pixels, dpi) {
-      const safeDpi = Math.max(1, dpi);
-      return pixels / safeDpi;
-    }
-
-    function inchesToCm(inches) {
-      return inches * 2.54;
-    }
-
-    function inchesToMm(inches) {
-      return inches * 25.4;
-    }
-
-    function formatNumber(num, decimals = 2) {
-      return num.toFixed(decimals);
-    }
-
-    function formatFileSize(bytes) {
-      if (bytes === 0) return '0 Bytes';
-      const k = 1024;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
-
-    function calculateMegapixels(width, height) {
-      const mp = (width * height) / 1000000;
-      return mp.toFixed(1);
-    }
-
-    // ==========================================
-    // Image Upload Functions
-    // ==========================================
-
-    function initImageUpload() {
-      if (!uploadZone || !fileInput) return;
-
-      // Click to upload
-      uploadZone.addEventListener('click', () => {
-        fileInput.click();
-      });
-
-      // File input change
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) {
-          handleFile(e.target.files[0]);
-        }
-      });
-
-      // Drag and drop
-      uploadZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadZone.classList.add('drag-over');
-      });
-
-      uploadZone.addEventListener('dragleave', (e) => {
-        e.preventDefault();
-        uploadZone.classList.remove('drag-over');
-      });
-
-      uploadZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadZone.classList.remove('drag-over');
-
-        if (e.dataTransfer.files.length > 0) {
-          handleFile(e.dataTransfer.files[0]);
-        }
-      });
-
-      // Remove image button
-      if (removeImageBtn) {
-        removeImageBtn.addEventListener('click', removeImage);
-      }
-
-      // Prevent default drag behavior on document
-      document.addEventListener('dragover', (e) => e.preventDefault());
-      document.addEventListener('drop', (e) => e.preventDefault());
-    }
-
-    function handleFile(file) {
-      // Validate file type
-      const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
-      if (!validTypes.includes(file.type)) {
-        showError('Please upload a valid image file (JPEG, PNG, or WebP)');
-        return;
-      }
-
-      // Validate file size (20MB max)
-      if (file.size > 20 * 1024 * 1024) {
-        showError('File size exceeds 20MB limit. Please upload a smaller image.');
-        return;
-      }
-
-      // Show loading state
-      showLoading();
-
-      // Read file
-      const reader = new FileReader();
-
-      reader.onload = function(e) {
-        // Create image to get dimensions
-        const img = new Image();
-
-        img.onload = function() {
-          const width = this.naturalWidth;
-          const height = this.naturalHeight;
-
-          if (width === 0 || height === 0) {
-            showError('Could not read image dimensions. The file may be corrupted.');
-            return;
-          }
-
-          // Store image data
-          uploadedImageData = {
-            file: file,
-            dataUrl: e.target.result,
-            width: width,
-            height: height,
-            size: file.size
-          };
-
-          // Update UI
-          displayImagePreview(uploadedImageData);
-          autoFillCalculator(width, height);
-          analyzeImageQuality(width, height);
-
-          // Show success
-          hideUploadState();
-          showPreviewSection();
-
-        };
-
-        img.onerror = function() {
-          showError('Failed to load image. The file may be corrupted or unsupported.');
-        };
-
-        img.src = e.target.result;
-      };
-
-      reader.onerror = function() {
-        showError('Failed to read file. Please try again.');
-      };
-
-      reader.readAsDataURL(file);
-    }
-
-    function displayImagePreview(data) {
-      if (imagePreview) {
-        imagePreview.src = data.dataUrl;
-      }
-
-      if (imageFileName) {
-        imageFileName.textContent = data.file.name;
-      }
-
-      if (imageFileSize) {
-        imageFileSize.textContent = formatFileSize(data.size);
-      }
-
-      if (imageDimensions) {
-        imageDimensions.textContent = `${data.width} × ${data.height} px`;
-      }
-
-      if (imageMegapixels) {
-        imageMegapixels.textContent = `${calculateMegapixels(data.width, data.height)} MP`;
-      }
-
-      // Calculate max print size at 300 DPI
-      if (maxPrintSize) {
-        const maxWidth = pixelsToInches(data.width, 300);
-        const maxHeight = pixelsToInches(data.height, 300);
-        maxPrintSize.textContent = `${formatNumber(maxWidth)} × ${formatNumber(maxHeight)} in`;
-      }
-    }
-
-    function analyzeImageQuality(width, height) {
-      const minDimension = Math.min(width, height);
-      const megapixels = (width * height) / 1000000;
-
-      let quality, emoji, text, dpi, bgColor, textColor;
-
-      if (minDimension >= 3000 || megapixels >= 12) {
-        quality = 'excellent';
-        emoji = '✅';
-        text = 'Excellent';
-        dpi = '300+ DPI';
-        bgColor = 'var(--success-light)';
-        textColor = 'var(--success)';
-      } else if (minDimension >= 2000 || megapixels >= 5) {
-        quality = 'good';
-        emoji = '👍';
-        text = 'Good';
-        dpi = '200-300 DPI';
-        bgColor = 'rgba(245, 158, 11, 0.1)';
-        textColor = 'var(--warning)';
-      } else if (minDimension >= 1000 || megapixels >= 2) {
-        quality = 'acceptable';
-        emoji = '⚠️';
-        text = 'Acceptable';
-        dpi = '150-200 DPI';
-        bgColor = 'var(--warning-light)';
-        textColor = 'var(--warning)';
-      } else {
-        quality = 'low';
-        emoji = '❌';
-        text = 'Low Quality';
-        dpi = '< 150 DPI';
-        bgColor = 'var(--danger-light)';
-        textColor = 'var(--danger)';
-      }
-
-      if (qualityEmoji) qualityEmoji.textContent = emoji;
-      if (qualityText) qualityText.textContent = text;
-      if (qualityDpi) qualityDpi.textContent = dpi;
-      if (qualityBadge) {
-        qualityBadge.style.background = bgColor;
-        qualityBadge.style.borderColor = textColor;
-      }
-    }
-
-    function autoFillCalculator(width, height) {
-      if (widthInput) {
-        widthInput.value = width;
-        animateInputChange(widthInput, width);
-      }
-
-      if (heightInput) {
-        heightInput.value = height;
-        animateInputChange(heightInput, height);
-      }
-
-      // Update results after a small delay
-      setTimeout(updateResults, 100);
-    }
-
-    function removeImage() {
-      uploadedImageData = null;
-
-      if (fileInput) {
-        fileInput.value = '';
-      }
-
-      hidePreviewSection();
-      resetUploadZone();
-    }
-
-    function showLoading() {
-      if (uploadIcon) uploadIcon.classList.add('hidden');
-      if (uploadText) uploadText.classList.add('hidden');
-      if (uploadLoading) uploadLoading.classList.remove('hidden');
-      if (uploadError) uploadError.classList.add('hidden');
-    }
-
-    function hideUploadState() {
-      if (uploadLoading) uploadLoading.classList.add('hidden');
-      if (uploadError) uploadError.classList.add('hidden');
-    }
-
-    function resetUploadZone() {
-      if (uploadIcon) uploadIcon.classList.remove('hidden');
-      if (uploadText) uploadText.classList.remove('hidden');
-      if (uploadLoading) uploadLoading.classList.add('hidden');
-      if (uploadError) uploadError.classList.add('hidden');
-    }
-
-    function showPreviewSection() {
-      if (imagePreviewSection) {
-        imagePreviewSection.classList.remove('hidden');
-        imagePreviewSection.classList.add('animate-fade-in');
-      }
-    }
-
-    function hidePreviewSection() {
-      if (imagePreviewSection) {
-        imagePreviewSection.classList.add('hidden');
-      }
-    }
-
-    function showError(message) {
-      if (uploadZone) {
-        uploadZone.classList.add('error');
-        setTimeout(() => uploadZone.classList.remove('error'), 500);
-      }
-
-      if (errorMessage) {
-        errorMessage.textContent = message;
-      }
-
-      if (uploadError) {
-        uploadError.classList.remove('hidden');
-      }
-
-      if (uploadLoading) {
-        uploadLoading.classList.add('hidden');
-      }
-
-      if (uploadIcon) uploadIcon.classList.remove('hidden');
-      if (uploadText) uploadText.classList.remove('hidden');
-    }
-
-    // ==========================================
-    // Theme Management
-    // ==========================================
-
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-
-      updateThemeIcon();
-    }
-
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-
-      updateThemeIcon();
-    }
-
-    function updateThemeIcon() {
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
-      const theme = document.documentElement.getAttribute('data-theme');
-
-      if (sunIcon && moonIcon) {
-        if (theme === 'dark') {
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        } else {
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        }
-      }
-    }
-
-    // ==========================================
-    // Core Calculator
-    // ==========================================
-
-    function updateResults() {
-      if (!widthInput || !heightInput || !dpiInput) return;
-
-      const width = Math.max(1, parseInt(widthInput.value) || 1);
-      const height = Math.max(1, parseInt(heightInput.value) || 1);
-      const dpi = Math.max(1, parseInt(dpiInput.value) || 72);
-
-      const widthInches = pixelsToInches(width, dpi);
-      const heightInches = pixelsToInches(height, dpi);
-      const widthCm = inchesToCm(widthInches);
-      const heightCm = inchesToCm(heightInches);
-      const widthMm = inchesToMm(widthInches);
-      const heightMm = inchesToMm(heightInches);
-
-      animateValue(inchesWidth, formatNumber(widthInches));
-      animateValue(inchesHeight, formatNumber(heightInches));
-      animateValue(cmWidth, formatNumber(widthCm));
-      animateValue(cmHeight, formatNumber(heightCm));
-      animateValue(mmWidth, formatNumber(widthMm, 1));
-      animateValue(mmHeight, formatNumber(heightMm, 1));
-
-      updateAspectPreview(width, height);
-      updateQualityIndicator(width, height, dpi);
-    }
-
-    function animateValue(element, newValue) {
-      if (!element) return;
-      element.classList.add('updating');
-      setTimeout(() => {
-        element.textContent = newValue;
-        element.classList.remove('updating');
-      }, 150);
-    }
-
-    function updateAspectPreview(width, height) {
-      if (!aspectPreview || !aspectRatio) return;
-
-      const maxWidth = 100;
-      const maxHeight = 80;
-      let displayWidth, displayHeight;
-
-      if (width > height) {
-        displayWidth = maxWidth;
-        displayHeight = Math.max(20, (height / width) * maxWidth);
-      } else {
-        displayHeight = maxHeight;
-        displayWidth = Math.max(20, (width / height) * maxHeight);
-      }
-
-      aspectPreview.style.width = `${displayWidth}px`;
-      aspectPreview.style.height = `${displayHeight}px`;
-      aspectRatio.textContent = calculateAspectRatio(width, height);
-    }
-
-    function updateQualityIndicator(width, height, dpi) {
-      if (!qualityLabel || !qualityBar || !qualityWarning) return;
-
-      const minDimension = Math.min(width, height);
-      let quality, label, color, widthPercent;
-      const warnings = [];
-
-      if (dpi >= 300 && minDimension >= 1000) {
-        quality = 'excellent';
-        label = 'Excellent';
-        color = 'var(--success)';
-        widthPercent = 100;
-      } else if (dpi >= 200 && minDimension >= 800) {
-        quality = 'good';
-        label = 'Good';
-        color = 'var(--success)';
-        widthPercent = 75;
-      } else if (dpi >= 150 && minDimension >= 500) {
-        quality = 'acceptable';
-        label = 'Acceptable';
-        color = 'var(--warning)';
-        widthPercent = 50;
-        if (dpi < 300) {
-          warnings.push({
-            title: 'DPI Below Print Standard',
-            message: `Current DPI (${dpi}) is below the recommended 300 DPI for high-quality print.`
-          });
-        }
-      } else {
-        quality = 'low';
-        label = 'Low Quality';
-        color = 'var(--danger)';
-        widthPercent = 25;
-        if (minDimension < 500) {
-          warnings.push({
-            title: 'Resolution Too Low',
-            message: 'Image dimensions are too small for quality print. Minimum recommended: 1000px.'
-          });
-        }
-        if (dpi < 150) {
-          warnings.push({
-            title: 'Insufficient DPI',
-            message: `DPI of ${dpi} will result in pixelated prints. Use at least 150 DPI.`
-          });
-        }
-      }
-
-      qualityLabel.textContent = label;
-      qualityLabel.style.color = color;
-      qualityBar.style.width = `${widthPercent}%`;
-      qualityBar.style.backgroundColor = color;
-
-      if (warnings.length > 0 && warningTitle && warningMessage) {
-        warningTitle.textContent = warnings[0].title;
-        warningMessage.textContent = warnings[0].message;
-        qualityWarning.classList.remove('hidden');
-      } else {
-        qualityWarning.classList.add('hidden');
-      }
-    }
-
-    // ==========================================
-    // Presets
-    // ==========================================
-
-    function renderPresets() {
-      if (!presetContainer) return;
-
-      presetContainer.innerHTML = PRESETS.map(preset => `
-        <button
-          class="preset-chip px-3 py-1.5 rounded-lg text-sm font-medium"
-          data-preset-id="${preset.id}"
-          aria-label="Select ${preset.name} preset"
-        >
-          ${preset.name}
-        </button>
-      `).join('');
-
-      presetContainer.querySelectorAll('.preset-chip').forEach(chip => {
-        chip.addEventListener('click', () => applyPreset(chip.dataset.presetId));
-      });
-    }
-
-    function applyPreset(presetId) {
-      const preset = PRESETS.find(p => p.id === presetId);
-      if (!preset) return;
-
-      presetContainer.querySelectorAll('.preset-chip').forEach(chip => {
-        chip.classList.toggle('active', chip.dataset.presetId === presetId);
-      });
-
-      animateInputChange(widthInput, preset.width);
-      animateInputChange(heightInput, preset.height);
-      animateInputChange(dpiInput, preset.dpi);
-
-      currentPreset = presetId;
-      setTimeout(updateResults, 50);
-    }
-
-    function animateInputChange(input, newValue) {
-      if (!input) return;
-      input.style.backgroundColor = 'var(--accent-light)';
-      input.value = newValue;
-      setTimeout(() => { input.style.backgroundColor = ''; }, 200);
-    }
-
-    // ==========================================
-    // FAQ
-    // ==========================================
-
-    function renderFAQs() {
-      if (!faqContainer) return;
-
-      faqContainer.innerHTML = FAQS.map((faq, index) => `
-        <div class="faq-item rounded-xl overflow-hidden" data-faq-index="${index}">
-          <button
-            class="w-full p-5 flex items-center justify-between text-left"
-            aria-expanded="false"
-            aria-controls="faq-answer-${index}"
-          >
-            <span class="font-medium text-primary pr-4">${faq.question}</span>
-            <svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </button>
-          <div class="faq-answer" id="faq-answer-${index}">
-            <p class="px-5 pb-5 text-sm text-secondary">${faq.answer}</p>
-          </div>
-        </div>
-      `).join('');
-
-      faqContainer.querySelectorAll('.faq-item button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = btn.closest('.faq-item');
-          const isOpen = item.classList.contains('open');
-
-          // Close all others
-          faqContainer.querySelectorAll('.faq-item').forEach(i => {
-            i.classList.remove('open');
-            i.querySelector('button').setAttribute('aria-expanded', 'false');
-          });
-
-          // Toggle current
-          if (!isOpen) {
-            item.classList.add('open');
-            btn.setAttribute('aria-expanded', 'true');
-          }
-        });
-      });
-    }
-
-    // ==========================================
-    // Copy Functionality
-    // ==========================================
-
-    function setupCopyButtons() {
-      document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          const copyType = btn.dataset.copy;
-          const text = getCopyText(copyType);
-
-          try {
-            await navigator.clipboard.writeText(text);
-            btn.classList.add('copied');
-            setTimeout(() => btn.classList.remove('copied'), 1500);
-          } catch (err) {
-            console.error('Failed to copy:', err);
-          }
-        });
-      });
-    }
-
-    function getCopyText(type) {
-      const w = inchesWidth?.textContent || '0';
-      const h = inchesHeight?.textContent || '0';
-      const wCm = cmWidth?.textContent || '0';
-      const hCm = cmHeight?.textContent || '0';
-      const wMm = mmWidth?.textContent || '0';
-      const hMm = mmHeight?.textContent || '0';
-
-      switch (type) {
-        case 'inches': return `${w}" x ${h}"`;
-        case 'cm': return `${wCm} x ${hCm} cm`;
-        case 'mm': return `${wMm} x ${hMm} mm`;
-        default: return `${w}" x ${h}"`;
-      }
-    }
-
-    // ==========================================
-    // Event Listeners
-    // ==========================================
-
-    function setupEventListeners() {
-      const handleInput = () => {
-        clearTimeout(updateTimeout);
-        updateTimeout = setTimeout(updateResults, 100);
-
-        presetContainer?.querySelectorAll('.preset-chip').forEach(chip => {
-          chip.classList.remove('active');
-        });
-        currentPreset = null;
-      };
-
-      if (widthInput) widthInput.addEventListener('input', handleInput);
-      if (heightInput) heightInput.addEventListener('input', handleInput);
-      if (dpiInput) dpiInput.addEventListener('input', handleInput);
-
-      if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-      }
-
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-          });
-        });
-      }
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-
-      // Intersection Observer for scroll animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.card').forEach(card => {
-        card.style.opacity = '0';
-        observer.observe(card);
-      });
-    }
-
-    // ==========================================
-    // Initialization
-    // ==========================================
-
-    function initializeElements() {
-      widthInput = document.getElementById('widthInput');
-      heightInput = document.getElementById('heightInput');
-      dpiInput = document.getElementById('dpiInput');
-      presetContainer = document.getElementById('presetContainer');
-      aspectPreview = document.getElementById('aspectPreview');
-      aspectRatio = document.getElementById('aspectRatio');
-      qualityWarning = document.getElementById('qualityWarning');
-      warningTitle = document.getElementById('warningTitle');
-      warningMessage = document.getElementById('warningMessage');
-      qualityLabel = document.getElementById('qualityLabel');
-      qualityBar = document.getElementById('qualityBar');
-      inchesWidth = document.getElementById('inchesWidth');
-      inchesHeight = document.getElementById('inchesHeight');
-      cmWidth = document.getElementById('cmWidth');
-      cmHeight = document.getElementById('cmHeight');
-      mmWidth = document.getElementById('mmWidth');
-      mmHeight = document.getElementById('mmHeight');
-      themeToggle = document.getElementById('themeToggle');
-      mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      mobileMenu = document.getElementById('mobileMenu');
-      faqContainer = document.getElementById('faqContainer');
-
-      // Upload elements
-      uploadZone = document.getElementById('uploadZone');
-      fileInput = document.getElementById('fileInput');
-      uploadIcon = document.getElementById('uploadIcon');
-      uploadText = document.getElementById('uploadText');
-      uploadLoading = document.getElementById('uploadLoading');
-      uploadError = document.getElementById('uploadError');
-      errorMessage = document.getElementById('errorMessage');
-      imagePreviewSection = document.getElementById('imagePreviewSection');
-      imagePreview = document.getElementById('imagePreview');
-      imageFileName = document.getElementById('imageFileName');
-      imageFileSize = document.getElementById('imageFileSize');
-      imageDimensions = document.getElementById('imageDimensions');
-      imageMegapixels = document.getElementById('imageMegapixels');
-      maxPrintSize = document.getElementById('maxPrintSize');
-      qualityBadge = document.getElementById('qualityBadge');
-      qualityEmoji = document.getElementById('qualityEmoji');
-      qualityText = document.getElementById('qualityText');
-      qualityDpi = document.getElementById('qualityDpi');
-      removeImageBtn = document.getElementById('removeImageBtn');
-    }
-
-    function init() {
-      initializeElements();
-      initTheme();
-      renderPresets();
-      renderFAQs();
-      setupEventListeners();
-      setupCopyButtons();
-      initImageUpload();
-      updateResults();
-    }
-
-    // Start
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-
-    // Set current year dynamically
-    document.getElementById('footerYear').textContent = new Date().getFullYear();
-  </script>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/ppqs.js"></script>
+  <script src="assets/js/presets.js"></script>
+  <script src="assets/js/ui.js"></script>
 </body>
 </html>
