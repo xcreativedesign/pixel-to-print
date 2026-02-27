@@ -113,29 +113,38 @@
       </section>
 
       <section id="metadata-myth" aria-labelledby="h-metadata">
-        <h2 id="h-metadata">The metadata myth — why changing DPI in Photoshop does nothing</h2>
-        <p>This is the most common print mistake in the industry. A client sends a photo. You open it in Photoshop, see "72 DPI," change it to "300 DPI" with Resample unchecked, and send it to print — expecting the problem to be fixed. It is not.</p>
-        <p>The DPI/PPI value in a digital image file is just metadata — a label telling the printer how to interpret the pixel count. If you have a 1000×1000 pixel image labelled as 72 PPI, it prints at 13.9×13.9 inches. If you relabel it as 300 PPI without resampling, the same 1000×1000 pixels now print at 3.3×3.3 inches. The physical quality at each size is identical — you changed the size, not the resolution.</p>
-        <div class="guide-example-box">
-          <div class="example-box-title">Live example — same pixels, different labels</div>
-          <div class="example-grid">
-            <div class="example-cell">
-              <div class="example-label">File A</div>
-              <div class="example-value">1000 × 1000 px</div>
-              <div class="example-note">Labelled 72 PPI</div>
-              <div class="example-result">Prints at 13.9 × 13.9 in</div>
-            </div>
-            <div class="example-cell">
-              <div class="example-label">File B</div>
-              <div class="example-value">1000 × 1000 px</div>
-              <div class="example-note">Relabelled 300 PPI, no resample</div>
-              <div class="example-result">Prints at 3.3 × 3.3 in</div>
-            </div>
-          </div>
-          <p class="example-caption">Same pixel count. Identical image quality at their respective sizes. Changing the DPI number only changed the output dimensions — nothing else.</p>
-        </div>
-        <p>The only way to genuinely improve print resolution is to add real pixels — either by starting with a higher-resolution source, or by using <a href="#ai-upscaling">AI upscaling tools</a> that reconstruct detail. Basic Photoshop interpolation adds pixels but produces soft results. AI tools like Topaz Photo AI and Adobe Super Resolution produce significantly better results because they use trained models to predict what missing detail should look like.</p>
-      </section>
+  <h2 id="h-metadata">The metadata myth — why changing DPI in Photoshop does nothing</h2>
+  <p>This is the most common print mistake in the industry. A client sends a photo. You open it in Photoshop, see "72 DPI," change it to "300 DPI" with Resample unchecked, and send it to print — expecting the problem to be fixed. It is not.</p>
+  <p>The DPI/PPI value in a digital image file is just metadata — a label telling the printer how to interpret the pixel count. If you have a 1000×1000 pixel image labelled as 72 PPI, it prints at 13.9×13.9 inches. If you relabel it as 300 PPI without resampling, the same 1000×1000 pixels now print at 3.3×3.3 inches. The physical quality at each size is identical — you changed the size, not the resolution.</p>
+  
+  <div class="guide-example-box">
+    <div class="example-box-title">Live example — same pixels, different labels</div>
+    
+    <figure style="margin: 1.5rem 0; text-align: center;">
+      <img src="./assets/dpi-vs-ppi-print-size-comparison.jpg" 
+           alt="Side-by-side comparison of a 1000x1000 pixel image printed at 72 PPI (13.9 inches) versus 300 PPI (3.3 inches), showing identical pixel count but different physical sizes." 
+           style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #333;">
+    </figure>
+
+    <div class="example-grid">
+      <div class="example-cell">
+        <div class="example-label">File A</div>
+        <div class="example-value">1000 × 1000 px</div>
+        <div class="example-note">Labelled 72 PPI</div>
+        <div class="example-result">Prints at 13.9 × 13.9 in</div>
+      </div>
+      <div class="example-cell">
+        <div class="example-label">File B</div>
+        <div class="example-value">1000 × 1000 px</div>
+        <div class="example-note">Relabelled 300 PPI, no resample</div>
+        <div class="example-result">Prints at 3.3 × 3.3 in</div>
+      </div>
+    </div>
+    <p class="example-caption">Same pixel count. Identical image quality at their respective sizes. Changing the DPI number only changed the output dimensions — nothing else.</p>
+  </div>
+  
+  <p>The only way to genuinely improve print resolution is to add real pixels — either by starting with a higher-resolution source, or by using <a href="#ai-upscaling">AI upscaling tools</a> that reconstruct detail. Basic Photoshop interpolation adds pixels but produces soft results. AI tools like Topaz Photo AI and Adobe Super Resolution produce significantly better results because they use trained models to predict what missing detail should look like.</p>
+</section>
 
       <section id="pixel-count" aria-labelledby="h-pixel">
         <h2 id="h-pixel">What actually determines print quality</h2>
