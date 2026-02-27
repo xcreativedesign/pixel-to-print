@@ -1,1236 +1,664 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sublimation Tips: Temperature, Time & Pressure Guide | Pixel to Print</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    /* CSS Variables - Theme System */
-    :root {
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #F8FAFC;
-      --bg-tertiary: #F1F5F9;
-      --bg-panel: #FFFFFF;
-      --bg-input: #F8FAFC;
-      --text-primary: #0F172A;
-      --text-secondary: #475569;
-      --text-muted: #94A3B8;
-      --border-light: #E2E8F0;
-      --border-default: #CBD5E1;
-      --accent: #2563EB;
-      --accent-hover: #1D4ED8;
-      --accent-light: rgba(37, 99, 235, 0.1);
-      --success: #059669;
-      --success-light: rgba(5, 150, 105, 0.1);
-      --warning: #D97706;
-      --warning-light: rgba(217, 119, 6, 0.1);
-      --danger: #DC2626;
-      --danger-light: rgba(220, 38, 38, 0.1);
-      --info: #0891B2;
-      --info-light: rgba(8, 145, 178, 0.1);
-    }
-    
-    [data-theme="dark"] {
-      --bg-primary: #0F172A;
-      --bg-secondary: #1E293B;
-      --bg-tertiary: #334155;
-      --bg-panel: #1E293B;
-      --bg-input: #0F172A;
-      --text-primary: #F1F5F9;
-      --text-secondary: #CBD5E1;
-      --text-muted: #64748B;
-      --border-light: #334155;
-      --border-default: #475569;
-      --accent: #3B82F6;
-      --accent-hover: #60A5FA;
-      --accent-light: rgba(59, 130, 246, 0.15);
-      --success: #10B981;
-      --success-light: rgba(16, 185, 129, 0.15);
-      --warning: #F59E0B;
-      --warning-light: rgba(245, 158, 11, 0.15);
-      --danger: #EF4444;
-      --danger-light: rgba(239, 68, 68, 0.15);
-      --info: #22D3EE;
-      --info-light: rgba(34, 211, 238, 0.15);
-    }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    .bg-primary { background: var(--bg-primary); }
-    .bg-secondary { background: var(--bg-secondary); }
-    .bg-tertiary { background: var(--bg-tertiary); }
-    .bg-panel { background: var(--bg-panel); }
-    .text-primary { color: var(--text-primary); }
-    .text-secondary { color: var(--text-secondary); }
-    .text-muted { color: var(--text-muted); }
-    .border-light { border-color: var(--border-light); }
-    .border-default { border-color: var(--border-default); }
-    .bg-accent { background: var(--accent); }
-    .bg-accent-light { background: var(--accent-light); }
-    .text-accent { color: var(--accent); }
-    .bg-success { background: var(--success); }
-    .bg-success-light { background: var(--success-light); }
-    .text-success { color: var(--success); }
-    .bg-warning { background: var(--warning); }
-    .bg-warning-light { background: var(--warning-light); }
-    .text-warning { color: var(--warning); }
-    .bg-danger { background: var(--danger); }
-    .bg-danger-light { background: var(--danger-light); }
-    .text-danger { color: var(--danger); }
-    .bg-info { background: var(--info); }
-    .bg-info-light { background: var(--info-light); }
-    .text-info { color: var(--info); }
-    
-    .card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-light);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .theme-toggle {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-light);
-      transition: all 0.2s ease;
-    }
-    .theme-toggle:hover { background: var(--border-light); }
-    
-    /* Table styles */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    .data-table th {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      font-weight: 600;
-      text-align: left;
-      padding: 14px 16px;
-      border-bottom: 2px solid var(--border-default);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .data-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border-light);
-      color: var(--text-secondary);
-      font-size: 14px;
-    }
-    
-    .data-table tr:hover td {
-      background: var(--bg-secondary);
-    }
-    
-    /* Sidebar navigation */
-    .sidebar-link {
-      display: block;
-      padding: 8px 12px;
-      color: var(--text-secondary);
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      font-size: 14px;
-    }
-    
-    .sidebar-link:hover {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-    }
-    
-    .sidebar-link.active {
-      background: var(--accent-light);
-      color: var(--accent);
-      font-weight: 500;
-    }
-    
-    /* Temp badge */
-    .temp-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-    ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-    
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    .hero-pattern {
-      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
-      background-size: 40px 40px;
-    }
-  </style>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Expert sublimation printing guide with temperature, time, and pressure settings for mugs, t-shirts, tumblers, and more. Troubleshoot common issues like ghosting and fading.">
-  <meta name="keywords" content="sublimation tips, sublimation temperature chart, sublimation time and pressure, sublimation mistakes, sublimation blanks, heat press settings, sublimation DPI">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sublimation DPI guide by material — verified standards for mugs, t-shirts, metal, ceramic, phone cases, tote bags, and more. Includes heat press settings, RGB vs CMYK color guidance, common mistakes, and troubleshooting for 2026." />
+  <meta name="author" content="XCreativeDesign" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1A6EFF" />
+  <meta property="og:title" content="Sublimation DPI by Material — Complete Guide 2026" />
+  <meta property="og:description" content="Exact DPI, heat press settings, color mode, and template requirements for every sublimation substrate. Mugs, shirts, metal, ceramic, phone cases, and more — verified for 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://xcreativedesign.github.io/pixel-to-print/sublimation-tips.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@xcreativedesig" />
+  <title>Sublimation DPI by Material — Complete Guide 2026 | Pixel to Print</title>
   <link rel="canonical" href="https://xcreativedesign.github.io/pixel-to-print/sublimation-tips.html" />
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Sublimation Tips: Temperature, Time & Pressure Guide">
-  <meta property="og:description" content="Complete sublimation printing guide with settings for all blanks. Expert tips from professional printers.">
-  <meta property="og:type" content="article">
-  
-  <!-- JSON-LD Schema for Article -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Sublimation Tips: Temperature, Time & Pressure Guide",
-    "description": "Expert sublimation printing guide with settings for mugs, t-shirts, tumblers, and more.",
-    "author": {
-      "@type": "Organization",
-      "name": "Pixel to Print"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Pixel to Print"
-    },
-    "datePublished": "2024-01-15",
-    "dateModified": "2026-02-10",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://xcreativedesign.github.io/pixel-to-print/sublimation-tips.html"
-    }
-  }
-  </script>
-  
-  <!-- FAQ Schema for Featured Snippets -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What temperature should I use for sublimation?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Standard sublimation temperature is 385-400°F (195-205°C) for most blanks. Mugs typically press at 400°F for 4-5 minutes, t-shirts at 385-400°F for 45-60 seconds, and tumblers at 365-375°F for 6-7 minutes in a convection oven. Always check blank manufacturer recommendations."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is my sublimation print faded or dull?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Faded sublimation prints are usually caused by: insufficient polyester content (need 65%+), low temperature, not enough pressure, or removing the paper while still hot. Other causes include expired sublimation ink, wrong paper type, or pressing on non-polyester-coated blanks."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What DPI should I use for sublimation printing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Use 300 DPI for all sublimation printing. For an 11oz mug wrap, design at 2200×900 pixels minimum. For t-shirts, aim for at least 2400×2800 pixels. Lower DPI results in pixelated, blurry transfers that become obvious on close inspection."
-        }
-      }
-    ]
-  }
-  </script>
-  
-  <!-- HowTo Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Sublimate a Mug",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "name": "Prepare the Design",
-        "text": "Create design at 300 DPI, sized 2200×900 pixels for standard 11oz mug wrap."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Print on Sublimation Paper",
-        "text": "Print mirrored design on sublimation paper using sublimation ink."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Prepare the Mug",
-        "text": "Clean mug surface with lint roller and alcohol wipe to remove dust and oils."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Apply Heat Tape",
-        "text": "Secure paper to mug with heat-resistant tape on all edges."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Press the Mug",
-        "text": "Press at 400°F (204°C) for 4-5 minutes with medium pressure."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Cool and Remove",
-        "text": "Let cool slightly, then remove paper while still warm. Do not peel cold."
-      }
-    ]
-  }
-  </script>
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/guide.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sublimation DPI by Material — Complete Guide 2026","description":"Verified DPI standards, heat press settings, and color management guidance for every sublimation substrate including mugs, t-shirts, metal panels, ceramics, and phone cases.","author":{"@type":"Organization","name":"XCreativeDesign","url":"https://xcreativedesign.com"},"publisher":{"@type":"Organization","name":"Pixel to Print","url":"https://xcreativedesign.github.io/pixel-to-print/"},"dateModified":"2026-01-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://xcreativedesign.github.io/pixel-to-print/sublimation-tips.html"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pixel to Print","item":"https://xcreativedesign.github.io/pixel-to-print/"},{"@type":"ListItem","position":2,"name":"Sublimation Tips","item":"https://xcreativedesign.github.io/pixel-to-print/sublimation-tips.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What DPI do I need for sublimation printing?","acceptedAnswer":{"@type":"Answer","text":"It depends on the substrate. For polyester fabric (t-shirts, tote bags): 150 DPI is the industry standard. For ceramic mugs and tiles: 200 DPI. For metal/aluminum panels and phone cases: 300 DPI. Higher DPI on fabric provides no visible benefit because the weave absorbs ink spread. Harder, smoother surfaces benefit from higher DPI."}},{"@type":"Question","name":"Should I use RGB or CMYK for sublimation?","acceptedAnswer":{"@type":"Answer","text":"Design in RGB and print in RGB. Sublimation printers use CMYK inks but handle the RGB-to-CMYK conversion internally. Most sublimation printers (Epson EcoTank, Sawgrass) are set up to receive RGB data. Converting your file to CMYK before printing can reduce color vibrancy because CMYK has a smaller color gamut than RGB. Use an ICC profile specific to your printer, ink, and paper combination for the most accurate color output."}},{"@type":"Question","name":"Why does my sublimation print look faded or dull?","acceptedAnswer":{"@type":"Answer","text":"Sublimation ink always looks dull and washed out before pressing — this is normal. If the pressed result is faded, the most common causes are: insufficient heat press temperature, too short pressing time, wrong side of sublimation paper loaded, substrate not being 100% polyester or polyester-coated, or printing on a dark-colored substrate (sublimation dyes are semi-transparent and won't show on dark backgrounds)."}},{"@type":"Question","name":"What causes ghosting in sublimation printing?","acceptedAnswer":{"@type":"Answer","text":"Ghosting — a faint shadow or double image — occurs when the transfer paper shifts during or immediately after pressing while the substrate is still hot enough to accept ink. Fix: secure transfer paper with heat-resistant tape on all four edges before pressing. Open the heat press slowly. Remove paper immediately after pressing, in one smooth motion. For mugs and tumblers, use shrink sleeves or wrap them tightly."}},{"@type":"Question","name":"Can I sublimate on cotton?","acceptedAnswer":{"@type":"Answer","text":"Standard sublimation does not work on 100% cotton because the dye needs polyester fibers to bond with. Sublimation works best on 100% polyester or polyester-coated hard substrates. For cotton-rich blends, results are significantly less vibrant and less durable. Poly-cotton blends of at least 65% polyester will show usable results but noticeably less vivid than 100% polyester."}}]}</script>
 </head>
 <body>
-  
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-primary border-b border-light">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center transition-transform group-hover:scale-105">
-            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <span class="font-semibold text-lg text-primary">Pixel to Print</span>
-        </a>
-        
-        <div class="flex items-center gap-3">
-          <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-lg flex items-center justify-center" aria-label="Toggle dark mode">
-            <svg class="w-5 h-5 text-secondary sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <line x1="12" y1="1" x2="12" y2="3"/>
-              <line x1="12" y1="21" x2="12" y2="23"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-              <line x1="1" y1="12" x2="3" y2="12"/>
-              <line x1="21" y1="12" x2="23" y2="12"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <svg class="w-5 h-5 text-secondary moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </button>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Pixel to Print — Home">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/></svg>
         </div>
-      </div>
-    </nav>
-  </header>
-  
-  <!-- Main Content -->
-  <main class="pt-24 pb-16">
-    
-    <!-- Hero Section -->
-    <section class="bg-secondary hero-pattern py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-info-light text-info text-sm font-medium mb-4">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-          </svg>
-          Professional Guide
+        <div class="logo-text">
+          <span class="logo-name">Pixel to Print</span>
+          <span class="logo-sub">Print Quality Calculator</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Sublimation Tips & Settings</h1>
-        <p class="text-lg text-secondary max-w-2xl mx-auto">Complete guide to sublimation printing with temperature, time, and pressure settings for all blank types. Expert troubleshooting for common issues.</p>
-        
-        <!-- E-E-A-T Trust Signals -->
-        <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-muted mt-8 pt-6 border-t border-light">
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            <span>Updated: <strong class="text-primary">Feb 2026</strong></span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            <span>Tested by <strong class="text-primary">Pro Printers</strong></span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            <span>Reading Time: <strong class="text-primary">12 min</strong></span>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Featured Snippet Optimized Answer -->
-    <section class="py-8">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-info-light border-l-4 border-info p-5 rounded-r-xl">
-          <h2 class="text-lg font-bold text-primary mb-2">Quick Answer: Standard Sublimation Settings</h2>
-          <p class="text-secondary text-sm mb-3">
-            For most sublimation blanks, use <strong class="text-primary">385-400°F (195-205°C)</strong> temperature with <strong class="text-primary">medium to firm pressure</strong>. Mugs press at 400°F for 4-5 minutes, t-shirts at 385-400°F for 45-60 seconds. Always print at <strong class="text-primary">300 DPI</strong> with sublimation ink on sublimation paper.
-          </p>
-          <p class="text-muted text-xs">
-            Critical: Use 65%+ polyester content for vibrant transfers. Cotton or low-poly blends will produce faded results.
-          </p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Content Section -->
-    <section class="py-8 md:py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-4 gap-8">
-          
-          <!-- Sidebar -->
-          <aside class="lg:col-span-1">
-            <div class="sticky top-24">
-              <nav class="space-y-1">
-                <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-3 px-3">On This Page</p>
-                <a href="#temperature-chart" class="sidebar-link active">Temperature & Time Chart</a>
-                <a href="#mug-sublimation" class="sidebar-link">Mug Sublimation</a>
-                <a href="#tshirt-sublimation" class="sidebar-link">T-Shirt Sublimation</a>
-                <a href="#tumbler-sublimation" class="sidebar-link">Tumbler Sublimation</a>
-                <a href="#dpi-requirements" class="sidebar-link">DPI Requirements</a>
-                <a href="#common-mistakes" class="sidebar-link">Common Mistakes</a>
-                <a href="#troubleshooting" class="sidebar-link">Troubleshooting Guide</a>
-                <a href="#pro-tips" class="sidebar-link">Pro Tips</a>
-              </nav>
-              
-              <div class="mt-8 p-4 rounded-xl bg-tertiary border border-light">
-                <p class="text-sm font-medium text-primary mb-2">Calculate Print Size</p>
-                <a href="index.html#tool" class="text-sm text-accent hover:text-accent-hover transition-colors">Open Converter Tool</a>
-              </div>
-            </div>
-          </aside>
-          
-          <!-- Main Content -->
-          <article class="lg:col-span-3 space-y-12">
-            
-            <!-- Temperature & Time Chart -->
-            <section id="temperature-chart">
-              <h2 class="text-2xl font-bold text-primary mb-2">Sublimation Temperature & Time Chart</h2>
-              <p class="text-secondary mb-6">These settings are starting points. Always test with your specific equipment and blanks, as heat presses vary in accuracy by 10-15°F.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light mb-6">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Blank Type</th>
-                      <th>Temperature</th>
-                      <th>Time</th>
-                      <th>Pressure</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">11oz Mug</td>
-                      <td><span class="temp-badge bg-danger-light text-danger">400°F</span></td>
-                      <td><span class="font-mono text-accent">4-5 min</span></td>
-                      <td><span class="text-success">Medium-Firm</span></td>
-                      <td>Use mug press, not oven</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">15oz Mug</td>
-                      <td><span class="temp-badge bg-danger-light text-danger">400°F</span></td>
-                      <td><span class="font-mono text-accent">5-6 min</span></td>
-                      <td><span class="text-success">Medium-Firm</span></td>
-                      <td>Larger surface needs more time</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">T-Shirt (100% Poly)</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">385-400°F</span></td>
-                      <td><span class="font-mono text-accent">45-60 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Use butcher paper on top</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Polyester Fabric</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">385-400°F</span></td>
-                      <td><span class="font-mono text-accent">45-60 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Pre-press 5 sec to remove moisture</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Tumbler (Oven)</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">365-375°F</span></td>
-                      <td><span class="font-mono text-accent">6-7 min</span></td>
-                      <td><span class="text-info">Shrink Wrap</span></td>
-                      <td>Use convection oven, rotate</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Tumbler (Press)</td>
-                      <td><span class="temp-badge bg-danger-light text-danger">385-400°F</span></td>
-                      <td><span class="font-mono text-accent">50-60 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Rotate and repeat for full wrap</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Mouse Pad</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">385-400°F</span></td>
-                      <td><span class="font-mono text-accent">45-60 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Pre-press to remove moisture</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Coaster</td>
-                      <td><span class="temp-badge bg-danger-light text-danger">400°F</span></td>
-                      <td><span class="font-mono text-accent">3-4 min</span></td>
-                      <td><span class="text-success">Medium-Firm</span></td>
-                      <td>Ceramic or hardboard</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Keychain</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">385-400°F</span></td>
-                      <td><span class="font-mono text-accent">60 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Double-sided needs flip</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Phone Case</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">380-400°F</span></td>
-                      <td><span class="font-mono text-accent">60-90 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Use case-specific mold</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Puzzle</td>
-                      <td><span class="temp-badge bg-warning-light text-warning">385-400°F</span></td>
-                      <td><span class="font-mono text-accent">45-60 sec</span></td>
-                      <td><span class="text-success">Medium</span></td>
-                      <td>Protect puzzle edges</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Slate/Stone</td>
-                      <td><span class="temp-badge bg-danger-light text-danger">400°F</span></td>
-                      <td><span class="font-mono text-accent">6-8 min</span></td>
-                      <td><span class="text-warning">Light-Medium</span></td>
-                      <td>Needs poly coating</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-              <div class="p-4 rounded-lg bg-warning-light border border-warning/20">
-                <p class="text-sm text-secondary">
-                  <strong class="text-warning">Important:</strong> These are general guidelines. Your heat press may run hotter or colder than displayed. Invest in an infrared thermometer to verify actual platen temperature, and always do test presses before production runs.
-                </p>
-              </div>
-            </section>
-            
-            <!-- Mug Sublimation -->
-            <section id="mug-sublimation">
-              <h2 class="text-2xl font-bold text-primary mb-4">Mug Sublimation Guide</h2>
-              <p class="text-secondary mb-6">Mugs are one of the most popular sublimation items. Follow these steps for consistent, professional results.</p>
-              
-              <div class="grid md:grid-cols-2 gap-6 mb-6">
-                <!-- Design Specs -->
-                <div class="card p-5 rounded-xl">
-                  <h3 class="font-semibold text-primary mb-3 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="3" width="18" height="18" rx="2"/>
-                      <path d="M3 9h18M9 21V9"/>
-                    </svg>
-                    Design Specifications
-                  </h3>
-                  <ul class="space-y-2 text-sm text-secondary">
-                    <li class="flex justify-between">
-                      <span>Resolution:</span>
-                      <span class="font-mono text-accent font-medium">300 DPI</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>11oz Mug Size:</span>
-                      <span class="font-mono text-accent font-medium">2200 × 900 px</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>15oz Mug Size:</span>
-                      <span class="font-mono text-accent font-medium">2600 × 1100 px</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>Color Mode:</span>
-                      <span class="font-medium text-primary">RGB</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>Mirror Image:</span>
-                      <span class="font-medium text-primary">Yes (Flip Horizontal)</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <!-- Press Settings -->
-                <div class="card p-5 rounded-xl">
-                  <h3 class="font-semibold text-primary mb-3 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83"/>
-                    </svg>
-                    Press Settings
-                  </h3>
-                  <ul class="space-y-2 text-sm text-secondary">
-                    <li class="flex justify-between">
-                      <span>Temperature:</span>
-                      <span class="temp-badge bg-danger-light text-danger">400°F (204°C)</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>Time (11oz):</span>
-                      <span class="font-mono text-accent font-medium">4-5 min</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>Time (15oz):</span>
-                      <span class="font-mono text-accent font-medium">5-6 min</span>
-                    </li>
-                    <li class="flex justify-between">
-                      <span>Pressure:</span>
-                      <span class="font-medium text-primary">Medium-Firm</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <!-- Step by Step -->
-              <div class="card p-6 rounded-xl">
-                <h3 class="font-semibold text-primary mb-4">Step-by-Step Process</h3>
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm mb-2">1</div>
-                    <p class="text-sm text-secondary">Print design mirrored on sublimation paper</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm mb-2">2</div>
-                    <p class="text-sm text-secondary">Clean mug with lint roller and alcohol wipe</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm mb-2">3</div>
-                    <p class="text-sm text-secondary">Position design and tape with heat tape</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm mb-2">4</div>
-                    <p class="text-sm text-secondary">Preheat mug press to 400°F</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm mb-2">5</div>
-                    <p class="text-sm text-secondary">Press for 4-5 minutes with firm pressure</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-tertiary">
-                    <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm mb-2">6</div>
-                    <p class="text-sm text-secondary">Remove paper while still warm (not hot)</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-            <!-- T-Shirt Sublimation -->
-            <section id="tshirt-sublimation">
-              <h2 class="text-2xl font-bold text-primary mb-4">T-Shirt Sublimation Guide</h2>
-              <p class="text-secondary mb-6">Sublimation only works on polyester or polymer-coated surfaces. For best results, use 100% polyester shirts or high-poly blends (65%+ polyester).</p>
-              
-              <div class="grid md:grid-cols-3 gap-4 mb-6">
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="text-3xl font-bold text-success mb-1">100%</div>
-                  <p class="text-sm text-muted">Polyester</p>
-                  <p class="text-xs text-success mt-2">Vibrant colors</p>
-                </div>
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="text-3xl font-bold text-warning mb-1">65%+</div>
-                  <p class="text-sm text-muted">Polyester Blend</p>
-                  <p class="text-xs text-warning mt-2">Slightly muted</p>
-                </div>
-                <div class="card p-5 rounded-xl text-center">
-                  <div class="text-3xl font-bold text-danger mb-1">&lt;65%</div>
-                  <p class="text-sm text-muted">Polyester</p>
-                  <p class="text-xs text-danger mt-2">Faded results</p>
-                </div>
-              </div>
-              
-              <div class="card p-6 rounded-xl mb-6">
-                <h3 class="font-semibold text-primary mb-4">T-Shirt Press Settings</h3>
-                <div class="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <p class="text-sm text-muted uppercase tracking-wider mb-2">Design Size (300 DPI)</p>
-                    <ul class="space-y-2 text-sm text-secondary">
-                      <li class="flex justify-between">
-                        <span>Small Logo:</span>
-                        <span class="font-mono text-accent">2400 × 2400 px</span>
-                      </li>
-                      <li class="flex justify-between">
-                        <span>Chest Print:</span>
-                        <span class="font-mono text-accent">3600 × 3600 px</span>
-                      </li>
-                      <li class="flex justify-between">
-                        <span>Full Front:</span>
-                        <span class="font-mono text-accent">4200 × 5400 px</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p class="text-sm text-muted uppercase tracking-wider mb-2">Press Settings</p>
-                    <ul class="space-y-2 text-sm text-secondary">
-                      <li class="flex justify-between">
-                        <span>Temperature:</span>
-                        <span class="temp-badge bg-warning-light text-warning">385-400°F</span>
-                      </li>
-                      <li class="flex justify-between">
-                        <span>Time:</span>
-                        <span class="font-mono text-accent">45-60 sec</span>
-                      </li>
-                      <li class="flex justify-between">
-                        <span>Pressure:</span>
-                        <span class="font-medium text-primary">Medium</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="p-4 rounded-lg bg-info-light border border-info/20">
-                <p class="text-sm text-secondary">
-                  <strong class="text-info">Pro Tip:</strong> Always pre-press polyester shirts for 5 seconds to remove moisture and wrinkles. This prevents "gassing out" which causes white spots or blurry edges on your transfer.
-                </p>
-              </div>
-            </section>
-            
-            <!-- Tumbler Sublimation -->
-            <section id="tumbler-sublimation">
-              <h2 class="text-2xl font-bold text-primary mb-4">Tumbler Sublimation Guide</h2>
-              <p class="text-secondary mb-6">Tumblers require special handling due to their curved surface. You can use either a convection oven with shrink wrap or a tumbler press.</p>
-              
-              <div class="grid md:grid-cols-2 gap-6 mb-6">
-                <!-- Oven Method -->
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-lg bg-warning-light flex items-center justify-center">
-                      <svg class="w-5 h-5 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary">Convection Oven Method</h3>
-                      <p class="text-xs text-muted">Recommended for full wraps</p>
-                    </div>
-                  </div>
-                  <ul class="space-y-2 text-sm text-secondary">
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-warning mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Temperature: <span class="font-mono text-accent">365-375°F</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-warning mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Time: <span class="font-mono text-accent">6-7 minutes</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-warning mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Use shrink wrap sleeve
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-warning mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Rotate halfway through
-                    </li>
-                  </ul>
-                </div>
-                
-                <!-- Press Method -->
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center">
-                      <svg class="w-5 h-5 text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v4M12 18v4"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary">Tumbler Press Method</h3>
-                      <p class="text-xs text-muted">For partial designs</p>
-                    </div>
-                  </div>
-                  <ul class="space-y-2 text-sm text-secondary">
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-danger mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Temperature: <span class="font-mono text-accent">385-400°F</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-danger mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Time: <span class="font-mono text-accent">50-60 sec</span> per section
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-danger mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Rotate and repeat for full wrap
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <svg class="w-4 h-4 text-danger mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                      Watch for seam lines
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="p-4 rounded-lg bg-danger-light border border-danger/20">
-                <p class="text-sm text-secondary">
-                  <strong class="text-danger">Warning:</strong> Never use a kitchen oven for sublimation. Sublimation ink releases gases during the process that can contaminate food. Use a dedicated convection oven or tumbler press only.
-                </p>
-              </div>
-            </section>
-            
-            <!-- DPI Requirements -->
-            <section id="dpi-requirements">
-              <h2 class="text-2xl font-bold text-primary mb-4">DPI Requirements for Sublimation</h2>
-              <p class="text-secondary mb-6">Resolution is critical for sublimation. Low DPI results in pixelated, blurry transfers that are obvious when viewed up close.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light mb-6">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Blank</th>
-                      <th>Minimum Size (300 DPI)</th>
-                      <th>Recommended Size</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">11oz Mug Wrap</td>
-                      <td><span class="font-mono text-accent">2200 × 900 px</span></td>
-                      <td><span class="font-mono text-success">2600 × 1100 px</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">15oz Mug Wrap</td>
-                      <td><span class="font-mono text-accent">2600 × 1100 px</span></td>
-                      <td><span class="font-mono text-success">3000 × 1300 px</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">T-Shirt Chest</td>
-                      <td><span class="font-mono text-accent">2400 × 2800 px</span></td>
-                      <td><span class="font-mono text-success">3600 × 4200 px</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">20oz Tumbler</td>
-                      <td><span class="font-mono text-accent">2500 × 900 px</span></td>
-                      <td><span class="font-mono text-success">3000 × 1100 px</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">30oz Tumbler</td>
-                      <td><span class="font-mono text-accent">3000 × 1100 px</span></td>
-                      <td><span class="font-mono text-success">3600 × 1300 px</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Mouse Pad</td>
-                      <td><span class="font-mono text-accent">2400 × 2000 px</span></td>
-                      <td><span class="font-mono text-success">3000 × 2500 px</span></td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Coaster</td>
-                      <td><span class="font-mono text-accent">1200 × 1200 px</span></td>
-                      <td><span class="font-mono text-success">1500 × 1500 px</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-              <div class="p-4 rounded-lg bg-success-light border border-success/20">
-                <p class="text-sm text-secondary">
-                  <strong class="text-success">Best Practice:</strong> Always design at or above the recommended size. You can always scale down, but scaling up creates blur. Use our <a href="index.html#tool" class="text-accent hover:text-accent-hover">converter tool</a> to calculate exact dimensions.
-                </p>
-              </div>
-            </section>
-            
-            <!-- Common Mistakes -->
-            <section id="common-mistakes">
-              <h2 class="text-2xl font-bold text-primary mb-4">Common Sublimation Mistakes</h2>
-              <p class="text-secondary mb-6">Avoid these frequent errors that ruin sublimation projects and waste expensive blanks.</p>
-              
-              <div class="space-y-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <span class="text-lg font-bold text-danger">1</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Ghosting / Double Image</h3>
-                      <p class="text-sm text-secondary mb-2">Caused by paper shifting during pressing or removing paper while too hot.</p>
-                      <p class="text-xs text-muted"><strong>Fix:</strong> Use more heat tape, ensure firm pressure, and let cool slightly before removing paper.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <span class="text-lg font-bold text-danger">2</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Faded or Dull Colors</h3>
-                      <p class="text-sm text-secondary mb-2">Usually caused by low polyester content, insufficient temperature, or expired ink.</p>
-                      <p class="text-xs text-muted"><strong>Fix:</strong> Use 65%+ polyester, verify press temperature, and check ink expiration date.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <span class="text-lg font-bold text-danger">3</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">White Spots / Gassing Out</h3>
-                      <p class="text-sm text-secondary mb-2">Moisture escaping from the blank causes white blotches on the design.</p>
-                      <p class="text-xs text-muted"><strong>Fix:</strong> Pre-press blanks for 5-10 seconds to release moisture before applying design.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <span class="text-lg font-bold text-danger">4</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Forgetting to Mirror</h3>
-                      <p class="text-sm text-secondary mb-2">Design appears backwards on the finished product.</p>
-                      <p class="text-xs text-muted"><strong>Fix:</strong> Always flip horizontal before printing. Make this part of your pre-print checklist.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <span class="text-lg font-bold text-danger">5</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Uneven Pressure</h3>
-                      <p class="text-sm text-secondary mb-2">Parts of the design transfer well while other areas are faded or blank.</p>
-                      <p class="text-xs text-muted"><strong>Fix:</strong> Check that your heat press platens are parallel. Use pressure paper to test distribution.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-danger-light flex items-center justify-center flex-shrink-0">
-                      <span class="text-lg font-bold text-danger">6</span>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary mb-1">Scorch Marks</h3>
-                      <p class="text-sm text-secondary mb-2">Brown or yellow discoloration on the substrate around the design.</p>
-                      <p class="text-xs text-muted"><strong>Fix:</strong> Lower temperature or reduce press time. Some fabrics are heat-sensitive.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-            <!-- Troubleshooting Guide -->
-            <section id="troubleshooting">
-              <h2 class="text-2xl font-bold text-primary mb-4">Sublimation Troubleshooting Guide</h2>
-              <p class="text-secondary mb-6">Quick reference for diagnosing and fixing common sublimation problems.</p>
-              
-              <div class="overflow-x-auto rounded-xl border border-light">
-                <table class="data-table">
-                  <thead>
-                    <tr>
-                      <th>Problem</th>
-                      <th>Likely Cause</th>
-                      <th>Solution</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="font-medium text-primary">Colors look washed out</td>
-                      <td>Low polyester content</td>
-                      <td>Use 65%+ polyester blanks</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Design appears blurry</td>
-                      <td>Paper shifted or low DPI</td>
-                      <td>More tape, use 300 DPI</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">White patches on design</td>
-                      <td>Moisture in substrate</td>
-                      <td>Pre-press to remove moisture</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Uneven transfer</td>
-                      <td>Uneven pressure</td>
-                      <td>Adjust pressure, check platens</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Design backwards</td>
-                      <td>Did not mirror image</td>
-                      <td>Always flip horizontal</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Ink didn't transfer</td>
-                      <td>Low temperature</td>
-                      <td>Verify actual press temp</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Paper stuck to blank</td>
-                      <td>Removed while too hot</td>
-                      <td>Let cool slightly before peeling</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Faded after washing</td>
-                      <td>Used regular ink</td>
-                      <td>Use sublimation ink only</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Brown/yellow edges</td>
-                      <td>Too hot or too long</td>
-                      <td>Reduce temp or time</td>
-                    </tr>
-                    <tr>
-                      <td class="font-medium text-primary">Pixelated design</td>
-                      <td>Low resolution image</td>
-                      <td>Use 300 DPI minimum</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-            
-            <!-- Pro Tips -->
-            <section id="pro-tips">
-              <h2 class="text-2xl font-bold text-primary mb-4">Pro Tips for Better Sublimation</h2>
-              
-              <div class="grid md:grid-cols-2 gap-4">
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Use Fresh Ink</h3>
-                      <p class="text-xs text-secondary">Sublimation ink expires. Use within 6 months of opening for best color vibrancy.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Print Same Day</h3>
-                      <p class="text-xs text-secondary">Don't let printed designs sit for days. The ink can dry out and transfer poorly.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Lint Roll Everything</h3>
-                      <p class="text-xs text-secondary">Even invisible dust creates white spots. Lint roll every blank before pressing.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Use Butcher Paper</h3>
-                      <p class="text-xs text-secondary">Protect your press with butcher paper on top. Replace after every few presses.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Test New Blanks</h3>
-                      <p class="text-xs text-secondary">Every blank brand is different. Test time and temp before production runs.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Vent Your Space</h3>
-                      <p class="text-xs text-secondary">Sublimation releases gases. Work in a well-ventilated area or use a fume extractor.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Heat Tape Matters</h3>
-                      <p class="text-xs text-secondary">Cheap tape melts or leaves residue. Invest in quality heat-resistant tape.</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="card p-5 rounded-xl">
-                  <div class="flex items-start gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-success-light flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="font-semibold text-primary text-sm mb-1">Keep a Log</h3>
-                      <p class="text-xs text-secondary">Record time, temp, pressure for each blank type. Perfect your settings over time.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-          </article>
-        </div>
-      </div>
-    </section>
-    
-  </main>
-  
-  <!-- Footer -->
-  <footer class="py-12 border-t border-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <a href="index.html" class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M3 9h18M9 21V9"/>
-            </svg>
-          </div>
-          <span class="font-semibold text-primary">Pixel to Print</span>
-        </a>
-        <p class="text-sm text-muted">
-          <span id="currentYear"></span> Pixel to Print. Educational resource for designers.
-        </p>
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Calculator</a>
+        <a href="dpi-guide.html" class="nav-link">DPI Guide</a>
+        <a href="sublimation-tips.html" class="nav-link nav-link--active" aria-current="page">Sublimation</a>
+        <a href="print-size-chart.html" class="nav-link">Size Chart</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+          <span class="icon-sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </div>
+    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-nav-link">Calculator</a>
+      <a href="dpi-guide.html" class="mobile-nav-link">DPI Guide</a>
+      <a href="sublimation-tips.html" class="mobile-nav-link">Sublimation Tips</a>
+      <a href="print-size-chart.html" class="mobile-nav-link">Print Size Chart</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb-bar"><div class="breadcrumb-inner"><nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Pixel to Print</a></li><li aria-current="page">Sublimation Tips</li></ol></nav></div></div>
+
+  <div class="guide-hero">
+    <div class="guide-hero-inner">
+      <div class="section-label-tag" aria-hidden="true">Sublimation Guide · 2026</div>
+      <h1>Sublimation DPI by material — the real standards</h1>
+      <p class="guide-hero-desc">Every sublimation substrate behaves differently. A setting that works perfectly for a ceramic mug will ruin a polyester t-shirt. This guide covers verified DPI standards, heat press settings, color management, and common mistakes for every major sublimation product in 2026.</p>
+      <div class="guide-meta">
+        <span>Updated January 2026</span>
+        <span aria-hidden="true">·</span>
+        <span>15 min read</span>
+        <span aria-hidden="true">·</span>
+        <span>Cross-referenced from multiple industry sources</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-layout">
+    <aside class="guide-toc" aria-label="Table of contents">
+      <div class="toc-inner">
+        <div class="toc-title">On this page</div>
+        <nav><ol class="toc-list">
+          <li><a href="#how-sublimation-works">How sublimation works</a></li>
+          <li><a href="#dpi-by-material">DPI by material — full table</a></li>
+          <li><a href="#heat-press-settings">Heat press settings</a></li>
+          <li><a href="#color-management">Color management & ICC</a></li>
+          <li><a href="#fabric-tips">Fabric & garment tips</a></li>
+          <li><a href="#hard-surface-tips">Hard surface tips</a></li>
+          <li><a href="#common-mistakes">6 most common mistakes</a></li>
+          <li><a href="#troubleshooting">Troubleshooting chart</a></li>
+          <li><a href="#check-your-image">Check your image</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol></nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="guide-content">
+
+      <!-- ── How it works ─────────────────────────────── -->
+      <section id="how-sublimation-works" aria-labelledby="h-how">
+        <h2 id="h-how">How sublimation printing works — the short version</h2>
+        <p>Sublimation printing uses heat to convert solid dye particles into a gas, which then bonds chemically with polyester fibers or polymer coatings. The dye does not sit on top of the surface — it becomes part of it. This is why sublimation prints never crack, peel, or flake: there is no layer to lift.</p>
+        <p>Because the process requires a polymer molecule to bond with, sublimation only works on substrates that contain polyester or have a polymer coating applied. This includes 100% polyester fabric, polymer-coated ceramics, polymer-coated aluminum panels, polymer-coated wood (MDF), polymer-coated phone cases, and coated glass. It does not work on natural fibers like cotton without special treatment.</p>
+        <div class="guide-callout guide-callout--orange">
+          <div class="callout-icon" aria-hidden="true">⚠️</div>
+          <div><strong>Cannot print white.</strong> Sublimation dyes are semi-transparent. The printer has no white ink. Any area that should be white in your design will show the substrate color instead. Always use white or light-colored blanks. On a black shirt, sublimation produces no visible result.</div>
+        </div>
+        <p>The quality of your final print depends on four things working together: image resolution at the correct size, correct heat press temperature and time for the specific substrate, design in the correct color mode with an appropriate ICC profile, and a substrate that is genuinely polyester or polymer-coated (not a cheap alternative).</p>
+      </section>
+
+      <!-- ── DPI by Material ───────────────────────────── -->
+      <section id="dpi-by-material" aria-labelledby="h-dpi">
+        <h2 id="h-dpi">DPI by sublimation material — verified standards</h2>
+        <p>The DPI standard for sublimation varies by substrate because different surfaces have different ink absorption rates and are viewed at different distances. There is no single DPI that applies to everything.</p>
+
+        <div class="guide-callout guide-callout--blue">
+          <div class="callout-icon" aria-hidden="true">💡</div>
+          <div><strong>Important context:</strong> DPI in sublimation means the image resolution at the intended print size — not the printer's output DPI, which is always much higher (typically 720–1440 DPI). When this guide says "use 150 DPI for a t-shirt," it means your image file should have 150 pixels per inch at the final print size.</div>
+        </div>
+
+        <div class="guide-table-wrap" role="region" aria-label="Sublimation DPI standards by material" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Substrate</th>
+                <th scope="col">Recommended DPI</th>
+                <th scope="col">Minimum DPI</th>
+                <th scope="col">Typical Size Range</th>
+                <th scope="col">Why This DPI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Polyester T-shirt / garment</strong></td>
+                <td class="td-highlight">150 DPI</td>
+                <td>120 DPI</td>
+                <td>Full chest to A4 area</td>
+                <td>Fabric weave physically limits perceivable detail. 150 DPI exceeds what the material can reproduce. Higher DPI adds file size with zero visible improvement.</td>
+              </tr>
+              <tr>
+                <td><strong>Tote bag / polyester fabric</strong></td>
+                <td class="td-highlight">150 DPI</td>
+                <td>120 DPI</td>
+                <td>Standard tote proportions</td>
+                <td>Same principle as t-shirts. Heavier fabric weave — if anything, 150 DPI is more than sufficient.</td>
+              </tr>
+              <tr>
+                <td><strong>Ceramic mug (11oz / 15oz)</strong></td>
+                <td class="td-highlight">200 DPI</td>
+                <td>150 DPI</td>
+                <td>~8.5 × 3.7 in (11oz wrap)</td>
+                <td>Glazed ceramic holds fine detail better than fabric. Viewed at close range (12–18 in). 200 DPI delivers photo-quality results. 300 DPI is also acceptable.</td>
+              </tr>
+              <tr>
+                <td><strong>Ceramic tile</strong></td>
+                <td class="td-highlight">200 DPI</td>
+                <td>150 DPI</td>
+                <td>4×4 in to 12×12 in</td>
+                <td>Same ceramic surface properties as mugs. Viewed at wall distance — 200 DPI provides quality margin.</td>
+              </tr>
+              <tr>
+                <td><strong>Metal / aluminum panel</strong></td>
+                <td class="td-highlight">300 DPI</td>
+                <td>200 DPI</td>
+                <td>5×7 in to 24×36 in</td>
+                <td>Powder-coated aluminum has near-zero ink spread — holds maximum detail. Used for high-end photo display. 300 DPI is the standard for professional results.</td>
+              </tr>
+              <tr>
+                <td><strong>Phone case (sublimation insert)</strong></td>
+                <td class="td-highlight">300 DPI</td>
+                <td>200 DPI</td>
+                <td>Varies by phone model</td>
+                <td>Viewed at 10–12 inches — the closest viewing distance of any sublimation product. Fine text and logos need 300 DPI. Always use exact template dimensions.</td>
+              </tr>
+              <tr>
+                <td><strong>Mouse pad</strong></td>
+                <td class="td-highlight">150 DPI</td>
+                <td>100 DPI</td>
+                <td>9×7 in standard / 36×18 in XL</td>
+                <td>Fabric surface. Viewed from above at desk distance. 150 DPI produces excellent results across all standard sizes.</td>
+              </tr>
+              <tr>
+                <td><strong>Sublimation tumbler / stainless</strong></td>
+                <td class="td-highlight">150–200 DPI</td>
+                <td>120 DPI</td>
+                <td>Varies by oz / height</td>
+                <td>Requires a polymer-coated stainless blank. 150 DPI minimum; 200 DPI for photo-heavy designs. Use a tumbler press for even heat distribution on curved surfaces.</td>
+              </tr>
+              <tr>
+                <td><strong>Sublimation pillow / cushion</strong></td>
+                <td class="td-highlight">150 DPI</td>
+                <td>100 DPI</td>
+                <td>14×14 in to 20×20 in</td>
+                <td>Polyester cover — fabric limits perceivable detail. Viewed from sitting distance. 150 DPI gives professional results at all standard cushion sizes.</td>
+              </tr>
+              <tr>
+                <td><strong>MDF / hardboard</strong></td>
+                <td class="td-highlight">200 DPI</td>
+                <td>150 DPI</td>
+                <td>A4 to A1</td>
+                <td>Polymer-coated engineered wood holds good detail. Used for signs, photo plaques. 200 DPI is the recommended standard.</td>
+              </tr>
+              <tr>
+                <td><strong>Sublimation flag / banner</strong></td>
+                <td class="td-highlight">100–150 DPI</td>
+                <td>72 DPI</td>
+                <td>12×18 in to large format</td>
+                <td>Polyester flag fabric viewed from distance. Same principle as vinyl banners — viewing distance determines minimum perceivable DPI. 100 DPI is fine for standard flags.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="guide-callout guide-callout--green">
+          <div class="callout-icon" aria-hidden="true">✦</div>
+          <div><strong>Not sure if your image meets these standards?</strong> Upload it to the <a href="index.html">Pixel to Print calculator</a>, select your sublimation substrate and dimensions, and get an instant score. It will tell you exactly whether to print, upscale, or what size to reduce to.</div>
+        </div>
+      </section>
+
+      <!-- ── Heat Press Settings ───────────────────────── -->
+      <section id="heat-press-settings" aria-labelledby="h-heat">
+        <h2 id="h-heat">Heat press settings by substrate</h2>
+        <p>Heat press settings are not universal. The wrong temperature or time can produce faded prints, scorched fabric, or color shifts. The following are widely verified starting points — always consult your specific blank manufacturer's instructions and run a test press before production.</p>
+
+        <div class="guide-callout guide-callout--orange">
+          <div class="callout-icon" aria-hidden="true">⚠️</div>
+          <div><strong>Always test first.</strong> Heat press machines vary in actual temperature vs. displayed temperature. Use temperature strips or a thermometer probe to verify your press is calibrated correctly before trusting these starting points on client blanks.</div>
+        </div>
+
+        <div class="guide-table-wrap" role="region" aria-label="Heat press settings by sublimation substrate" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Substrate</th>
+                <th scope="col">Temperature</th>
+                <th scope="col">Time</th>
+                <th scope="col">Pressure</th>
+                <th scope="col">Key Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>100% polyester T-shirt</strong></td>
+                <td class="td-mono">385–400°F<br/>(196–204°C)</td>
+                <td class="td-mono">35–45 sec</td>
+                <td>Medium</td>
+                <td>Pre-press 3–5 seconds to remove moisture first. Use a blow-out sheet to prevent press marks. Remove paper immediately after pressing.</td>
+              </tr>
+              <tr>
+                <td><strong>Poly-cotton blend (65%+ poly)</strong></td>
+                <td class="td-mono">380–390°F<br/>(193–199°C)</td>
+                <td class="td-mono">30–40 sec</td>
+                <td>Medium-light</td>
+                <td>Slightly lower temperature to avoid scorching cotton fibers. Colors will be less vibrant than 100% polyester. Not recommended for critical color work.</td>
+              </tr>
+              <tr>
+                <td><strong>Ceramic mug (11oz / 15oz)</strong></td>
+                <td class="td-mono">360–400°F<br/>(182–204°C)</td>
+                <td class="td-mono">180–240 sec<br/>(3–4 min)</td>
+                <td>Firm</td>
+                <td>Requires a dedicated mug press. Longer time needed because ceramic is a poor heat conductor. Let mug cool 60 seconds before removing paper to prevent ghosting. Secure paper with heat-resistant tape.</td>
+              </tr>
+              <tr>
+                <td><strong>Ceramic tile</strong></td>
+                <td class="td-mono">400°F<br/>(204°C)</td>
+                <td class="td-mono">6–8 min</td>
+                <td>Medium-firm</td>
+                <td>Press from the back (transfer side down). Use a silicone pad. Time varies significantly by tile thickness — always consult your blank supplier.</td>
+              </tr>
+              <tr>
+                <td><strong>Metal / aluminum panel</strong></td>
+                <td class="td-mono">385–400°F<br/>(196–204°C)</td>
+                <td class="td-mono">45–80 sec</td>
+                <td>Medium</td>
+                <td>Remove protective plastic coating before pressing. Place an absorbent sheet underneath. Peel paper immediately after pressing while substrate is still warm for cleanest edges.</td>
+              </tr>
+              <tr>
+                <td><strong>Polymer-coated tumbler</strong></td>
+                <td class="td-mono">350–365°F<br/>(177–185°C)</td>
+                <td class="td-mono">60–90 sec per side</td>
+                <td>Firm wrap</td>
+                <td>Use a tumbler press. Lower temperature than flat press because the curved form traps heat. Secure paper tightly with tape — any shift causes ghosting on curved surfaces.</td>
+              </tr>
+              <tr>
+                <td><strong>Mouse pad</strong></td>
+                <td class="td-mono">380–400°F<br/>(193–204°C)</td>
+                <td class="td-mono">50–60 sec</td>
+                <td>Medium</td>
+                <td>Place rubber side down. Use a silicone pad underneath for even pressure. Some mouse pad materials require slightly more time — test first.</td>
+              </tr>
+              <tr>
+                <td><strong>MDF / hardboard</strong></td>
+                <td class="td-mono">400°F<br/>(204°C)</td>
+                <td class="td-mono">60–90 sec</td>
+                <td>Medium-firm</td>
+                <td>Pre-press 5 seconds to remove moisture. MDF absorbs moisture more than hard surfaces. Remove paper while still warm.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>These are verified starting ranges from multiple industry sources. Your specific blank manufacturer's recommended settings always take precedence. When changing to a new blank supplier or blank type, run three test presses before committing to production quantities.</p>
+      </section>
+
+      <!-- ── Color Management ──────────────────────────── -->
+      <section id="color-management" aria-labelledby="h-color">
+        <h2 id="h-color">Color management for sublimation — RGB, CMYK, and ICC profiles</h2>
+        <p>Color management is where most sublimation businesses lose consistency. The relationship between RGB, CMYK, and ICC profiles in sublimation is genuinely confusing because multiple sources give conflicting advice. Here is what is accurate.</p>
+
+        <h3>Design in RGB — print in RGB</h3>
+        <p>Design your files in RGB color mode. Sublimation printers like the Epson EcoTank series and Sawgrass SG500/SG1000 handle the color conversion internally — they receive RGB data and convert it to their CMYK ink channels using their built-in or assigned ICC profile. Designing in RGB gives you access to a wider color gamut than CMYK, allowing for more vibrant output.</p>
+        <p>Converting your file to CMYK before printing narrows the color gamut unnecessarily and can cause color shifts because you are forcing the conversion twice — once from your design software to CMYK, then again inside the printer. This produces less accurate results, not more.</p>
+
+        <div class="guide-example-box">
+          <div class="example-box-title">The correct sublimation color workflow</div>
+          <div class="example-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="example-cell">
+              <div class="example-label">Step 1</div>
+              <div class="example-value" style="font-size:14px;">Design in RGB</div>
+              <div class="example-note">sRGB or Adobe RGB workspace in Photoshop / Illustrator</div>
+            </div>
+            <div class="example-cell">
+              <div class="example-label">Step 2</div>
+              <div class="example-value" style="font-size:14px;">Install ICC profile</div>
+              <div class="example-note">Use profile from your ink manufacturer for your printer + paper combination</div>
+            </div>
+            <div class="example-cell">
+              <div class="example-label">Step 3</div>
+              <div class="example-value" style="font-size:14px;">Print via ICC</div>
+              <div class="example-note">Set printer to "No Color Adjustment" if using ICC profile in design software</div>
+            </div>
+            <div class="example-cell">
+              <div class="example-label">Step 4</div>
+              <div class="example-value" style="font-size:14px;">Press &amp; verify</div>
+              <div class="example-note">Press test swatch on same substrate. Adjust profile or settings based on result</div>
+            </div>
+          </div>
+          <p class="example-caption">Never convert to CMYK before printing sublimation. Let the printer handle the conversion using its ICC profile.</p>
+        </div>
+
+        <h3>ICC profiles — what they are and how to get them</h3>
+        <p>An ICC profile is a calibration file that tells your computer how your specific combination of printer, ink, and paper will reproduce color. It acts as a translator between what you see on screen and what comes out of the printer. Without the correct ICC profile, colors are reproduced using default assumptions that may not match your actual hardware.</p>
+        <p>ICC profiles are specific to your printer model, ink brand, and sublimation paper type. Generic profiles will not give you accurate results. Get your ICC profile from your ink manufacturer (Sawgrass, Cosmos Ink, Hiipoo, Epson sublimation inks all provide profiles), or download from the blank supplier's resource page. Install the profile and assign it in your printer settings or design software.</p>
+
+        <div class="guide-callout guide-callout--blue">
+          <div class="callout-icon" aria-hidden="true">💡</div>
+          <div><strong>Practical tip:</strong> Even with a correct ICC profile, colors on screen will not perfectly match the pressed output. This is a physical limitation — monitors display color using light (additive), printers use ink (subtractive). Print a color test chart on your specific substrate and keep it as a physical reference. When choosing colors in your design, refer to the chart rather than relying solely on screen appearance.</div>
+        </div>
+      </section>
+
+      <!-- ── Fabric Tips ────────────────────────────────── -->
+      <section id="fabric-tips" aria-labelledby="h-fabric">
+        <h2 id="h-fabric">Fabric and garment sublimation tips</h2>
+        <p>Fabric is the most forgiving sublimation substrate in terms of DPI, but the most unforgiving in terms of moisture, polyester content, and pressure technique.</p>
+
+        <div class="ppqs-factors">
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">01</div>
+            <div>
+              <h3>Pre-press to remove moisture</h3>
+              <p>Press the blank for 3–5 seconds before applying the transfer. Moisture in the fabric is the most common cause of faded, uneven, or spotty transfers. This also removes wrinkles. Let the blank cool for a few seconds before applying the transfer paper.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">02</div>
+            <div>
+              <h3>100% polyester gives the best results</h3>
+              <p>Higher polyester content = brighter, more vibrant, more durable prints. 100% polyester gives full color saturation. 65% polyester gives acceptable results. Below 50% polyester, the print will be noticeably dull and less durable after washing. Performance polyester (athletic fabric) requires slightly shorter press time — 30 seconds at 380°F — to prevent heat damage to the fibers.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">03</div>
+            <div>
+              <h3>Bleed your design to the edges</h3>
+              <p>For full-coverage designs (image edge-to-edge with no white border), size your design slightly larger than the print area and print slightly larger. This prevents a white or blank edge appearing at the borders if the paper shifts slightly. Measure your printed transfer before pressing — "Fit to Page" in your print dialog box will scale your design incorrectly.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">04</div>
+            <div>
+              <h3>Use a blow-out sheet, not Teflon</h3>
+              <p>Place a clean piece of butcher paper (not Teflon sheet) on top of the transfer. Butcher paper absorbs moisture vapor; Teflon traps it, which causes uneven transfers and ghosting. Use a fresh piece of butcher paper for each press — reusing it can cause color transfer from previous sessions onto new blanks.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Hard Surface Tips ──────────────────────────── -->
+      <section id="hard-surface-tips" aria-labelledby="h-hard">
+        <h2 id="h-hard">Hard surface sublimation tips (mugs, metal, ceramic)</h2>
+        <p>Hard substrates require different techniques from fabric. The main concerns are secure paper attachment to prevent ghosting, correct press equipment for curved surfaces, and polymer coating verification.</p>
+
+        <div class="ppqs-factors">
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">01</div>
+            <div>
+              <h3>Verify the polymer coating</h3>
+              <p>Not all ceramic mugs, aluminum panels, or other hard blanks are sublimation-compatible. The substrate must have a polymer coating that the dye can bond with. A plain ceramic mug from a dollar store will not hold sublimation ink. Always source blanks specifically labeled as sublimation-ready from a reliable supplier. Test with a scrap blank before using client-specific items.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">02</div>
+            <div>
+              <h3>Secure all four edges with heat-resistant tape</h3>
+              <p>Paper movement is the primary cause of ghosting on hard substrates. Tape all four edges of the transfer paper firmly to the substrate before pressing. Use tape rated for sublimation temperatures — cheap heat-resistant tape meant for HTV transfers can leave yellow marks on the substrate at the higher temperatures sublimation requires. Blue tape from Cricut is a reliable choice. White tape from most sublimation suppliers is also safe.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">03</div>
+            <div>
+              <h3>Use the right press for the substrate shape</h3>
+              <p>Curved items (mugs, tumblers) require a dedicated mug press or tumbler press. A flat heat press cannot apply even pressure to a curved surface. Using a flat press on a mug creates uneven heat distribution — the design will be vivid on the contact areas and faded elsewhere. For phone cases and small items, use a silicone pad or insert to ensure even pressure over the entire design area.</p>
+            </div>
+          </div>
+          <div class="ppqs-factor">
+            <div class="ppqs-factor-num" aria-hidden="true">04</div>
+            <div>
+              <h3>Remove paper immediately or wait for full cool — pick one</h3>
+              <p>For most hard substrates, remove the transfer paper immediately while the substrate is still hot, in one smooth motion without lifting or dragging. This gives the cleanest, sharpest edges. Alternatively, let the substrate cool completely before removing. The one thing to avoid is removing paper when the substrate is warm but not hot — this is when ghosting is most likely to occur. For mugs, waiting 60 seconds after removing from the press is the safest approach.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Common Mistakes ───────────────────────────── -->
+      <section id="common-mistakes" aria-labelledby="h-mistakes">
+        <h2 id="h-mistakes">The 6 most common sublimation mistakes</h2>
+        <p>These are the mistakes that waste the most blanks, most consistently, across both beginner and experienced operators.</p>
+
+        <div class="guide-table-wrap" role="region" aria-label="Common sublimation mistakes and fixes" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mistake</th>
+                <th scope="col">Result</th>
+                <th scope="col">Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-mono">01</td>
+                <td><strong>Printing on wrong side of sublimation paper</strong></td>
+                <td>Faded, washed-out transfer with no color vibrancy</td>
+                <td>Sublimation paper has a bright white coated side and a dull off-white side. Print on the bright white side only. In most Epson EcoTank and Sawgrass printers, the printable side loads face-down.</td>
+              </tr>
+              <tr>
+                <td class="td-mono">02</td>
+                <td><strong>No pre-press for fabric blanks</strong></td>
+                <td>Faded print, white spots, uneven transfer</td>
+                <td>Pre-press the blank for 3–5 seconds at press temperature before applying the transfer. This removes moisture and wrinkles — the two most common causes of uneven fabric transfers.</td>
+              </tr>
+              <tr>
+                <td class="td-mono">03</td>
+                <td><strong>Transfer paper not secured before pressing</strong></td>
+                <td>Ghosting — faint shadow or double image next to the design</td>
+                <td>Secure the transfer with heat-resistant tape (hard substrates) or heat-resistant adhesive spray (fabric). Tape all four edges. Open and close the heat press slowly to prevent paper shift from the air movement.</td>
+              </tr>
+              <tr>
+                <td class="td-mono">04</td>
+                <td><strong>Using a flat press for curved surfaces (mugs/tumblers)</strong></td>
+                <td>Vivid print on front, faded on sides; uneven ink transfer</td>
+                <td>Use a dedicated mug press for mugs and a tumbler press for tumblers. A flat press cannot distribute heat evenly across a curved surface. There is no workaround.</td>
+              </tr>
+              <tr>
+                <td class="td-mono">05</td>
+                <td><strong>Incorrect image size — not using template</strong></td>
+                <td>Design cut off at edges, misaligned, or scaled incorrectly</td>
+                <td>Always build your design using the exact template for your specific product (11oz mug, specific phone model, etc.). Printing at "Fit to Page" scales the design incorrectly. Measure your printed transfer before pressing. Size your design slightly larger than the template if doing full-coverage edge-to-edge work.</td>
+              </tr>
+              <tr>
+                <td class="td-mono">06</td>
+                <td><strong>Reusing butcher paper or Teflon sheet</strong></td>
+                <td>Color contamination from previous session transferred onto new blank</td>
+                <td>Use a fresh piece of butcher paper for each press. Sublimation ink from a previous session can transfer at high temperature onto the new blank, leaving a ghost of the previous design. Do not reuse any protective paper or sheet that made contact with sublimation ink.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── Troubleshooting ───────────────────────────── -->
+      <section id="troubleshooting" aria-labelledby="h-trouble">
+        <h2 id="h-trouble">Troubleshooting — problem and fix</h2>
+
+        <div class="guide-table-wrap" role="region" aria-label="Sublimation troubleshooting guide" tabindex="0">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Problem</th>
+                <th scope="col">Most Likely Cause</th>
+                <th scope="col">Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Print looks dull or washed out (before pressing)</strong></td>
+                <td>This is normal</td>
+                <td>Sublimation ink always looks light and dull when printed on paper. The colors only become vibrant after the heat press activates the dye and bonds it to the substrate. Do not adjust your design based on how it looks on paper.</td>
+              </tr>
+              <tr>
+                <td><strong>Print looks faded after pressing</strong></td>
+                <td>Too low temperature or too short time</td>
+                <td>Increase temperature by 5–10°F or extend press time by 10–15 seconds. Also check: correct side of paper used, substrate is genuinely polyester or polymer-coated, heat press is calibrated correctly (use temperature strips).</td>
+              </tr>
+              <tr>
+                <td><strong>Colors are too dark or shifting</strong></td>
+                <td>Too high temperature or too long time</td>
+                <td>Reduce temperature by 5–10°F or reduce press time. Dye migration also causes colors to bleed at excessive heat — reduce and re-test.</td>
+              </tr>
+              <tr>
+                <td><strong>Ghosting — shadow or double image</strong></td>
+                <td>Transfer paper shifted during or after pressing</td>
+                <td>Secure paper with heat-resistant tape on all four edges before pressing. Open the press slowly. Remove paper in one smooth motion immediately after pressing (or wait for complete cool — not warm). Do not move the substrate while it is still hot.</td>
+              </tr>
+              <tr>
+                <td><strong>Blurring at image edges</strong></td>
+                <td>Too much heat or time causing dye bleed</td>
+                <td>Reduce temperature and time. Also check for too much ink density in the design — reduce saturation or check RIP/print settings. Ensure the paper is firmly against the substrate with no air gaps.</td>
+              </tr>
+              <tr>
+                <td><strong>Small white dots or spots</strong></td>
+                <td>Moisture or dust on substrate surface</td>
+                <td>Pre-press the blank for 3–5 seconds to remove moisture. Wipe the substrate with a lint-free cloth and 90%+ isopropyl alcohol before pressing. Avoid pressing in humid environments.</td>
+              </tr>
+              <tr>
+                <td><strong>Banding (horizontal lines of missing ink)</strong></td>
+                <td>Clogged print head nozzles</td>
+                <td>Run a nozzle check from your printer's control panel. If lines are missing, run a head cleaning cycle. Print a full-bleed page to flush the lines. If you do not print regularly, print a test page at least once a week to prevent the ink from drying in the nozzles.</td>
+              </tr>
+              <tr>
+                <td><strong>Colors on screen don't match pressed result</strong></td>
+                <td>Missing or incorrect ICC profile; uncalibrated monitor</td>
+                <td>Install the ICC profile from your ink manufacturer for your specific printer and paper combination. In your print dialog, set color management to "Printer manages color" or "No color adjustment" if you are applying the profile in your design software. Print a physical color reference chart and use it to choose colors, rather than relying on screen appearance.</td>
+              </tr>
+              <tr>
+                <td><strong>Mug design uneven — vivid on one side, faded on other</strong></td>
+                <td>Using flat press instead of mug press</td>
+                <td>A flat heat press cannot apply even heat to a cylindrical surface. Use a dedicated mug press. If using a tumbler press on a mug, heat each side separately for equal time.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── Check Your Image ──────────────────────────── -->
+      <section id="check-your-image" aria-labelledby="h-check">
+        <h2 id="h-check">Check if your image meets sublimation DPI requirements</h2>
+        <p>Before you press a single blank, verify that your image file has enough resolution for your target product and size. The Pixel to Print calculator is built specifically for this — it has sublimation-specific presets for every common substrate and will give you an instant quality score.</p>
+        <div class="guide-cta-box">
+          <div>
+            <strong>Upload your image, select your sublimation substrate and dimensions, and get your PPQS quality score.</strong> If the score is below 75, the calculator will tell you exactly how much upscaling is needed and which tools to use.
+          </div>
+          <a href="index.html" class="guide-cta-btn">Check Print Quality →</a>
+        </div>
+        <div class="guide-formula-box" style="margin-top:var(--space-lg)">
+          <div class="formula">Quick manual check: Pixel width ÷ Print width (inches) = DPI at size</div>
+          <div class="formula-example">Example: 1500 px ÷ 10 in = 150 DPI &nbsp;·&nbsp; Meets standard for fabric and mug? ✓ Fabric: Yes. Mug: Borderline. Metal: No.</div>
+        </div>
+      </section>
+
+      <!-- ── FAQ ──────────────────────────────────────── -->
+      <section id="faq" aria-labelledby="h-faq">
+        <h2 id="h-faq">Frequently asked questions</h2>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary class="faq-q">What DPI do I need for sublimation printing?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a">
+              <p>It depends on the substrate. For polyester fabric (t-shirts, tote bags, mouse pads): <strong>150 DPI</strong> is the industry standard — the fabric weave absorbs ink spread, making higher DPI invisible. For ceramic mugs and tiles: <strong>200 DPI</strong>. For metal/aluminum panels and phone cases: <strong>300 DPI</strong>. These are the verified standards, not arbitrary recommendations.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Should I use RGB or CMYK for sublimation?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a">
+              <p><strong>Design in RGB, print in RGB.</strong> Sublimation printers receive RGB data and handle the conversion internally. Converting to CMYK before printing narrows the color gamut and causes color shifts. Use an ICC profile specific to your printer, ink, and paper combination. Never convert to CMYK for sublimation — this is one of the most common color management mistakes in the industry.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Why does my sublimation print look faded or dull?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a">
+              <p>If the print on paper looks dull — this is completely normal. Sublimation ink always looks light before pressing. The true colors only appear after heat activation.</p>
+              <p>If the pressed result is faded: check that your heat press is at the correct temperature (use temperature strips to verify calibration), that you pressed for sufficient time, that you printed on the correct side of the sublimation paper (bright white side), and that your blank is genuinely polyester or polymer-coated. Dark-colored blanks will always appear faded because sublimation dyes are semi-transparent.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">What causes ghosting in sublimation?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Ghosting — a faint shadow image next to your design — happens when the transfer paper shifts while the substrate is still hot enough to accept ink. The most common moments this happens are when opening or closing the press, or when removing the paper.</p>
+              <p>Fix: tape all four edges of the transfer paper with heat-resistant tape before pressing. Open the press slowly. For mugs and tumblers, use a shrink sleeve or wrap very tightly. Remove the paper immediately after pressing in one smooth continuous motion, or wait for the substrate to cool completely.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Can I sublimate on cotton or dark fabrics?<span class="faq-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+            <div class="faq-a">
+              <p><strong>100% cotton:</strong> Standard sublimation does not work — the dye has no polyester fibers to bond with. Special polyester coating sprays can be applied to cotton, but results are significantly less durable and vibrant than printing on actual polyester.</p>
+              <p><strong>Dark fabrics:</strong> Sublimation dyes are semi-transparent. On dark backgrounds, the design is not visible. There is no workaround — sublimation is only suitable for white or light-colored substrates.</p>
+              <p><strong>Poly-cotton blends:</strong> Blends of 65%+ polyester will show usable results, but noticeably less vibrant and less wash-durable than 100% polyester. The cotton fibers do not bond with the dye and gradually cause the print to fade.</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <section aria-labelledby="h-related">
+        <h2 id="h-related">Related guides</h2>
+        <div class="related-grid">
+          <a href="dpi-guide.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">📐</div>
+            <div><div class="related-title">DPI vs PPI explained</div><div class="related-desc">The science behind print resolution — why 300 DPI isn't always needed.</div></div>
+          </a>
+          <a href="print-size-chart.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">📏</div>
+            <div><div class="related-title">Print size reference chart</div><div class="related-desc">Standard sizes for every product — photos, canvas, sublimation, signage.</div></div>
+          </a>
+          <a href="index.html" class="related-card">
+            <div class="related-icon" aria-hidden="true">🎯</div>
+            <div><div class="related-title">Check your image now</div><div class="related-desc">Upload and get a sublimation quality score in under 30 seconds.</div></div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="Pixel to Print — Home">
+          <div class="logo-mark" aria-hidden="true" style="width:28px;height:28px;"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.3"/></svg></div>
+          <span class="logo-name" style="font-size:14px;">Pixel to Print</span>
+        </a>
+        <p>Free, open-source print quality calculator. Made by <a href="https://xcreativedesign.com" target="_blank" rel="noopener noreferrer">XCreativeDesign</a>.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-link-group"><a href="index.html" class="footer-link">Calculator</a><a href="dpi-guide.html" class="footer-link">DPI Guide</a><a href="sublimation-tips.html" class="footer-link">Sublimation Tips</a><a href="print-size-chart.html" class="footer-link">Size Chart</a></div>
+        <div class="footer-link-group"><a href="https://github.com/xcreativedesign/pixel-to-print" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a><a href="https://x.com/xcreativedesig" target="_blank" rel="noopener noreferrer" class="footer-link">X / Twitter</a><a href="privacy-policy.html" class="footer-link">Privacy</a></div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Pixel to Print · MIT License</span>
+      <span class="footer-privacy"><span class="privacy-dot" aria-hidden="true"></span>Your image is processed locally. Nothing is ever uploaded.</span>
+    </div>
   </footer>
-  
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <script>
-    // Theme Toggle
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-      updateThemeIcon();
-    }
-    
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeIcon();
-    }
-    
-    function updateThemeIcon() {
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
-      const theme = document.documentElement.getAttribute('data-theme');
-      
-      if (sunIcon && moonIcon) {
-        if (theme === 'dark') {
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        } else {
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        }
-      }
-    }
-    
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    initTheme();
-    
-    // Set current year dynamically
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    // Sidebar active state on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
-    
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 100) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
+    (function(){var t=function(){try{return localStorage.getItem('p2p-theme')||'light';}catch(e){return 'light';}};document.documentElement.setAttribute('data-theme',t());})();
+    document.addEventListener('DOMContentLoaded',function(){
+      var tb=document.getElementById('theme-toggle');
+      if(tb){tb.addEventListener('click',function(){var c=document.documentElement.getAttribute('data-theme')||'light';var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('p2p-theme',n);}catch(e){}});}
+      var mb=document.getElementById('mobile-menu-btn'),mn=document.getElementById('mobile-nav');
+      if(mb&&mn){mn.hidden=true;mb.addEventListener('click',function(){var o=!mn.hidden;mn.hidden=o;mb.setAttribute('aria-expanded',String(!o));});document.addEventListener('click',function(e){if(!mn.hidden&&!mn.contains(e.target)&&!mb.contains(e.target)){mn.hidden=true;mb.setAttribute('aria-expanded','false');}});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!mn.hidden){mn.hidden=true;mb.setAttribute('aria-expanded','false');}});}
     });
   </script>
 </body>
