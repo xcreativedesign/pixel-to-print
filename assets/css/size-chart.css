@@ -1,0 +1,245 @@
+/* ============================================================
+   size-chart.css — Print size chart page specific styles
+   Pixel to Print | XCreativeDesign | MIT License
+   ============================================================ */
+
+/* ── Jump Navigation ────────────────────────────────────── */
+.chart-jumbnav {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.chartjump-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chartjump-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.chartjump-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--duration), color var(--duration), border-color var(--duration);
+}
+
+.chartjump-link:hover {
+  background: rgba(26,110,255,0.07);
+  color: var(--brand-primary);
+  border-color: rgba(26,110,255,0.2);
+  text-decoration: none;
+}
+
+/* ── Main chart layout ──────────────────────────────────── */
+.chart-main {
+  background: var(--bg-base);
+  min-height: 60vh;
+}
+
+.chart-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+}
+
+.chart-layout section {
+  scroll-margin-top: 120px; /* clears sticky header + jump nav */
+}
+
+/* ── How-to-read explainer ──────────────────────────────── */
+.chart-explainer {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+}
+
+.chart-explainer h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-md);
+}
+
+.chart-explainer p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 var(--space-md);
+}
+
+.dpi-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.dpi-legend-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.dpi-legend-item strong {
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: -0.01em;
+}
+
+.dpi-legend-item span { color: var(--text-secondary); }
+
+.dpi-legend--300 {
+  background: rgba(26,110,255,0.05);
+  border: 1px solid rgba(26,110,255,0.18);
+}
+.dpi-legend--300 strong { color: var(--brand-primary); }
+
+.dpi-legend--150 {
+  background: rgba(0,135,90,0.05);
+  border: 1px solid rgba(0,135,90,0.18);
+}
+.dpi-legend--150 strong { color: #00875A; }
+
+/* ── Section headings ───────────────────────────────────── */
+.chart-layout h2 {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0 0 var(--space-sm);
+}
+
+.chart-layout h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+.chart-layout p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 var(--space-md);
+  max-width: 760px;
+}
+
+.chart-layout a { color: var(--brand-primary); font-weight: 500; }
+
+/* ── Table cell variants ────────────────────────────────── */
+.td-size {
+  font-family: 'DM Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.td-ratio {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.td-muted {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Popular rows highlight */
+.tr-popular {
+  background: rgba(26,110,255,0.025);
+}
+
+.tr-popular:hover {
+  background: rgba(26,110,255,0.05) !important;
+}
+
+.tr-popular .td-size strong::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  margin-left: 6px;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+
+/* Table footnote */
+.table-footnote {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: var(--space-sm) !important;
+  max-width: none !important;
+}
+
+/* ── CTA section ────────────────────────────────────────── */
+.chart-cta-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .chart-layout {
+    padding: var(--space-lg) var(--space-md);
+    gap: var(--space-2xl);
+  }
+
+  .chartjump-inner { padding: 8px var(--space-md); }
+
+  .dpi-legend { grid-template-columns: 1fr; }
+
+  .chart-jumbnav { top: 60px; }
+}
+
+@media (max-width: 480px) {
+  .chartjump-link { font-size: 12px; padding: 4px 10px; }
+  .chart-explainer { padding: var(--space-md); }
+}
